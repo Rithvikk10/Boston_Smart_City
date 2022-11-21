@@ -31,6 +31,7 @@ public class ResidentJFrame extends javax.swing.JFrame {
         btnComplaint = new javax.swing.JButton();
         btnStatus = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnRaise = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +58,13 @@ public class ResidentJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnRaise.setText("Raise Complaint / Check Status");
+        btnRaise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRaiseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -75,6 +83,10 @@ public class ResidentJFrame extends javax.swing.JFrame {
                         .addGap(70, 70, 70)
                         .addComponent(btnStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(151, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnRaise, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(251, 251, 251))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,7 +96,9 @@ public class ResidentJFrame extends javax.swing.JFrame {
                     .addComponent(btnStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
                     .addComponent(btnComplaint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
+                .addGap(81, 81, 81)
+                .addComponent(btnRaise, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(134, 134, 134))
         );
@@ -127,6 +141,14 @@ public class ResidentJFrame extends javax.swing.JFrame {
        dispose();
     }//GEN-LAST:event_btnComplaintActionPerformed
 
+    private void btnRaiseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaiseActionPerformed
+        // TODO add your handling code here:
+        ResidentLoginJFrame rcs = new ResidentLoginJFrame();
+        rcs.setVisible(true);
+       
+        dispose();
+    }//GEN-LAST:event_btnRaiseActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -166,6 +188,7 @@ public class ResidentJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnComplaint;
     private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnRaise;
     private javax.swing.JButton btnStatus;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
