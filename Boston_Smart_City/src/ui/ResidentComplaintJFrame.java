@@ -293,7 +293,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        ResidentJFrame rf = new ResidentJFrame();
+        ResidentProfileJFrame rf = new ResidentProfileJFrame();
         rf.setVisible(true);
 
         dispose();
@@ -301,7 +301,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
         // TODO add your handling code here:
-        ResidentJFrame rf = new ResidentJFrame();
+        ResidentProfileJFrame rf = new ResidentProfileJFrame();
         rf.setVisible(true);
 
         dispose();
