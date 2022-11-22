@@ -71,11 +71,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnSystem" pref="132" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnEnt" pref="132" max="32767" attributes="0"/>
-                              <Component id="btnResident" max="32767" attributes="0"/>
-                              <Component id="btnStaff" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="btnEnt" pref="132" max="32767" attributes="0"/>
+                          <Component id="btnResident" max="32767" attributes="0"/>
+                          <Component id="btnStaff" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
