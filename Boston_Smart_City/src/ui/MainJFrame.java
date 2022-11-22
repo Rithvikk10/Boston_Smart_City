@@ -108,7 +108,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnResidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResidentActionPerformed
         // TODO add your handling code here:
-        ResidentJFrame rf = new ResidentJFrame();
+        ResidentProfileJFrame rf = new ResidentProfileJFrame();
        rf.setVisible(true);
        
        dispose();
