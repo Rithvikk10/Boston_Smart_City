@@ -34,6 +34,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +77,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jButton3.setText("jButton3");
 
+        jButton4.setText("jButton4");
+
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
@@ -93,7 +96,8 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton2)
-                            .addComponent(jButton1)))
+                            .addComponent(jButton1)
+                            .addComponent(jButton4)))
                     .addGroup(controlPanelLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jButton3)))
@@ -108,7 +112,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
                 .addComponent(btnResident, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
+                .addGap(37, 37, 37)
+                .addComponent(jButton4)
+                .addGap(28, 28, 28)
                 .addComponent(jButton1)
                 .addGap(29, 29, 29)
                 .addComponent(jButton2)
@@ -193,6 +199,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel workPanel;
     // End of variables declaration//GEN-END:variables
