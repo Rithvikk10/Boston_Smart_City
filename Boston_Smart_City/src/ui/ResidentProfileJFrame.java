@@ -4,6 +4,22 @@
  */
 package ui;
 
+
+import java.sql.SQLException;
+
+
+
+import java.sql.Connection;
+
+import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.DriverManager;
+import java.sql.*;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author rithvik
@@ -15,6 +31,8 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
      */
     public ResidentProfileJFrame() {
         initComponents();
+        updateCombo();
+        updateCityCombo();
     }
 
     /**
@@ -92,9 +110,11 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
             }
         });
 
-        comboCommunity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        comboCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCityActionPerformed(evt);
+            }
+        });
 
         txtPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +147,11 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         jLabel3.setText("Address :");
 
         btnCreate.setText("Create Profile");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -355,11 +380,33 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+     
+        try{
+       Class.forName("com.mysql.jdbc.Driver");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+        String emailid= txtEmail1.getText();
+        String password=txtPassword1.getText();
+        Statement stm= con1.createStatement();
+        String sql = "select * from personregistration where email='"+emailid+"' and password='"+password+"' ";
+        rs=stm.executeQuery(sql);
+        
+        if(rs.next()){
+        dispose();
         ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
         rc.setVisible(true);
-
-        dispose();
+        }else{
+        JOptionPane.showMessageDialog(this, "username or password is incorrect");
+        txtEmail1.setText("");
+        txtPassword1.setText("");
+        }
+        
+    }catch(Exception e){
+        System.out.println(e.getMessage());
+    }
+//        ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+//        rc.setVisible(true);
+//
+//        dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
@@ -369,6 +416,121 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
 
         dispose();
     }//GEN-LAST:event_btnBack1ActionPerformed
+       
+    private void updateCombo(){
+         
+    String sql="select * from community";
+   
+    try{
+       Class.forName("com.mysql.jdbc.Driver");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+        insert=con1.prepareStatement(sql);
+        
+        rs=insert.executeQuery();
+        while(rs.next()){
+        comboCommunity.addItem(rs.getString("communityname"));
+        
+        }
+        
+    }catch(Exception e){
+    }
+    }
+    
+     private void updateCityCombo(){
+         
+    String sql="select * from city";
+   
+    try{
+       Class.forName("com.mysql.jdbc.Driver");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+        insert=con1.prepareStatement(sql);
+        
+        rs=insert.executeQuery();
+        while(rs.next()){
+        comboCity.addItem(rs.getString("cityname"));
+        
+        }
+        
+    }catch(Exception e){
+    }
+    }
+    
+    
+    Connection con1;
+    PreparedStatement insert;
+    ResultSet rs;
+        
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+          String name= txtName.getText();
+
+          int age=Integer.parseInt(txtAge.getText());
+        //String gender=Gender;
+        String address=txtAddress.getText();
+        String city=(String)comboCommunity.getSelectedItem();
+        String community=(String)comboCommunity.getSelectedItem();
+        String phonenumber=txtPhoneNumber.getText();
+        String email=txtEmail.getText();
+        String password=txtPassword.getText();
+        String confirmpassword=txtConfirmPassword.getText();
+                
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("insert into personregistration(name,age,gender,address,city,community,phonenumber,email,password,confirmpassword)values(?,?,?,?,?,?,?,?,?,?)");
+            
+            insert.setString(1, name);
+            insert.setInt(2, age);
+           // insert.setString(2, gender);
+           if(btnMale.isSelected()){
+           insert.setString(3, btnMale.getText());
+           }
+           else if(btnFemale.isSelected()){
+           insert.setString(3, btnFemale.getText());
+           }
+           else{
+           insert.setString(3, btnOther.getText());
+           }
+           
+            insert.setString(4, address);
+            
+            insert.setString(5, city);
+            insert.setString(6, community);
+           
+            
+             insert.setString(7, phonenumber);
+             insert.setString(8, email);
+             insert.setString(9, password);
+             insert.setString(10, confirmpassword);
+            
+            
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"Registered Successfully");
+             
+            
+            txtName.setText("");
+            txtAge.setText("");
+            txtAddress.setText("");
+            txtPhoneNumber.setText("");
+            txtEmail.setText("");
+            txtPassword.setText("");
+            txtConfirmPassword.setText("");
+             
+        
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }          
+    }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void comboCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCityActionPerformed
 
     /**
      * @param args the command line arguments
