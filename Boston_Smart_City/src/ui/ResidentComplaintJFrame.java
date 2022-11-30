@@ -3,6 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui;
+import java.sql.SQLException;
+
+
+
+import java.sql.Connection;
+
+import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.DriverManager;
+import java.sql.*;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,6 +29,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
      */
     public ResidentComplaintJFrame() {
         initComponents();
+//        updateCombo();
+        comboEnterprise.setSelectedItem(null);
+        
     }
 
     /**
@@ -38,7 +55,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         btnSubmit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
+        lblID = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         txtID1 = new javax.swing.JTextField();
@@ -65,11 +82,20 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Select Enterprise :");
 
-        comboEnterprise.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboEnterprise.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grievance", "Emergency", "Covid-Help", "Residence" }));
+        comboEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboEnterpriseActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Select Organization :");
 
-        comboOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboOrganization.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboOrganizationActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Complaint Box :");
 
@@ -114,18 +140,18 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
                         .addGap(350, 350, 350))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
+                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -310,14 +336,6 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        ResidentProfileJFrame rf = new ResidentProfileJFrame();
-        rf.setVisible(true);
-
-        dispose();
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
         // TODO add your handling code here:
         ResidentProfileJFrame rf = new ResidentProfileJFrame();
@@ -326,10 +344,84 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBack1ActionPerformed
 
+    
+//    private void updateCombo(){
+//         
+//    String sql="select * from personregistration";
+//   
+//    try{
+//       Class.forName("com.mysql.jdbc.Driver");
+//        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+//        insert=con1.prepareStatement(sql);
+//        
+//        rs=insert.executeQuery();
+//        while(rs.next()){
+//        comboID.addItem(rs.getString("id"));
+//        
+//        }
+//        
+//    }catch(Exception e){
+//    }
+//    }
     private void txtComplaintNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComplaintNumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtComplaintNumberActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        ResidentProfileJFrame rf = new ResidentProfileJFrame();
+        rf.setVisible(true);
+
+        dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void comboOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOrganizationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboOrganizationActionPerformed
+
+    private void comboEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEnterpriseActionPerformed
+        try{
+            if(comboEnterprise.getSelectedItem().equals("Grievance"))
+            {
+                comboOrganization.removeAllItems();
+                comboOrganization.addItem("Water Supply Org");
+                comboOrganization.addItem("Street Org");
+                comboOrganization.addItem("Police Org");
+                comboOrganization.setSelectedItem(null);
+
+            }
+            else if(comboEnterprise.getSelectedItem().equals("Emergency"))
+            {
+                comboOrganization.removeAllItems();
+                comboOrganization.addItem("Hospital Org");
+                comboOrganization.addItem("Fire Org");
+                comboOrganization.setSelectedItem(null);
+            }
+            else if(comboEnterprise.getSelectedItem().equals("Covid-Help"))
+            {
+                comboOrganization.removeAllItems();
+                comboOrganization.addItem("Non Gov Org");
+                comboOrganization.addItem("Gov Org");
+                comboOrganization.setSelectedItem(null);
+
+            }
+            else if(comboEnterprise.getSelectedItem().equals("Residence"))
+            {
+                comboOrganization.removeAllItems();
+                comboOrganization.addItem("Stand Alone");
+                comboOrganization.setSelectedItem(null);
+
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+
+    }//GEN-LAST:event_comboEnterpriseActionPerformed
+    Connection con1;
+    PreparedStatement insert;
+    ResultSet rs;
     /**
      * @param args the command line arguments
      */
@@ -393,12 +485,12 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblID;
     private javax.swing.JTextArea txtComment;
     private javax.swing.JTextArea txtComplaint;
     private javax.swing.JTextArea txtComplaintBox;
     private javax.swing.JTextField txtComplaintNumber;
     private javax.swing.JTextField txtComplaintType;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtID1;
     private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
