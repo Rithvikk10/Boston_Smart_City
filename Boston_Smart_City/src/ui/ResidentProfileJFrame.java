@@ -391,9 +391,11 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         rs=stm.executeQuery(sql);
         
         if(rs.next()){
+        String registeredid=rs.getNString("id");
         dispose();
         ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
         rc.setVisible(true);
+        
         }else{
         JOptionPane.showMessageDialog(this, "username or password is incorrect");
         txtEmail1.setText("");
