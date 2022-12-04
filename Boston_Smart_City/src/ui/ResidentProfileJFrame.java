@@ -19,6 +19,7 @@ import java.sql.*;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Resident;
 
 /**
  *
@@ -34,7 +35,9 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         updateCombo();
         updateCityCombo();
     }
-
+  Connection con1;
+    PreparedStatement insert;
+    ResultSet rs;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -383,7 +386,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
      
         try{
        Class.forName("com.mysql.jdbc.Driver");
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/bostonsmartcity","root","");
         String emailid= txtEmail1.getText();
         String password=txtPassword1.getText();
         Statement stm= con1.createStatement();
@@ -393,7 +396,9 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         if(rs.next()){
         String registeredid=rs.getNString("id");
         dispose();
+        
         ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+        
         rc.setVisible(true);
         
         }else{
@@ -458,9 +463,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     }
     
     
-    Connection con1;
-    PreparedStatement insert;
-    ResultSet rs;
+  
         
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
           String name= txtName.getText();
@@ -474,6 +477,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         String email=txtEmail.getText();
         String password=txtPassword.getText();
         String confirmpassword=txtConfirmPassword.getText();
+        
                 
         
         try {
@@ -481,7 +485,11 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
             insert=con1.prepareStatement("insert into personregistration(name,age,gender,address,city,community,phonenumber,email,password,confirmpassword)values(?,?,?,?,?,?,?,?,?,?)");
             
-            insert.setString(1, name);
+                
+                insert.setString(1, name);
+            
+            
+            
             insert.setInt(2, age);
            // insert.setString(2, gender);
            if(btnMale.isSelected()){
