@@ -495,12 +495,12 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
             insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint)values(?,?,?,?)");
             
                 
-                insert.setInt(1, item.id);
+            insert.setInt(1, item.id);
             
             
             
             insert.setString(2, enterprise);
-           // insert.setString(2, gender);
+              // insert.setString(2, gender);
            
            
             insert.setString(3, organization);

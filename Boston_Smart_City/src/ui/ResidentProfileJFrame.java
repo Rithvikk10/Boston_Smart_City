@@ -387,20 +387,32 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         try{
        Class.forName("com.mysql.jdbc.Driver");
         con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/bostonsmartcity","root","");
-        String emailid= txtEmail1.getText();
+        int id=0;
+        String enterprise="test";
+        String organization="test";
+        String complaint="test";
+        String mailid= txtEmail1.getText();
         String password=txtPassword1.getText();
         Statement stm= con1.createStatement();
-        String sql = "select * from personregistration where email='"+emailid+"' and password='"+password+"' ";
+        String sql = "select * from personregistration where email='"+mailid+"' and password='"+password+"' ";
         rs=stm.executeQuery(sql);
         
         if(rs.next()){
-        String registeredid=rs.getNString("id");
-        dispose();
+      
+        insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint,email)values(?,?,?,?,?)");
+        insert.setInt(1,id );
+        insert.setString(2,enterprise );
+        insert.setString(3,organization);
+        insert.setString(4,complaint );
+        
+         insert.setString(5,mailid );
+         insert.executeUpdate();
         
         ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
         
         rc.setVisible(true);
         
+        dispose();
         }else{
         JOptionPane.showMessageDialog(this, "username or password is incorrect");
         txtEmail1.setText("");
