@@ -31,7 +31,53 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         initComponents();
 //        updateCombo();
         comboEnterprise.setSelectedItem(null);
+        emailload();
+    }
+    
+    public class mailItem{
+    
+        int id;
+        String mail;
         
+        public mailItem(int id, String mail)
+        {
+        this.id=id;
+        this.mail=mail;
+        }
+        
+        public String toString()
+        {
+          return mail;
+        }
+        
+        
+        
+    }
+    
+    
+    private void emailload()
+    {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+             con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+             insert=con1.prepareStatement("select * from personregistration");
+        
+              rs=insert.executeQuery();
+              comboEmail.removeAllItems();
+              
+              while (rs.next()){
+              
+              comboEmail.addItem(new mailItem(rs.getInt(1),rs.getString(9)));
+              }
+              
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    
+    
     }
 
     /**
@@ -55,7 +101,8 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         btnSubmit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        lblID = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        comboEmail = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         txtID1 = new javax.swing.JTextField();
@@ -104,6 +151,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtComplaintBox);
 
         btnSubmit.setText("Submit Complaint");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +165,8 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         });
 
         jLabel11.setText("Resident ID :");
+
+        jLabel10.setText("Email:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,26 +185,30 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(68, 68, 68)
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(44, 44, 44)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane1)
                                     .addComponent(comboOrganization, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboEnterprise, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(comboEnterprise, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(350, 350, 350))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73))))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
-                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,11 +224,15 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(comboEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(120, 120, 120))
+                .addGap(114, 114, 114))
         );
 
         jTabbedPane1.addTab("Raise Complaint", jPanel1);
@@ -419,6 +481,55 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_comboEnterpriseActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        String enterprise=(String)comboEnterprise.getSelectedItem();
+         String organization=(String)comboOrganization.getSelectedItem();
+         // String email =(String)comboEmail.getSelectedItem();
+           String complaintbox=txtComplaintBox.getText();
+           mailItem item= (mailItem)comboEmail.getSelectedItem();
+            
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint)values(?,?,?,?)");
+            
+                
+                insert.setInt(1, item.id);
+            
+            
+            
+            insert.setString(2, enterprise);
+           // insert.setString(2, gender);
+           
+           
+            insert.setString(3, organization);
+            
+            insert.setString(4, complaintbox);
+            
+           
+            
+             
+            
+            
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"Complaint Raised Successfully");
+             
+            
+            
+            txtComplaintBox.setText("");
+             
+        
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btnSubmitActionPerformed
     Connection con1;
     PreparedStatement insert;
     ResultSet rs;
@@ -459,14 +570,17 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static final javax.swing.JLabel Name = new javax.swing.JLabel();
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JButton btnView;
+    private javax.swing.JComboBox comboEmail;
     private javax.swing.JComboBox<String> comboEnterprise;
     private javax.swing.JComboBox<String> comboOrganization;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -485,7 +599,6 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblID;
     private javax.swing.JTextArea txtComment;
     private javax.swing.JTextArea txtComplaint;
     private javax.swing.JTextArea txtComplaintBox;
