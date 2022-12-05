@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import model.RaiseComplaint;
 
 /**
  *
@@ -176,7 +177,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             String emailid= txtEmail.getText();
             String password=txtPassword.getText();
             Statement stm= con1.createStatement();
@@ -186,6 +187,11 @@ public class MainJFrame extends javax.swing.JFrame {
             if(rs.next()){
 
                 ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+//                RaiseComplaint rac = new RaiseComplaint();
+//                String resId = rc.getDetails(rs.getString(1));
+                System.out.println(rs.getString(1)+"RES");
+                rc.txtID2.setText(rs.getString(1)+"RES");
+                
                 rc.setVisible(true);
                 dispose();
 

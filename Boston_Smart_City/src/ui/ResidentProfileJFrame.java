@@ -312,7 +312,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             insert=con1.prepareStatement("insert into personregistration(name,age,gender,address,city,community,phonenumber,email,password,confirmpassword)values(?,?,?,?,?,?,?,?,?,?)");
 
             insert.setString(1, name);
@@ -373,7 +373,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
    
     try{
        Class.forName("com.mysql.jdbc.Driver");
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
         insert=con1.prepareStatement(sql);
         
         rs=insert.executeQuery();
@@ -392,7 +392,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
    
     try{
        Class.forName("com.mysql.jdbc.Driver");
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
         insert=con1.prepareStatement(sql);
         
         rs=insert.executeQuery();

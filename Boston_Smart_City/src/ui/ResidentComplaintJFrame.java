@@ -15,8 +15,10 @@ import java.util.logging.Logger;
 import java.sql.DriverManager;
 import java.sql.*;
 import java.util.Vector;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.RaiseComplaint;
 
 /**
  *
@@ -132,6 +134,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtComplaintBox);
 
         btnSubmit.setText("Submit Complaint");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +148,12 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         });
 
         jLabel11.setText("Resident ID :");
+
+        txtID2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtID2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -672,9 +685,33 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
         dispose();
     }//GEN-LAST:event_btnBack2ActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void txtID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID2ActionPerformed
+                  
+//        RaiseComplaint rc = new RaiseComplaint();
+//        String residentId = "5";
+//        txtID2.setText(residentId);
+//        setVisible(true);
+//        rc.setResidentId(residentId);
+         
+    }//GEN-LAST:event_txtID2ActionPerformed
     Connection con1;
     PreparedStatement insert;
     ResultSet rs;
+    
+    
+    
+    public String getDetails(String residentId){
+      return residentId;
+    }
+//    String residentId1;
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -768,7 +805,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtConfirmPassword;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtID1;
-    private javax.swing.JTextField txtID2;
+    public javax.swing.JTextField txtID2;
     private javax.swing.JTextField txtID3;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
