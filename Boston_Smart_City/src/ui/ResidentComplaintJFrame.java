@@ -643,7 +643,40 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+       String id=txtID2.getText();
+        String enterprise=(String)comboEnterprise.getSelectedItem();
+        String organization=(String)comboOrganization.getSelectedItem();
+        String complaint=txtComplaintBox.getText();
         
+            try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint)values(?,?,?,?)");
+
+            insert.setString(1,id);
+            insert.setString(2, enterprise);
+            // insert.setString(2, gender);
+           
+
+            insert.setString(3, organization);
+
+            insert.setString(4, complaint);
+            
+
+            insert.executeUpdate();
+
+            JOptionPane.showMessageDialog(this,"Complaint Raised Successfully");
+
+           
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void txtID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID2ActionPerformed
