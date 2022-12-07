@@ -309,7 +309,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
             
             Resident r = new Resident();
             r.setName(name);
