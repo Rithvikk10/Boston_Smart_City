@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.RaiseComplaint;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -36,6 +37,8 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -533,6 +536,8 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBack1ActionPerformed
 
+     LocalDateTime ldt= LocalDateTime.now();
+     
     
 //    private void updateCombo(){
 //         
@@ -647,17 +652,21 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         String enterprise=(String)comboEnterprise.getSelectedItem();
         String organization=(String)comboOrganization.getSelectedItem();
         String complaint=txtComplaintBox.getText();
+        String status="Raised";
+        String workercomment="no-comments";
         
         RaiseComplaint rc= new RaiseComplaint();
         rc.setEnterprise(enterprise);
         rc.setOrganization(organization);
         rc.setResidentId(id);
         rc.setComplaint(complaint);
+        rc.setStatus(status);
+        rc.setWorkerComment(workercomment);
         
             try {
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
-            insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint)values(?,?,?,?)");
+            insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint,timestamp,status,workercomment)values(?,?,?,?,?,?,?)");
 
             insert.setString(1,rc.getResidentId());
             insert.setString(2, rc.getEnterprise());
@@ -667,6 +676,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
             insert.setString(3, rc.getOrganization());
 
             insert.setString(4, rc.getComplaint());
+             insert.setObject(5, ldt);
+             insert.setString(6, rc.getStatus());
+             insert.setString(7, rc.getWorkerComment());
             
 
             insert.executeUpdate();

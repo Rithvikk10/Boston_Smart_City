@@ -25,6 +25,16 @@ public class RaiseComplaint {
     private String residentId;
     
     private Timestamp txTimestamp;
+    
+    private String workerComment;
+
+    public String getWorkerComment() {
+        return workerComment;
+    }
+
+    public void setWorkerComment(String workerComment) {
+        this.workerComment = workerComment;
+    }
 
     public RaiseComplaint(String enterprise, String organization, String complaint, Integer complaintNumber, String residentId, Timestamp txTimestamp) {
         this.enterprise = enterprise;
