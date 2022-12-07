@@ -648,24 +648,35 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         String organization=(String)comboOrganization.getSelectedItem();
         String complaint=txtComplaintBox.getText();
         
+        RaiseComplaint rc= new RaiseComplaint();
+        rc.setEnterprise(enterprise);
+        rc.setOrganization(organization);
+        rc.setResidentId(id);
+        rc.setComplaint(complaint);
+        
             try {
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
             insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint)values(?,?,?,?)");
 
-            insert.setString(1,id);
-            insert.setString(2, enterprise);
+            insert.setString(1,rc.getResidentId());
+            insert.setString(2, rc.getEnterprise());
             // insert.setString(2, gender);
            
 
-            insert.setString(3, organization);
+            insert.setString(3, rc.getOrganization());
 
-            insert.setString(4, complaint);
+            insert.setString(4, rc.getComplaint());
             
 
             insert.executeUpdate();
 
             JOptionPane.showMessageDialog(this,"Complaint Raised Successfully");
+            comboEnterprise.setSelectedIndex(-1);
+            comboOrganization.setSelectedIndex(-1);
+            txtComplaintBox.setText("");
+            
+       
 
            
 
