@@ -19,6 +19,7 @@ import java.sql.*;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Resident;
 
 /**
  *
@@ -115,6 +116,11 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         btnMale.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btnMale.setText("Male");
         btnMale.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnMale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMaleActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 290, -1, -1));
 
         genderGroup.add(btnFemale);
@@ -244,7 +250,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         jPanel2.add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1390, 720, 140, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ResidentProfile.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 1790, 800));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-140, 0, 1790, 800));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -286,44 +292,67 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         String name= txtName.getText();
-
         int age=Integer.parseInt(txtAge.getText());
-        //String gender=Gender;
         String address=txtAddress.getText();
-        String city=(String)comboCommunity.getSelectedItem();
+        String city=(String)comboCity.getSelectedItem();
         String community=(String)comboCommunity.getSelectedItem();
-        String phonenumber=txtPhoneNumber.getText();
+        Long phonenumber=Long.parseLong(txtPhoneNumber.getText());
         String email=txtEmail.getText();
         String password=txtPassword.getText();
         String confirmpassword=txtConfirmPassword.getText();
+        
+        this.btnMale.setActionCommand("male");
+        this.btnFemale.setActionCommand("female");
+        this.btnOther.setActionCommand("other");
+        
+        String selection = this.genderGroup.getSelection().getActionCommand();
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            
+            Resident r = new Resident();
+            r.setName(name);
+            r.setAge(age);
+            r.setGender(selection);
+            r.setEmail(email);
+            r.setPhoneNumber(phonenumber);
+            r.setAddress(address);
+            r.setCity(city);
+            r.setCommunity(community);
+            r.setPassword(password);
+            r.setConfirmPassword(confirmpassword);
+            
             insert=con1.prepareStatement("insert into personregistration(name,age,gender,address,city,community,phonenumber,email,password,confirmpassword)values(?,?,?,?,?,?,?,?,?,?)");
 
-            insert.setString(1, name);
-            insert.setInt(2, age);
+            insert.setString(1, r.getName());
+            
+            insert.setInt(2, r.getAge());
             // insert.setString(2, gender);
-            if(btnMale.isSelected()){
-                insert.setString(3, btnMale.getText());
-            }
-            else if(btnFemale.isSelected()){
-                insert.setString(3, btnFemale.getText());
-            }
-            else{
-                insert.setString(3, btnOther.getText());
-            }
+//            if(btnMale.isSelected()){
+//                insert.setString(3, btnMale.getText());
+//            }
+//            else if(btnFemale.isSelected()){
+//                insert.setString(3, btnFemale.getText());
+//            }
+//            else{
+//                insert.setString(3, btnOther.getText());
+//            }
+            insert.setString(3, r.getGender());
 
-            insert.setString(4, address);
+            insert.setString(4, r.getAddress());
 
-            insert.setString(5, city);
-            insert.setString(6, community);
+            insert.setString(5, r.getCity());
+            
+            insert.setString(6, r.getCommunity());
 
-            insert.setString(7, phonenumber);
-            insert.setString(8, email);
-            insert.setString(9, password);
-            insert.setString(10, confirmpassword);
+            insert.setLong(7, r.getPhoneNumber());
+            
+            insert.setString(8,r.getEmail());
+            
+            insert.setString(9, r.getPassword());
+            
+            insert.setString(10, r.getConfirmPassword());
 
             insert.executeUpdate();
 
@@ -331,7 +360,10 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
 
             txtName.setText("");
             txtAge.setText("");
+            genderGroup.clearSelection();
             txtAddress.setText("");
+            comboCommunity.setSelectedIndex(-1);
+            comboCity.setSelectedIndex(-1);
             txtPhoneNumber.setText("");
             txtEmail.setText("");
             txtPassword.setText("");
@@ -353,6 +385,10 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
 
         dispose();
     }//GEN-LAST:event_btnBack1ActionPerformed
+
+    private void btnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMaleActionPerformed
        
     private void updateCombo(){
          
