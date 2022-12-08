@@ -274,6 +274,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         btnView.setForeground(new java.awt.Color(255, 255, 255));
         btnView.setText("View");
         btnView.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 110, 40));
 
         btnCancel.setBackground(new java.awt.Color(102, 102, 102));
@@ -796,6 +801,18 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
       complaint_list();
         // TODO add your handling code here:
     }//GEN-LAST:event_jTabbedPane1MouseReleased
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+       DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+         int selectedIndex = jTable1.getSelectedRow();
+         
+         txtComplaintNumber.setText(Df.getValueAt(selectedIndex,0).toString());
+          txtComplaintType.setText(Df.getValueAt(selectedIndex,1).toString());
+           txtStatus.setText(Df.getValueAt(selectedIndex,2).toString());
+           txtComplaint.setText(Df.getValueAt(selectedIndex,3).toString());
+           txtComment.setText(Df.getValueAt(selectedIndex,5).toString());
+           
+    }//GEN-LAST:event_btnViewActionPerformed
     Connection con1;
     PreparedStatement insert;
     ResultSet rs;
