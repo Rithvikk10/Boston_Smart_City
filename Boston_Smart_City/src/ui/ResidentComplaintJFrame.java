@@ -686,7 +686,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
             try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint,timestamp,status,workercomment)values(?,?,?,?,?,?,?)");
 
@@ -733,7 +733,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
              con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             //ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
             int num = Integer.parseInt(this.txtID2.getText());
