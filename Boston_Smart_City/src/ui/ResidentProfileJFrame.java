@@ -368,6 +368,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
             txtEmail.setText("");
             txtPassword.setText("");
             txtConfirmPassword.setText("");
+              con1.close();
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -376,6 +377,17 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         catch (SQLException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally{
+ 
+              if(con1!=null)
+              try {
+                  con1.close();
+              } catch (SQLException ex) {
+                  Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+              }
+}
+        
+
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
@@ -390,7 +402,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMaleActionPerformed
        
-    private void updateCombo(){
+    private void updateCombo() {
          
     String sql="select * from community";
    
@@ -406,6 +418,14 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         }
         
     }catch(Exception e){
+    }finally{
+    if(con1!=null){
+        try {
+            con1.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     }
     }
     
@@ -421,10 +441,19 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         rs=insert.executeQuery();
         while(rs.next()){
         comboCity.addItem(rs.getString("cityname"));
+          con1.close();
         
         }
         
     }catch(Exception e){
+    }finally{
+    if(con1!=null){
+        try {
+            con1.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     }
     }
     
