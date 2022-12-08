@@ -36,6 +36,8 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 //        complaint_list();
 
         comboEnterprise.setSelectedItem(null);
+        complaint_list();
+       
         
         
     }
@@ -730,21 +732,40 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
             txtComplaintBox.setText("");
             
        
+<<<<<<< HEAD
             con1.close();
            
+=======
+
+         complaint_list();
+               con1.close();
+>>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+              
         }
 
         catch (SQLException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+    if(con1!=null){
+        try {
+            con1.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+<<<<<<< HEAD
         
+=======
+    }
+    }
+>>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
           
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     
+<<<<<<< HEAD
     private void complaint_list(){
         int c;
         try {
@@ -754,6 +775,18 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 //            ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
             int num = Integer.parseInt(this.txtID2.getText());
             insert=con1.prepareStatement("select * from raisecomplaint where id='"+num+"'");
+=======
+      
+    private void complaint_list()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+            int num = Integer.parseInt(rc.txtID2.getText());
+            insert=con1.prepareStatement("select * from raisecomplaint");
+>>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
 
             
 //where id='"+num+"'
@@ -784,7 +817,12 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
                Df.addRow(v2);
              }
            
+<<<<<<< HEAD
            con1.close();
+=======
+              con1.close();
+           
+>>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
         
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -792,12 +830,27 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
         catch (SQLException ex) {
             Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+<<<<<<< HEAD
         }  
     }
    
     
     
     
+=======
+        }  finally{
+    if(con1!=null){
+        try {
+            con1.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    }
+        
+        
+        }
+>>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
     private void txtID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID2ActionPerformed
          
     }//GEN-LAST:event_txtID2ActionPerformed

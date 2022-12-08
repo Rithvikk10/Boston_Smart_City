@@ -8,8 +8,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+<<<<<<< HEAD
 import java.util.concurrent.Executors;
+=======
+import java.util.logging.Level;
+import java.util.logging.Logger;
+>>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
 import javax.swing.JOptionPane;
 import model.Login;
 import model.RaiseComplaint;
@@ -160,7 +166,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        
         try{
+           
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
@@ -183,18 +191,36 @@ public class MainJFrame extends javax.swing.JFrame {
                 
                 rc.setVisible(true);
                 dispose();
+                con1.close();
 
             }else{
                 JOptionPane.showMessageDialog(this, "username or password is incorrect");
                 txtEmail.setText("");
                 txtPassword.setText("");
+                  con1.close();
             }
+<<<<<<< HEAD
             
             con1.close();
             
+=======
+       
+>>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
         }catch(Exception e){
             System.out.println(e.getMessage());
-        }
+             
+        }finally{
+ 
+              if(con1!=null)
+              try {
+                  con1.close();
+              } catch (SQLException ex) {
+                  Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+              }
+}
+    
+    
+    
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
