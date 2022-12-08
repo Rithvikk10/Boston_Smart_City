@@ -34,6 +34,8 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         initComponents();
 //        updateCombo();
         comboEnterprise.setSelectedItem(null);
+        complaint_list();
+       
         
     }
 
@@ -238,15 +240,20 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Complaint Number", "Complaint Type", "Status", "Complaint", "Time", "Comment by worker"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTable1.setGridColor(new java.awt.Color(204, 204, 204));
         jTable1.setSelectionBackground(new java.awt.Color(204, 204, 204));
         jScrollPane2.setViewportView(jTable1);
@@ -690,18 +697,90 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
             
        
 
-           
+         complaint_list();
+               con1.close();
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+              
         }
 
         catch (SQLException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+    if(con1!=null){
+        try {
+            con1.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    }
           
     }//GEN-LAST:event_btnSubmitActionPerformed
 
+    
+      
+    private void complaint_list()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+            int num = Integer.parseInt(rc.txtID2.getText());
+            insert=con1.prepareStatement("select * from raisecomplaint");
+
+            
+//where id='"+num+"'
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("complaintid"));
+                  v2.add(rs.getString("organization"));
+                   v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                     v2.add(rs.getString("timestamp"));
+                      v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+              con1.close();
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  finally{
+    if(con1!=null){
+        try {
+            con1.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    }
+        
+        
+        }
     private void txtID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID2ActionPerformed
                   
 //        RaiseComplaint rc = new RaiseComplaint();

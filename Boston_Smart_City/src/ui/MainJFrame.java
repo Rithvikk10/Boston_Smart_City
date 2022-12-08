@@ -8,7 +8,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Login;
 import model.RaiseComplaint;
@@ -157,7 +160,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        
         try{
+           
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
             String emailid= txtEmail.getText();
@@ -179,16 +184,30 @@ public class MainJFrame extends javax.swing.JFrame {
                 
                 rc.setVisible(true);
                 dispose();
+                con1.close();
 
             }else{
                 JOptionPane.showMessageDialog(this, "username or password is incorrect");
                 txtEmail.setText("");
                 txtPassword.setText("");
+                  con1.close();
             }
-
+       
         }catch(Exception e){
             System.out.println(e.getMessage());
-        }
+             
+        }finally{
+ 
+              if(con1!=null)
+              try {
+                  con1.close();
+              } catch (SQLException ex) {
+                  Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+              }
+}
+    
+    
+    
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

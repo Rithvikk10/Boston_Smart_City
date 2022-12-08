@@ -3,6 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui;
+import java.sql.Connection;
+
+import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.DriverManager;
+import java.sql.*;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,6 +26,9 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
     public EnterpriseJFrame() {
         initComponents();
     }
+     Connection con1;
+    PreparedStatement insert;
+    ResultSet rs;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,7 +92,15 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
             new String [] {
                 "Resident ID", "Name", "Complaint ID", "Complaint Type", "Status", "Complaint", "Comment By Worker"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 911, 122));
@@ -209,6 +230,7 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
+  
     /**
      * @param args the command line arguments
      */
