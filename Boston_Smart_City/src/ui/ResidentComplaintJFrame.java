@@ -291,6 +291,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("Cancel Complaint");
         btnCancel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 610, 250, 50));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -691,7 +696,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
             try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint,timestamp,status,workercomment)values(?,?,?,?,?,?,?)");
 
@@ -738,7 +743,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
              con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             //ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
             int num = Integer.parseInt(this.txtID2.getText());
@@ -819,9 +824,58 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
            
     }//GEN-LAST:event_btnViewActionPerformed
 
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        
+           DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+         int selectedIndex = jTable1.getSelectedRow();
+          try {
+              
+              
+              int id=Integer.parseInt(Df.getValueAt(selectedIndex, 0).toString());
+              
+              int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to delete the record","Warning",JOptionPane.YES_NO_OPTION);
+              if(dialogResult==JOptionPane.YES_OPTION)
+              {
+                  Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("delete from raisecomplaint where complaintid=?");
+            
+             insert.setInt(1, id);
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"Record Delete");
+            
+            complaint_list();
+             txtComplaintNumber.setText("");
+             txtComplaintType.setText("");
+             txtStatus .setText("");
+             txtComplaint.setText("");
+             txtComment.setText("");
+             
+                  
+            
+            
+              }
+             
+            
+            
+          
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btnCancelActionPerformed
+   
+
     private void txtID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtID1ActionPerformed
+
     Connection con1;
     PreparedStatement insert;
     ResultSet rs;
