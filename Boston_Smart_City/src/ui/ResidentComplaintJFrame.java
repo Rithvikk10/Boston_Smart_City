@@ -225,6 +225,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         txtID1.setBackground(new java.awt.Color(204, 204, 204));
         txtID1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtID1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        txtID1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtID1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1330, 40, 100, -1));
 
         btnBack1.setBackground(new java.awt.Color(102, 102, 102));
@@ -819,6 +824,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
            
     }//GEN-LAST:event_btnViewActionPerformed
 
+
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         
            DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
@@ -865,6 +871,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_btnCancelActionPerformed
    
+
+    private void txtID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtID1ActionPerformed
+
     Connection con1;
     PreparedStatement insert;
     ResultSet rs;
@@ -972,9 +983,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtComplaintType;
     private javax.swing.JPasswordField txtConfirmPassword;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtID1;
+    public javax.swing.JTextField txtID1;
     public javax.swing.JTextField txtID2;
-    private javax.swing.JTextField txtID3;
+    public javax.swing.JTextField txtID3;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtPhoneNumber;

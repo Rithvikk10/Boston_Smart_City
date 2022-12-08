@@ -192,6 +192,8 @@ public class MainJFrame extends javax.swing.JFrame {
 //                String resId = rc.getDetails(rs.getString(1));
                
                 rc.txtID2.setText(rs.getString(1));
+                rc.txtID1.setText(rs.getString(1));
+                rc.txtID3.setText(rs.getString(1));
                 
                 rc.setVisible(true);
                 dispose();
