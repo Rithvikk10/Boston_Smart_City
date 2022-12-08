@@ -10,12 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-<<<<<<< HEAD
+
 import java.util.concurrent.Executors;
-=======
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
->>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
+
 import javax.swing.JOptionPane;
 import model.Login;
 import model.RaiseComplaint;
@@ -170,8 +170,12 @@ public class MainJFrame extends javax.swing.JFrame {
         try{
            
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+
+            
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+
             String emailid= txtEmail.getText();
             String password=txtPassword.getText();
             Statement stm= con1.createStatement();
@@ -199,13 +203,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 txtPassword.setText("");
                   con1.close();
             }
-<<<<<<< HEAD
+
             
-            con1.close();
-            
-=======
+
        
->>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
+
         }catch(Exception e){
             System.out.println(e.getMessage());
              

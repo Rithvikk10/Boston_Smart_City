@@ -296,6 +296,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         int age=Integer.parseInt(txtAge.getText());
         String address=txtAddress.getText();
         String city=(String)comboCity.getSelectedItem();
+    
         String community=(String)comboCommunity.getSelectedItem();
         Long phonenumber=Long.parseLong(txtPhoneNumber.getText());
         String email=txtEmail.getText();
@@ -310,8 +311,12 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            
+
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+
             Resident r = new Resident();
             r.setName(name);
             r.setAge(age);
@@ -369,14 +374,10 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
             txtEmail.setText("");
             txtPassword.setText("");
             txtConfirmPassword.setText("");
-<<<<<<< HEAD
-            
-            con1.close();
-            
-=======
+
               con1.close();
 
->>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -415,8 +416,11 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
    
     try{
        Class.forName("com.mysql.jdbc.Driver");
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+
         con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+
         insert=con1.prepareStatement(sql);
         
         rs=insert.executeQuery();
@@ -444,19 +448,20 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
    
     try{
        Class.forName("com.mysql.jdbc.Driver");
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+
         con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+
         insert=con1.prepareStatement(sql);
         
         rs=insert.executeQuery();
         while(rs.next()){
         comboCity.addItem(rs.getString("cityname"));
-<<<<<<< HEAD
-        con1.close();
-=======
+
           con1.close();
         
->>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
+
         }
         
     }catch(Exception e){

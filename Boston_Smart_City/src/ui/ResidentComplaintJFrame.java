@@ -36,7 +36,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 //        complaint_list();
 
         comboEnterprise.setSelectedItem(null);
-        complaint_list();
+        //complaint_list();
        
         
         
@@ -122,16 +122,12 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPane1MouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jTabbedPane1MousePressed(evt);
-            }
+
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTabbedPane1MouseReleased(evt);
             }
         });
+
         jTabbedPane1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTabbedPane1KeyPressed(evt);
@@ -140,6 +136,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
                 jTabbedPane1KeyReleased(evt);
             }
         });
+
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -269,7 +266,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
                 "Complaint Number", "Complaint Type", "Status", "Complaint", "Time", "Comment by worker"
@@ -706,7 +705,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
             try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint,timestamp,status,workercomment)values(?,?,?,?,?,?,?)");
 
@@ -732,14 +733,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
             txtComplaintBox.setText("");
             
        
-<<<<<<< HEAD
-            con1.close();
-           
-=======
 
-         complaint_list();
+
+         
                con1.close();
->>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
+
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -748,45 +746,25 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
         catch (SQLException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-    if(con1!=null){
-        try {
-            con1.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-<<<<<<< HEAD
-        
-=======
-    }
-    }
->>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
+
           
+
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     
-<<<<<<< HEAD
-    private void complaint_list(){
-        int c;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
-            con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
-//            ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
-            int num = Integer.parseInt(this.txtID2.getText());
-            insert=con1.prepareStatement("select * from raisecomplaint where id='"+num+"'");
-=======
+
       
     private void complaint_list()
         {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
-            ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
-            int num = Integer.parseInt(rc.txtID2.getText());
-            insert=con1.prepareStatement("select * from raisecomplaint");
->>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
+
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+            //ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+            int num = Integer.parseInt(this.txtID2.getText());
+            insert=con1.prepareStatement("select * from raisecomplaint where id='"+num+"'");
 
             
 //where id='"+num+"'
@@ -817,12 +795,10 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
                Df.addRow(v2);
              }
            
-<<<<<<< HEAD
-           con1.close();
-=======
+
               con1.close();
            
->>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
+
         
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -830,27 +806,17 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
         catch (SQLException ex) {
             Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
-<<<<<<< HEAD
+
         }  
+
     }
-   
     
-    
-    
-=======
-        }  finally{
-    if(con1!=null){
-        try {
-            con1.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    }
         
         
+        
+
         }
->>>>>>> 3e7e30c80d9e16f36161366704d908d4ad47e5dd
+
     private void txtID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID2ActionPerformed
          
     }//GEN-LAST:event_txtID2ActionPerformed
@@ -859,42 +825,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtID3ActionPerformed
 
-    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewActionPerformed
-
-    private void txtID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtID1ActionPerformed
-
-    private void jTabbedPane1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTabbedPane1KeyPressed
-        // TODO add your handling code here:
-//        ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
-//        rc.complaint_list();
-    }//GEN-LAST:event_jTabbedPane1KeyPressed
-
-    private void jTabbedPane1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTabbedPane1KeyReleased
-        // TODO add your handling code here:
-//        ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
-//        rc.complaint_list();
-    }//GEN-LAST:event_jTabbedPane1KeyReleased
-
-    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        // TODO add your handling code here:
-//        ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
-//        rc.complaint_list();
-    }//GEN-LAST:event_jTabbedPane1MouseClicked
-
-    private void jTabbedPane1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MousePressed
-        // TODO add your handling code here:
-//        ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
-//        rc.complaint_list();
-    }//GEN-LAST:event_jTabbedPane1MousePressed
 
     private void jTabbedPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseReleased
+      complaint_list();
         // TODO add your handling code here:
-        
-        complaint_list();
+
     }//GEN-LAST:event_jTabbedPane1MouseReleased
     Connection con1;
     PreparedStatement insert;
