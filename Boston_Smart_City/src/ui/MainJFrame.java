@@ -164,7 +164,7 @@ public class MainJFrame extends javax.swing.JFrame {
         try{
            
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             String emailid= txtEmail.getText();
             String password=txtPassword.getText();
             Statement stm= con1.createStatement();

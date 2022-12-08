@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.RaiseComplaint;
 import java.time.LocalDateTime;
+import java.util.concurrent.Executors;
 
 /**
  *
@@ -34,7 +35,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         initComponents();
 //        updateCombo();
         comboEnterprise.setSelectedItem(null);
-        complaint_list();
+        //complaint_list();
        
         
     }
@@ -117,6 +118,12 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseReleased(evt);
+            }
+        });
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -240,7 +247,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
                 "Complaint Number", "Complaint Type", "Status", "Complaint", "Time", "Comment by worker"
@@ -672,7 +681,8 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
             try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint,timestamp,status,workercomment)values(?,?,?,?,?,?,?)");
 
             insert.setString(1,rc.getResidentId());
@@ -691,13 +701,14 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
             insert.executeUpdate();
 
             JOptionPane.showMessageDialog(this,"Complaint Raised Successfully");
+            complaint_list();
             comboEnterprise.setSelectedIndex(-1);
             comboOrganization.setSelectedIndex(-1);
             txtComplaintBox.setText("");
             
        
 
-         complaint_list();
+         
                con1.close();
 
         } catch (ClassNotFoundException ex) {
@@ -707,16 +718,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
         catch (SQLException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-    if(con1!=null){
-        try {
-            con1.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    }
-          
+        }          
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     
@@ -726,10 +728,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
-            ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
-            int num = Integer.parseInt(rc.txtID2.getText());
-            insert=con1.prepareStatement("select * from raisecomplaint");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+            //ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+            int num = Integer.parseInt(this.txtID2.getText());
+            insert=con1.prepareStatement("select * from raisecomplaint where id='"+num+"'");
 
             
 //where id='"+num+"'
@@ -769,18 +772,12 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
         catch (SQLException ex) {
             Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }  finally{
-    if(con1!=null){
-        try {
-            con1.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }  
     }
-    }
+    
         
         
-        }
+        
     private void txtID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID2ActionPerformed
                   
 //        RaiseComplaint rc = new RaiseComplaint();
@@ -794,6 +791,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     private void txtID3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtID3ActionPerformed
+
+    private void jTabbedPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseReleased
+      complaint_list();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTabbedPane1MouseReleased
     Connection con1;
     PreparedStatement insert;
     ResultSet rs;

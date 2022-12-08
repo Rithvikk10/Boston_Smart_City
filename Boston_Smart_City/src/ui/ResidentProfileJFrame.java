@@ -295,6 +295,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         int age=Integer.parseInt(txtAge.getText());
         String address=txtAddress.getText();
         String city=(String)comboCity.getSelectedItem();
+    
         String community=(String)comboCommunity.getSelectedItem();
         Long phonenumber=Long.parseLong(txtPhoneNumber.getText());
         String email=txtEmail.getText();
@@ -309,7 +310,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             
             Resident r = new Resident();
             r.setName(name);
@@ -408,7 +409,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
    
     try{
        Class.forName("com.mysql.jdbc.Driver");
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
         insert=con1.prepareStatement(sql);
         
         rs=insert.executeQuery();
@@ -435,7 +436,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
    
     try{
        Class.forName("com.mysql.jdbc.Driver");
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
         insert=con1.prepareStatement(sql);
         
         rs=insert.executeQuery();
