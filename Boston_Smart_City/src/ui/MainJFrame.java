@@ -10,8 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import java.util.concurrent.Executors;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 import model.Login;
 import model.RaiseComplaint;
@@ -28,6 +32,8 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
     }
+    
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -164,7 +170,12 @@ public class MainJFrame extends javax.swing.JFrame {
         try{
            
             Class.forName("com.mysql.jdbc.Driver");
+
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+
+            
+            con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+
             String emailid= txtEmail.getText();
             String password=txtPassword.getText();
             Statement stm= con1.createStatement();
@@ -192,7 +203,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 txtPassword.setText("");
                   con1.close();
             }
+
+            
+
        
+
         }catch(Exception e){
             System.out.println(e.getMessage());
              

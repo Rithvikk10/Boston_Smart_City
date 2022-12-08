@@ -33,10 +33,12 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
      */
     public ResidentComplaintJFrame() {
         initComponents();
-//        updateCombo();
+//        complaint_list();
+
         comboEnterprise.setSelectedItem(null);
         //complaint_list();
        
+        
         
     }
 
@@ -120,10 +122,21 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTabbedPane1MouseReleased(evt);
             }
         });
+
+        jTabbedPane1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTabbedPane1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTabbedPane1KeyReleased(evt);
+            }
+        });
+
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -150,6 +163,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
         comboOrganization.setBackground(new java.awt.Color(204, 204, 204));
         comboOrganization.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        comboOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One" }));
         comboOrganization.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         comboOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,6 +239,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         txtID1.setBackground(new java.awt.Color(204, 204, 204));
         txtID1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtID1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        txtID1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtID1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1330, 40, 100, -1));
 
         btnBack1.setBackground(new java.awt.Color(102, 102, 102));
@@ -274,6 +293,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         btnView.setForeground(new java.awt.Color(255, 255, 255));
         btnView.setText("View");
         btnView.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 110, 40));
 
         btnCancel.setBackground(new java.awt.Color(102, 102, 102));
@@ -597,7 +621,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
                 comboOrganization.addItem("Water Supply Org");
                 comboOrganization.addItem("Street Org");
                 comboOrganization.addItem("Police Org");
-                comboOrganization.setSelectedItem(null);
+                comboOrganization.setSelectedIndex(-1);
 
             }
             else if(comboEnterprise.getSelectedItem().equals("Emergency"))
@@ -605,21 +629,21 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
                 comboOrganization.removeAllItems();
                 comboOrganization.addItem("Hospital Org");
                 comboOrganization.addItem("Fire Org");
-                comboOrganization.setSelectedItem(null);
+                comboOrganization.setSelectedIndex(-1);
             }
             else if(comboEnterprise.getSelectedItem().equals("Covid-Help"))
             {
                 comboOrganization.removeAllItems();
                 comboOrganization.addItem("Non Gov Org");
                 comboOrganization.addItem("Gov Org");
-                comboOrganization.setSelectedItem(null);
+                comboOrganization.setSelectedIndex(-1);
 
             }
             else if(comboEnterprise.getSelectedItem().equals("Residence"))
             {
                 comboOrganization.removeAllItems();
                 comboOrganization.addItem("Stand Alone");
-                comboOrganization.setSelectedItem(null);
+                comboOrganization.setSelectedIndex(-1);
 
             }
         }
@@ -681,7 +705,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
             try {
             Class.forName("com.mysql.jdbc.Driver");
+
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint,timestamp,status,workercomment)values(?,?,?,?,?,?,?)");
 
@@ -708,8 +734,10 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
             
        
 
+
          
                con1.close();
+
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -718,16 +746,20 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
         catch (SQLException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }          
+
+          
+
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     
+
       
     private void complaint_list()
         {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
+
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
              con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             //ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
@@ -763,8 +795,10 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
                Df.addRow(v2);
              }
            
+
               con1.close();
            
+
         
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -772,19 +806,18 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
         catch (SQLException ex) {
             Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+
         }  
+
     }
     
         
         
         
+
+        }
+
     private void txtID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID2ActionPerformed
-                  
-//        RaiseComplaint rc = new RaiseComplaint();
-//        String residentId = "5";
-//        txtID2.setText(residentId);
-//        setVisible(true);
-//        rc.setResidentId(residentId);
          
     }//GEN-LAST:event_txtID2ActionPerformed
 
@@ -792,9 +825,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtID3ActionPerformed
 
+
     private void jTabbedPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseReleased
       complaint_list();
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jTabbedPane1MouseReleased
     Connection con1;
     PreparedStatement insert;
