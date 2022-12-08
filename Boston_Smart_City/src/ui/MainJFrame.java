@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.concurrent.Executors;
 import javax.swing.JOptionPane;
 import model.Login;
 import model.RaiseComplaint;
@@ -25,6 +26,8 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
     }
+    
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -159,7 +162,8 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             String emailid= txtEmail.getText();
             String password=txtPassword.getText();
             Statement stm= con1.createStatement();
@@ -185,7 +189,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 txtEmail.setText("");
                 txtPassword.setText("");
             }
-
+            
+            con1.close();
+            
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

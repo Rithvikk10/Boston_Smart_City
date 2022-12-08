@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import java.sql.DriverManager;
 import java.sql.*;
 import java.util.Vector;
+import java.util.concurrent.Executors;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Resident;
@@ -309,8 +310,8 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
-            
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             Resident r = new Resident();
             r.setName(name);
             r.setAge(age);
@@ -368,7 +369,9 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
             txtEmail.setText("");
             txtPassword.setText("");
             txtConfirmPassword.setText("");
-
+            
+            con1.close();
+            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -397,17 +400,19 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     try{
        Class.forName("com.mysql.jdbc.Driver");
         con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+        con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
         insert=con1.prepareStatement(sql);
         
         rs=insert.executeQuery();
         while(rs.next()){
         comboCommunity.addItem(rs.getString("communityname"));
-        
+        con1.close();
         }
         
     }catch(Exception e){
     }
     }
+    
     
      private void updateCityCombo(){
          
@@ -416,12 +421,13 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     try{
        Class.forName("com.mysql.jdbc.Driver");
         con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+        con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
         insert=con1.prepareStatement(sql);
         
         rs=insert.executeQuery();
         while(rs.next()){
         comboCity.addItem(rs.getString("cityname"));
-        
+        con1.close();
         }
         
     }catch(Exception e){

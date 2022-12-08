@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.RaiseComplaint;
 import java.time.LocalDateTime;
+import java.util.concurrent.Executors;
 
 /**
  *
@@ -32,8 +33,10 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
      */
     public ResidentComplaintJFrame() {
         initComponents();
-//        updateCombo();
+//        complaint_list();
+
         comboEnterprise.setSelectedItem(null);
+        
         
     }
 
@@ -116,6 +119,26 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseReleased(evt);
+            }
+        });
+        jTabbedPane1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTabbedPane1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTabbedPane1KeyReleased(evt);
+            }
+        });
+
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -141,6 +164,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
         comboOrganization.setBackground(new java.awt.Color(204, 204, 204));
         comboOrganization.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        comboOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One" }));
         comboOrganization.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         comboOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,6 +240,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         txtID1.setBackground(new java.awt.Color(204, 204, 204));
         txtID1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtID1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        txtID1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtID1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1330, 40, 100, -1));
 
         btnBack1.setBackground(new java.awt.Color(102, 102, 102));
@@ -238,15 +267,20 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Complaint Number", "Complaint Type", "Status", "Complaint", "Time", "Comment by worker"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTable1.setGridColor(new java.awt.Color(204, 204, 204));
         jTable1.setSelectionBackground(new java.awt.Color(204, 204, 204));
         jScrollPane2.setViewportView(jTable1);
@@ -258,6 +292,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         btnView.setForeground(new java.awt.Color(255, 255, 255));
         btnView.setText("View");
         btnView.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 110, 40));
 
         btnCancel.setBackground(new java.awt.Color(102, 102, 102));
@@ -581,7 +620,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
                 comboOrganization.addItem("Water Supply Org");
                 comboOrganization.addItem("Street Org");
                 comboOrganization.addItem("Police Org");
-                comboOrganization.setSelectedItem(null);
+                comboOrganization.setSelectedIndex(-1);
 
             }
             else if(comboEnterprise.getSelectedItem().equals("Emergency"))
@@ -589,21 +628,21 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
                 comboOrganization.removeAllItems();
                 comboOrganization.addItem("Hospital Org");
                 comboOrganization.addItem("Fire Org");
-                comboOrganization.setSelectedItem(null);
+                comboOrganization.setSelectedIndex(-1);
             }
             else if(comboEnterprise.getSelectedItem().equals("Covid-Help"))
             {
                 comboOrganization.removeAllItems();
                 comboOrganization.addItem("Non Gov Org");
                 comboOrganization.addItem("Gov Org");
-                comboOrganization.setSelectedItem(null);
+                comboOrganization.setSelectedIndex(-1);
 
             }
             else if(comboEnterprise.getSelectedItem().equals("Residence"))
             {
                 comboOrganization.removeAllItems();
                 comboOrganization.addItem("Stand Alone");
-                comboOrganization.setSelectedItem(null);
+                comboOrganization.setSelectedIndex(-1);
 
             }
         }
@@ -665,7 +704,8 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
             try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint,timestamp,status,workercomment)values(?,?,?,?,?,?,?)");
 
             insert.setString(1,rc.getResidentId());
@@ -684,12 +724,13 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
             insert.executeUpdate();
 
             JOptionPane.showMessageDialog(this,"Complaint Raised Successfully");
+            complaint_list();
             comboEnterprise.setSelectedIndex(-1);
             comboOrganization.setSelectedIndex(-1);
             txtComplaintBox.setText("");
             
        
-
+            con1.close();
            
 
         } catch (ClassNotFoundException ex) {
@@ -699,22 +740,109 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         catch (SQLException ex) {
             Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
           
     }//GEN-LAST:event_btnSubmitActionPerformed
 
+    
+    private void complaint_list(){
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+//            ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+            int num = Integer.parseInt(this.txtID2.getText());
+            insert=con1.prepareStatement("select * from raisecomplaint where id='"+num+"'");
+
+            
+//where id='"+num+"'
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("complaintid"));
+                  v2.add(rs.getString("organization"));
+                   v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                     v2.add(rs.getString("timestamp"));
+                      v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+           con1.close();
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }
+   
+    
+    
+    
     private void txtID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID2ActionPerformed
-                  
-//        RaiseComplaint rc = new RaiseComplaint();
-//        String residentId = "5";
-//        txtID2.setText(residentId);
-//        setVisible(true);
-//        rc.setResidentId(residentId);
          
     }//GEN-LAST:event_txtID2ActionPerformed
 
     private void txtID3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtID3ActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void txtID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtID1ActionPerformed
+
+    private void jTabbedPane1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTabbedPane1KeyPressed
+        // TODO add your handling code here:
+//        ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+//        rc.complaint_list();
+    }//GEN-LAST:event_jTabbedPane1KeyPressed
+
+    private void jTabbedPane1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTabbedPane1KeyReleased
+        // TODO add your handling code here:
+//        ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+//        rc.complaint_list();
+    }//GEN-LAST:event_jTabbedPane1KeyReleased
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        // TODO add your handling code here:
+//        ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+//        rc.complaint_list();
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void jTabbedPane1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MousePressed
+        // TODO add your handling code here:
+//        ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+//        rc.complaint_list();
+    }//GEN-LAST:event_jTabbedPane1MousePressed
+
+    private void jTabbedPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseReleased
+        // TODO add your handling code here:
+        
+        complaint_list();
+    }//GEN-LAST:event_jTabbedPane1MouseReleased
     Connection con1;
     PreparedStatement insert;
     ResultSet rs;
