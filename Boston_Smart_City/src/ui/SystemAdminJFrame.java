@@ -292,7 +292,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         jPanel1.add(btnUpdateEmployee1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, 160, 50));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Staff1.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1310, 780));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 30, 1310, 780));
 
         jTabbedPane1.addTab("Employee", jPanel1);
 
