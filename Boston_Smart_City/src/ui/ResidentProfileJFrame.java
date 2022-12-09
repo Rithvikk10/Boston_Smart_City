@@ -159,6 +159,11 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         comboCommunity.setBackground(new java.awt.Color(204, 204, 204));
         comboCommunity.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         comboCommunity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        comboCommunity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCommunityActionPerformed(evt);
+            }
+        });
         jPanel2.add(comboCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 380, 180, -1));
 
         jLabel16.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -312,7 +317,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             
 
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
@@ -409,6 +414,10 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     private void btnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMaleActionPerformed
+
+    private void comboCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCommunityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCommunityActionPerformed
        
     private void updateCombo() {
          
@@ -417,7 +426,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     try{
        Class.forName("com.mysql.jdbc.Driver");
 
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
 
         con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
 
@@ -449,7 +458,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     try{
        Class.forName("com.mysql.jdbc.Driver");
 
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
 
         con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
 
