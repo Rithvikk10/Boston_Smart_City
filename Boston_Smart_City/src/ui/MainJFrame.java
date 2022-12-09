@@ -31,6 +31,8 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     public MainJFrame() {
         initComponents();
+        
+        
     }
     
  
@@ -171,7 +173,7 @@ public class MainJFrame extends javax.swing.JFrame {
            
             Class.forName("com.mysql.jdbc.Driver");
 
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
 
             
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
@@ -194,6 +196,26 @@ public class MainJFrame extends javax.swing.JFrame {
                 rc.txtID2.setText(rs.getString(1));
                 rc.txtID1.setText(rs.getString(1));
                 rc.txtID3.setText(rs.getString(1));
+                
+                rc.txtName.setText(rs.getString(2));
+                rc.txtAge.setText(rs.getString(3));
+                switch(rs.getString(4)){
+                case "male" -> rc.genderGroup.setSelected(rc.btnMale.getModel(), true);
+                case "female" -> rc.genderGroup.setSelected(rc.btnFemale.getModel(), true);
+                case "other" -> rc.genderGroup.setSelected(rc.btnOther.getModel(), true);
+                }
+                
+                rc.txtAddress.setText(rs.getString(5));
+                rc.comboCity1.setSelectedIndex(0);
+                switch(rs.getString(7)){
+                    case "Huntington Ave" -> rc.comboCommunity1.setSelectedIndex(0);
+                    case "Roxbury" -> rc.comboCommunity1.setSelectedIndex(1);
+                    case "South Bay" -> rc.comboCommunity1.setSelectedIndex(2);
+                }
+                rc.txtPhoneNumber.setText(rs.getString(8));
+                rc.txtEmail.setText(rs.getString(9));
+                rc.txtPassword.setText(rs.getString(10));
+                rc.txtConfirmPassword.setText(rs.getString(11));
                 
                 rc.setVisible(true);
                 dispose();

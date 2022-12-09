@@ -38,7 +38,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         comboEnterprise.setSelectedItem(null);
         //complaint_list();
        
-        
+        updateCombo();
+        updateCityCombo();
+//        update_list();
     }
 
     
@@ -103,9 +105,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        comboCommunity = new javax.swing.JComboBox<>();
+        comboCommunity1 = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
-        comboCity = new javax.swing.JComboBox<>();
+        comboCity1 = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         txtPhoneNumber = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
@@ -369,6 +371,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Check Status", jPanel2);
 
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel3MouseReleased(evt);
+            }
+        });
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -455,25 +462,30 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         jLabel17.setText("Community :");
         jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 360, 180, 27));
 
-        comboCommunity.setBackground(new java.awt.Color(204, 204, 204));
-        comboCommunity.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        comboCommunity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel3.add(comboCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 360, 160, -1));
+        comboCommunity1.setBackground(new java.awt.Color(204, 204, 204));
+        comboCommunity1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        comboCommunity1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        comboCommunity1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCommunity1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(comboCommunity1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 360, 160, -1));
 
         jLabel18.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel18.setText("City :");
         jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 400, 180, 27));
 
-        comboCity.setBackground(new java.awt.Color(204, 204, 204));
-        comboCity.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        comboCity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        comboCity.addActionListener(new java.awt.event.ActionListener() {
+        comboCity1.setBackground(new java.awt.Color(204, 204, 204));
+        comboCity1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        comboCity1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        comboCity1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCityActionPerformed(evt);
+                comboCity1ActionPerformed(evt);
             }
         });
-        jPanel3.add(comboCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 400, 160, -1));
+        jPanel3.add(comboCity1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 400, 160, -1));
 
         jLabel19.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -666,9 +678,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAddressActionPerformed
 
-    private void comboCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCityActionPerformed
+    private void comboCity1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCity1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboCityActionPerformed
+    }//GEN-LAST:event_comboCity1ActionPerformed
 
     private void txtPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumberActionPerformed
         // TODO add your handling code here:
@@ -705,7 +717,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
             try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint,timestamp,status,workercomment)values(?,?,?,?,?,?,?)");
 
@@ -717,9 +729,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
             insert.setString(3, rc.getOrganization());
 
             insert.setString(4, rc.getComplaint());
-             insert.setObject(5, ldt);
-             insert.setString(6, rc.getStatus());
-             insert.setString(7, rc.getWorkerComment());
+            insert.setObject(5, ldt);
+            insert.setString(6, rc.getStatus());
+            insert.setString(7, rc.getWorkerComment());
             
 
             insert.executeUpdate();
@@ -745,50 +757,139 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         }          
     }//GEN-LAST:event_btnSubmitActionPerformed
 
-    private void update_list(){
     
-        
-        int c;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
-             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
-            //ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
-            int num = Integer.parseInt(this.txtID2.getText());
-            insert=con1.prepareStatement("select * from raisecomplaint where id='"+num+"'");
-
-            
+    private void updateCombo() {
          
-            if(rs.next()){
+    String sql="select * from community";
+   
+    try{
+       Class.forName("com.mysql.jdbc.Driver");
 
-                ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
-//                RaiseComplaint rac = new RaiseComplaint();
-//                String resId = rc.getDetails(rs.getString(1));
-               
-                rc.txtID3.setText(rs.getString(1));
-                rc.txtName.setText(rs.getString(2));
-                rc.setVisible(true);
-                dispose();
-                con1.close();
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
 
-            }else{
-                JOptionPane.showMessageDialog(this, "username or password is incorrect");
-                txtEmail.setText("");
-                txtPassword.setText("");
-                  con1.close();
-            }
+        con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
 
-            
-
-       
-
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-             
+        insert=con1.prepareStatement(sql);
+        
+        rs=insert.executeQuery();
+        while(rs.next()){
+        comboCommunity1.addItem(rs.getString("communityname"));
+        con1.close();
         }
-    
-    
+        
+    }catch(Exception e){
+    }finally{
+    if(con1!=null){
+        try {
+            con1.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    }
+    }
+    
+    
+    private void updateCityCombo(){
+         
+    String sql="select * from city";
+   
+    try{
+       Class.forName("com.mysql.jdbc.Driver");
+
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+
+        con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+
+        insert=con1.prepareStatement(sql);
+        
+        rs=insert.executeQuery();
+        while(rs.next()){
+        comboCity1.addItem(rs.getString("cityname"));
+
+          con1.close();
+        
+
+        }
+        
+    }catch(Exception e){
+    }finally{
+    if(con1!=null){
+        try {
+            con1.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    }
+    }
+    
+    
+//    private void update_list(){
+//    
+//        
+//        int c;
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+//             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+//            //ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+//            int num = Integer.parseInt(this.txtID3.getText());
+//            insert=con1.prepareStatement("select * from personregistration where id='"+num+"'");
+//
+//            
+//         
+//            if(rs.next()){
+//
+////                ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+////                RaiseComplaint rac = new RaiseComplaint();
+////                String resId = rc.getDetails(rs.getString(1));
+////                ResidentProfileJFrame rp = new ResidentProfileJFrame();
+//                
+//                
+//                this.txtName.setText(rs.getString(1));
+//                this.txtAge.setText(rs.getString(2));
+//                switch(rs.getString(3)){
+//                case "Male" -> this.genderGroup.setSelected(btnMale.getModel(), true);
+//                case "Female" -> this.genderGroup.setSelected(btnFemale.getModel(), true);
+//                case "Other" -> this.genderGroup.setSelected(btnOther.getModel(), true);
+//                }
+//                
+//                this.txtAddress.setText(rs.getString(4));
+//                this.comboCity1.setSelectedIndex(0);
+//                switch(rs.getString(6)){
+//                    case "Huntington Ave" -> this.comboCommunity1.setSelectedIndex(0);
+//                    case "Roxbury" -> this.comboCommunity1.setSelectedIndex(1);
+//                    case "South Bay" -> this.comboCommunity1.setSelectedIndex(2);
+//                }
+//                this.txtPhoneNumber.setText(rs.getString(7));
+//                this.txtEmail.setText(rs.getString(8));
+//                this.txtPassword.setText(rs.getString(9));
+//                this.txtConfirmPassword.setText(rs.getString(10));
+//                
+//                     
+//                
+////              dispose();
+//                con1.close();
+//
+//            }else{
+//                JOptionPane.showMessageDialog(this, "username or password is incorrect");
+//                txtEmail.setText("");
+//                txtPassword.setText("");
+//                  con1.close();
+//            }
+//
+//            
+//
+//       
+//
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//             
+//        }
+//    
+//    
+//    }
 
       
     private void complaint_list()
@@ -796,7 +897,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
              con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             //ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
             int num = Integer.parseInt(this.txtID2.getText());
@@ -862,7 +963,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
     private void jTabbedPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseReleased
       complaint_list();
-      update_list();
+      
         // TODO add your handling code here:
     }//GEN-LAST:event_jTabbedPane1MouseReleased
 
@@ -892,7 +993,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
               if(dialogResult==JOptionPane.YES_OPTION)
               {
                   Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             insert=con1.prepareStatement("delete from raisecomplaint where complaintid=?");
             
              insert.setInt(1, id);
@@ -906,7 +1007,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
              txtStatus .setText("");
              txtComplaint.setText("");
              txtComment.setText("");
-            
+
               }
           
         } catch (ClassNotFoundException ex) {
@@ -919,7 +1020,79 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-         
+             
+        try {
+               
+              int id=Integer.parseInt(txtID3.getText());
+//              int id=Integer.parseInt(Df.getValueAt(selectedIndex, 0).toString());
+              String name= txtName.getText();
+              int age=Integer.parseInt(txtAge.getText());
+              String address=txtAddress.getText();
+              String city=(String)comboCity1.getSelectedItem();
+    
+              String community=(String)comboCommunity1.getSelectedItem();
+              Long phonenumber=Long.parseLong(txtPhoneNumber.getText());
+              String email=txtEmail.getText();
+              String password=txtPassword.getText();
+              String confirmpassword=txtConfirmPassword.getText();
+        
+        this.btnMale.setActionCommand("male");
+        this.btnFemale.setActionCommand("female");
+        this.btnOther.setActionCommand("other");
+        
+              String selection = this.genderGroup.getSelection().getActionCommand();
+              
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            insert=con1.prepareStatement("update personregistration set name=?, age=?, gender=?, address=?, city=?, community=?, phonenumber=?, email=?, password=?, confirmpassword=?  where id=?");
+            
+            insert.setString(1, name);
+            
+            insert.setInt(2, age);
+            
+            insert.setString(3, selection);
+
+            insert.setString(4, address);
+
+            insert.setString(5, city);
+            
+            insert.setString(6, community);
+
+            insert.setLong(7, phonenumber);
+            
+            insert.setString(8,email);
+            
+            insert.setString(9, password);
+            
+            insert.setString(10, confirmpassword);
+            
+            insert.setInt(11, id);
+            
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"Resident Profile Updated");
+
+//            txtName.setText("");
+//            txtAge.setText("");
+//            genderGroup.clearSelection();
+//            txtAddress.setText("");
+//            comboCommunity1.setSelectedIndex(-1);
+//            comboCity1.setSelectedIndex(-1);
+//            txtPhoneNumber.setText("");
+//            txtEmail.setText("");
+//            txtPassword.setText("");
+//            txtConfirmPassword.setText("");
+            
+                  
+            txtName.requestFocus();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
          
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -933,6 +1106,17 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     private void txtID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtID1ActionPerformed
+
+    private void jPanel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseReleased
+        // TODO add your handling code here:
+//        updateCombo();
+//        updateCityCombo();
+//        update_list();
+    }//GEN-LAST:event_jPanel3MouseReleased
+
+    private void comboCommunity1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCommunity1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCommunity1ActionPerformed
 
     Connection con1;
     PreparedStatement insert;
@@ -987,17 +1171,17 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnBack2;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JRadioButton btnFemale;
-    private javax.swing.JRadioButton btnMale;
-    private javax.swing.JRadioButton btnOther;
+    public javax.swing.JRadioButton btnFemale;
+    public javax.swing.JRadioButton btnMale;
+    public javax.swing.JRadioButton btnOther;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnView;
-    private javax.swing.JComboBox<String> comboCity;
-    private javax.swing.JComboBox<String> comboCommunity;
+    public javax.swing.JComboBox<String> comboCity1;
+    public javax.swing.JComboBox<String> comboCommunity1;
     private javax.swing.JComboBox<String> comboEnterprise;
     private javax.swing.JComboBox<String> comboOrganization;
-    private javax.swing.ButtonGroup genderGroup;
+    public javax.swing.ButtonGroup genderGroup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1032,21 +1216,21 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtAge;
+    public javax.swing.JTextField txtAddress;
+    public javax.swing.JTextField txtAge;
     private javax.swing.JTextArea txtComment;
     private javax.swing.JTextArea txtComplaint;
     private javax.swing.JTextArea txtComplaintBox;
     private javax.swing.JTextField txtComplaintNumber;
     private javax.swing.JTextField txtComplaintType;
-    private javax.swing.JPasswordField txtConfirmPassword;
-    private javax.swing.JTextField txtEmail;
+    public javax.swing.JPasswordField txtConfirmPassword;
+    public javax.swing.JTextField txtEmail;
     public javax.swing.JTextField txtID1;
     public javax.swing.JTextField txtID2;
     public javax.swing.JTextField txtID3;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtPhoneNumber;
+    public javax.swing.JTextField txtName;
+    public javax.swing.JPasswordField txtPassword;
+    public javax.swing.JTextField txtPhoneNumber;
     private javax.swing.JTextField txtStatus;
     // End of variables declaration//GEN-END:variables
 }
