@@ -301,6 +301,11 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         btnViewEmployee1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnViewEmployee1.setText("View");
         btnViewEmployee1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnViewEmployee1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewEmployee1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnViewEmployee1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 120, 40));
 
         txtSearchEmployee1.setBackground(new java.awt.Color(204, 204, 204));
@@ -318,6 +323,11 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         btnFire1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         btnFire1.setText("Fire");
         btnFire1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnFire1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFire1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnFire1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 540, 160, 50));
 
         btnUpdateEmployee1.setBackground(new java.awt.Color(93, 145, 145));
@@ -990,6 +1000,49 @@ DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
          
                  
     }//GEN-LAST:event_btnUpdateEmployee1ActionPerformed
+
+    private void btnFire1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFire1ActionPerformed
+           
+           DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
+         int selectedIndex = tblFireEmployee1.getSelectedRow();
+          try {
+              
+              
+              int id=Integer.parseInt(Df.getValueAt(selectedIndex, 0).toString());
+              
+              int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to delete the record","Warning",JOptionPane.YES_NO_OPTION);
+              if(dialogResult==JOptionPane.YES_OPTION)
+              {
+                  Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("delete from employeeregistration where employeeid=?");
+            
+             insert.setInt(1, id);
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"Record Delete");
+            
+              table_update();
+             
+            
+              }
+          
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btnFire1ActionPerformed
+
+    private void btnViewEmployee1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewEmployee1ActionPerformed
+        DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
+         int selectedIndex =  tblFireEmployee1.getSelectedRow();
+         
+         txtName.setText(Df.getValueAt(selectedIndex,1).toString());
+          
+    }//GEN-LAST:event_btnViewEmployee1ActionPerformed
 
     
     /**
