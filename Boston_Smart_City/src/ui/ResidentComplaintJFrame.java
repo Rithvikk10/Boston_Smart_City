@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import model.RaiseComplaint;
 import java.time.LocalDateTime;
 import java.util.concurrent.Executors;
+import model.Login;
 
 /**
  *
@@ -120,6 +121,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MousePressed(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTabbedPane1MouseReleased(evt);
             }
@@ -526,6 +530,11 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Update");
         btnUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 630, 152, 50));
 
         btnBack2.setBackground(new java.awt.Color(102, 102, 102));
@@ -736,7 +745,51 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         }          
     }//GEN-LAST:event_btnSubmitActionPerformed
 
+    private void update_list(){
     
+        
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+            //ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+            int num = Integer.parseInt(this.txtID2.getText());
+            insert=con1.prepareStatement("select * from raisecomplaint where id='"+num+"'");
+
+            
+         
+            if(rs.next()){
+
+                ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+//                RaiseComplaint rac = new RaiseComplaint();
+//                String resId = rc.getDetails(rs.getString(1));
+               
+                rc.txtID3.setText(rs.getString(1));
+                rc.txtName.setText(rs.getString(2));
+                rc.setVisible(true);
+                dispose();
+                con1.close();
+
+            }else{
+                JOptionPane.showMessageDialog(this, "username or password is incorrect");
+                txtEmail.setText("");
+                txtPassword.setText("");
+                  con1.close();
+            }
+
+            
+
+       
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+             
+        }
+    
+    
+    }
+
       
     private void complaint_list()
         {
@@ -809,6 +862,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
     private void jTabbedPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseReleased
       complaint_list();
+      update_list();
         // TODO add your handling code here:
     }//GEN-LAST:event_jTabbedPane1MouseReleased
 
@@ -870,6 +924,17 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
             Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+         
+         
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void jTabbedPane1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MousePressed
+                
+
+
+    }//GEN-LAST:event_jTabbedPane1MousePressed
    
 
     private void txtID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID1ActionPerformed
