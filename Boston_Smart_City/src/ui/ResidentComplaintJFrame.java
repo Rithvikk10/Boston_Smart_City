@@ -906,16 +906,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
              txtStatus .setText("");
              txtComplaint.setText("");
              txtComment.setText("");
-             
-                  
-            
             
               }
-             
-            
-            
           
-            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
