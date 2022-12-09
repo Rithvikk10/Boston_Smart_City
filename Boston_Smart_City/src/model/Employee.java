@@ -26,6 +26,36 @@ public class Employee {
     
     private String confirmPassword;
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    
+    private String gender;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+    
+    private int age;
+
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    
+
     public Employee(String employeeId, String role, String enterprise, String organization, String name, String email, String password, String confirmPassword) {
         this.employeeId = employeeId;
         this.role = role;
