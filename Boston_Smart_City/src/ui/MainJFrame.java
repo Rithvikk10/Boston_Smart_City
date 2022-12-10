@@ -173,7 +173,7 @@ public class MainJFrame extends javax.swing.JFrame {
            
             Class.forName("com.mysql.jdbc.Driver");
 
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
 
             
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
