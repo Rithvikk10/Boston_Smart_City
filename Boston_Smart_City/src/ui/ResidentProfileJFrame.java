@@ -317,7 +317,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             
 
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
@@ -426,7 +426,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     try{
        Class.forName("com.mysql.jdbc.Driver");
 
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
 
         con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
 
@@ -458,7 +458,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     try{
        Class.forName("com.mysql.jdbc.Driver");
 
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
 
         con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
 
