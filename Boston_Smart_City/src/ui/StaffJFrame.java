@@ -46,8 +46,6 @@ public class StaffJFrame extends javax.swing.JFrame {
         btnView1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtResidentId = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtComplaintId = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -98,13 +96,13 @@ public class StaffJFrame extends javax.swing.JFrame {
         jTable2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Resident ID", "Name", "Complaint ID", "Complaint Type", "Status", "Complaint", "Comment By Worker"
+                "Resident ID", "Complaint ID", "Complaint Type", "Status", "Complaint", "Comment By Worker"
             }
         ));
         jScrollPane4.setViewportView(jTable2);
@@ -131,16 +129,6 @@ public class StaffJFrame extends javax.swing.JFrame {
         txtResidentId.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtResidentId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel1.add(txtResidentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 150, -1));
-
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Name :");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 170, 33));
-
-        txtName.setBackground(new java.awt.Color(204, 204, 204));
-        txtName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        txtName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 150, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -501,7 +489,6 @@ public class StaffJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -525,7 +512,6 @@ public class StaffJFrame extends javax.swing.JFrame {
     public javax.swing.JTextField txtEmail1;
     public javax.swing.JTextField txtID3;
     public javax.swing.JTextField txtID6;
-    private javax.swing.JTextField txtName;
     public javax.swing.JTextField txtName1;
     private javax.swing.JTextField txtResidentId;
     private javax.swing.JTextField txtStatus;

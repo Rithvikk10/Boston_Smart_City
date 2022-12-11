@@ -57,35 +57,30 @@ public class MainJFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboRole = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        ComboType = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 153, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Email ID :");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 100, 30));
 
         txtEmail.setBackground(new java.awt.Color(255, 204, 204));
         txtEmail.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(0, 153, 255));
-        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 122, 30));
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 153, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Select Role :");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 120, 30));
 
         txtPassword.setBackground(new java.awt.Color(255, 204, 204));
         txtPassword.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(51, 153, 255));
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 250, 122, 30));
 
         btnRegister.setBackground(new java.awt.Color(0, 102, 255));
         btnRegister.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -97,7 +92,6 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnRegisterActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, 160, 50));
 
         btnLogin.setBackground(new java.awt.Color(0, 102, 255));
         btnLogin.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -109,7 +103,6 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 370, 160, 50));
 
         jButton1.setText("Sys Admin");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +110,6 @@ public class MainJFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 510, 126, 30));
 
         jButton2.setText("Ent Admin");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +117,6 @@ public class MainJFrame extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 550, 126, 30));
 
         jButton3.setText("Manager");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +124,6 @@ public class MainJFrame extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 590, 126, 30));
 
         jButton4.setText("Staff");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -141,20 +131,104 @@ public class MainJFrame extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 630, 126, 50));
 
-        jComboBox1.setBackground(new java.awt.Color(255, 204, 204));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "System-Admin", "Enterprise Admin", "Manager", "Staff", "Resident", "Community Admin", "Security Staff", "FeedBack Monitor", " " }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, 124, 31));
+        comboRole.setBackground(new java.awt.Color(255, 204, 204));
+        comboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "System-Admin", "Enterprise Admin", "Manager", "Staff", "Resident", "Community Admin", "Security Staff", "FeedBack Monitor", " " }));
+        comboRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboRoleActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 153, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Password :");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 250, 100, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/MainPicture.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 710));
+        jLabel12.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setText("Select Type :");
+
+        ComboType.setBackground(new java.awt.Color(255, 204, 204));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(540, 540, 540)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(540, 540, 540)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(570, 570, 570)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(570, 570, 570)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(410, 410, 410)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(1140, 1140, 1140)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(1140, 1140, 1140)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(1140, 1140, 1140)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(520, 520, 520)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(ComboType, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(comboRole, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboRole, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboType, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -184,7 +258,259 @@ public class MainJFrame extends javax.swing.JFrame {
 //        String password=txtPassword.getText();
 //        String option=jComboBox1.getSelectedItem().toString();
 //        
-       String option=jComboBox1.getSelectedItem().toString();
+       ////////////String option=comboRole.getSelectedItem().toString();
+//        Login lg= new Login();
+//         lg.setEmail(emailid);
+//         lg.setPassword(password);
+//         if(lg.getEmail().equals("")||lg.getPassword().equals("")||option.equals("--Select Role--")){
+//         JOptionPane.showMessageDialog(rootPane, "Some Fields are empty", "Error", 1);
+//         }else{
+//            try{
+//            
+//            }catch(Exception ex){
+//            
+//            }
+//         }
+///////////////////rithvik login        
+//       try{
+//           
+//            Class.forName("com.mysql.jdbc.Driver");
+//
+//            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+//
+//            
+//            con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+//
+//            String emailid= txtEmail.getText();
+//            String password=txtPassword.getText();
+//            Statement stm= con1.createStatement();
+//            Login lg= new Login();
+//            lg.setEmail(emailid);
+//            lg.setPassword(password);
+//            
+//            String sql = "select * from personregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' ";
+//            String sql1 = "select * from systemadmin where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' ";
+//            String sql2="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Enterprise Admin'";
+//            String sql3="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Manager'";
+//            String sql4="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Worker'";
+//            String sql5="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Community Admin'";
+//            String sql6="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Security Staff'";
+//            
+//           
+//          
+//            if(option.equalsIgnoreCase("Resident")){
+//                
+//               // String s1= rs.getString("option");
+//               rs=stm.executeQuery(sql);
+//                if(rs.next()){
+//                ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
+////                RaiseComplaint rac = new RaiseComplaint();
+////                String resId = rc.getDetails(rs.getString(1));
+//               
+//                rc.txtID2.setText(rs.getString(1));
+//                rc.txtID1.setText(rs.getString(1));
+//                rc.txtID3.setText(rs.getString(1));
+//                rc.txtName.setText(rs.getString(2));
+//                rc.txtAge.setText(rs.getString(3));
+//               switch(rs.getString(4)){
+//                case "male" -> rc.genderGroup.setSelected(rc.btnMale.getModel(), true);
+//                case "female" -> rc.genderGroup.setSelected(rc.btnFemale.getModel(), true);
+//                case "other" -> rc.genderGroup.setSelected(rc.btnOther.getModel(), true);
+//                }
+//                
+//                rc.txtAddress.setText(rs.getString(5));
+//                rc.comboCity1.setSelectedIndex(0);
+//                switch(rs.getString(7)){
+//                    case "Huntington Ave" -> rc.comboCommunity1.setSelectedIndex(0);
+//                    case "Roxbury" -> rc.comboCommunity1.setSelectedIndex(1);
+//                    case "South Bay" -> rc.comboCommunity1.setSelectedIndex(2);
+//                }
+//                rc.txtPhoneNumber.setText(rs.getString(8));
+//                rc.txtEmail.setText(rs.getString(9));
+//                rc.txtPassword.setText(rs.getString(10));
+//                rc.txtConfirmPassword.setText(rs.getString(11));
+//                
+//                rc.setVisible(true);
+//                dispose();
+//                con1.close();
+//                }
+//            }
+//                else if(option.equalsIgnoreCase("System-Admin")){
+//                
+//                    rs=stm.executeQuery(sql1);
+//                    if(rs.next())
+//                    {
+//                        SystemAdminJFrame sa= new SystemAdminJFrame();
+//                        sa.setVisible(true);
+//                        dispose();
+//                        con1.close();
+//                    
+//                    }
+//                }
+//                
+//                else if(option.equalsIgnoreCase("Enterprise Admin")){
+//                
+//                    rs=stm.executeQuery(sql2);
+//                    if(rs.next())
+//                    {
+//                        EnterpriseJFrame e= new EnterpriseJFrame();
+//                        
+//                e.txtID7.setText(rs.getString(1));
+//                e.txtID3.setText(rs.getString(1));
+//                e.txtName1.setText(rs.getString(5));
+//                e.txtAge1.setText(rs.getString(6));
+//               switch(rs.getString(7)){
+//                case "Male" -> e.genderGroup.setSelected(e.btnMale1.getModel(), true);
+//                case "Female" -> e.genderGroup.setSelected(e.btnFemale1.getModel(), true);
+//                case "Other" -> e.genderGroup.setSelected(e.btnOther1.getModel(), true);
+//                }
+//                e.txtEmail1.setText(rs.getString(8));
+//                
+//                        e.setVisible(true);
+//                        dispose();
+//                        con1.close();
+//                    
+//                    }
+//                }
+//                
+//                else if(option.equalsIgnoreCase("Manager")){
+//                
+//                    rs=stm.executeQuery(sql3);
+//                    if(rs.next())
+//                    {
+//                       ManagerJFrame m=new ManagerJFrame();
+//                       
+//                       
+//                m.txtID8.setText(rs.getString(1));
+//                m.txtID3.setText(rs.getString(1));
+//                m.txtName1.setText(rs.getString(5));
+//                m.txtAge1.setText(rs.getString(6));
+//               switch(rs.getString(7)){
+//                case "Male" -> m.genderGroup.setSelected(m.btnMale1.getModel(), true);
+//                case "Female" -> m.genderGroup.setSelected(m.btnFemale1.getModel(), true);
+//                case "Other" -> m.genderGroup.setSelected(m.btnOther1.getModel(), true);
+//                }
+//               
+//                m.txtEmail1.setText(rs.getString(8));
+//            
+//                       
+//                       
+//                        m.setVisible(true);
+//                        dispose();
+//                        con1.close();
+//                    
+//                    }
+//                }
+//                
+//                 else if(option.equalsIgnoreCase("Staff")){
+//                
+//                    rs=stm.executeQuery(sql4);
+//                    if(rs.next())
+//                    {
+//                       StaffJFrame s=new StaffJFrame();
+//                      
+//                s.txtID6.setText(rs.getString(1));
+//                s.txtID3.setText(rs.getString(1));
+//                s.txtName1.setText(rs.getString(5));
+//                s.txtAge1.setText(rs.getString(6));
+//               switch(rs.getString(7)){
+//                case "Male" -> s.genderGroup.setSelected(s.btnMale1.getModel(), true);
+//                case "Female" -> s.genderGroup.setSelected(s.btnFemale1.getModel(), true);
+//                case "Other" -> s.genderGroup.setSelected(s.btnOther1.getModel(), true);
+//                }
+//               
+//                s.txtEmail1.setText(rs.getString(8));
+//                       
+//                        s.setVisible(true);
+//                        dispose();
+//                        con1.close();
+//                    
+//                    }
+//                }
+//                
+//                 else if(option.equalsIgnoreCase("Community Admin")){
+//                
+//                    rs=stm.executeQuery(sql5);
+//                    if(rs.next())
+//                    {
+//                       CommunityAdminJFrame cs=new CommunityAdminJFrame();
+//                      
+//                cs.txtID5.setText(rs.getString(1));
+//                cs.txtID4.setText(rs.getString(1));
+//                cs.txtName1.setText(rs.getString(5));
+//                cs.txtAge1.setText(rs.getString(6));
+//               switch(rs.getString(7)){
+//                case "Male" -> cs.genderGroup.setSelected(cs.btnMale1.getModel(), true);
+//                case "Female" -> cs.genderGroup.setSelected(cs.btnFemale1.getModel(), true);
+//                case "Other" -> cs.genderGroup.setSelected(cs.btnOther1.getModel(), true);
+//                }
+//               
+//                cs.txtEmail1.setText(rs.getString(8));
+//                       
+//                        cs.setVisible(true);
+//                        dispose();
+//                        con1.close();
+//                    
+//                    }
+//                }
+//                
+//                 else if(option.equalsIgnoreCase("Security Staff")){
+//                
+//                    rs=stm.executeQuery(sql6);
+//                    if(rs.next())
+//                    {
+//                       SecuritySupportStaffJFrame ss=new SecuritySupportStaffJFrame();
+//                      
+//                ss.txtID3.setText(rs.getString(1));
+//                ss.txtID4.setText(rs.getString(1));
+//                ss.txtName1.setText(rs.getString(5));
+//                ss.txtAge1.setText(rs.getString(6));
+//               switch(rs.getString(7)){
+//                case "Male" -> ss.genderGroup.setSelected(ss.btnMale1.getModel(), true);
+//                case "Female" -> ss.genderGroup.setSelected(ss.btnFemale1.getModel(), true);
+//                case "Other" -> ss.genderGroup.setSelected(ss.btnOther1.getModel(), true);
+//                }
+//                ss.txtEmail1.setText(rs.getString(8));
+//                       
+//                        ss.setVisible(true);
+//                        dispose();
+//                        con1.close();
+//                    
+//                    }
+//                }
+//                
+//            
+//             else{
+//                JOptionPane.showMessageDialog(this, "username or password is incorrect");
+//                txtEmail.setText("");
+//              txtPassword.setText("");
+//                  con1.close();
+//                 }
+//            
+//
+//       
+//
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//             
+//        }finally{
+// 
+//              if(con1!=null)
+//              try {
+//                  con1.close();
+//              } catch (SQLException ex) {
+//                  Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+//              }
+//       }
+       //////////////////rithvik login end
+       // TODO add your handling code here:
+           // String emailid= txtEmail.getText();
+//        String password=txtPassword.getText();
+//        String option=jComboBox1.getSelectedItem().toString();
+//        
+      String option=comboRole.getSelectedItem().toString();
+      String option1=ComboType.getSelectedItem().toString();
+     
 //        Login lg= new Login();
 //         lg.setEmail(emailid);
 //         lg.setPassword(password);
@@ -199,7 +525,7 @@ public class MainJFrame extends javax.swing.JFrame {
 //         }
         
        try{
-           
+            
             Class.forName("com.mysql.jdbc.Driver");
 
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
@@ -216,26 +542,49 @@ public class MainJFrame extends javax.swing.JFrame {
             
             String sql = "select * from personregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' ";
             String sql1 = "select * from systemadmin where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' ";
-            String sql2="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Enterprise Admin'";
-            String sql3="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Manager'";
-            String sql4="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Worker'";
-            String sql5="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Community Admin'";
+           // String sql2="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Enterprise Admin'";
+            String sqlgriv="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Enterprise Admin' and enterprise='Grievance'";
+            String sqlemer="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Enterprise Admin' and enterprise='Emergency'";
+            String sqlcovid="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Enterprise Admin' and enterprise='Covid-Help'";
+            String sqlres="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Enterprise Admin' and enterprise='Residence'";
             
+            String sqlwat="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Manager' and organization='Water Supply Org'";
+             String sqlstreet="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Manager' and organization='Street Org'"; 
+              String sqlpolice="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Manager' and organization='Police Org'";
+              String sqlhospital="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Manager' and organization='Hospital Org'";
+              String sqlfire="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Manager' and organization='Fire Org'";
+              String sqlnongov="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Manager' and organization='Non Gov Org'";
+              String sqlgov="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Manager' and organization='Gov Org'";
+              String sqlstandalone="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Manager' and organization='Stand Alone'";
+            //String sql3="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Manager'";
+            //String sql4="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Worker'";
+            
+            String sqlwatwor="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Worker' and organization='Water Supply Org'";
+             String sqlstreetwor="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Worker' and organization='Street Org'"; 
+              String sqlpolicewor="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Worker' and organization='Police Org'";
+              String sqlhospitalwor="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Worker' and organization='Hospital Org'";
+              String sqlfirewor="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Worker' and organization='Fire Org'";
+              String sqlnongovwor="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Worker' and organization='Non Gov Org'";
+              String sqlgovwor="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Worker' and organization='Gov Org'";
+              String sqlstandalonewor="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Worker' and organization='Stand Alone'";
+            
+            String sql5="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Community Admin'";
+            String sql6="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Security Staff'";
            
           
             if(option.equalsIgnoreCase("Resident")){
                 
                // String s1= rs.getString("option");
-               rs=stm.executeQuery(sql);
+                rs=stm.executeQuery(sql);
                 if(rs.next()){
                 ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
-//                RaiseComplaint rac = new RaiseComplaint();
-//                String resId = rc.getDetails(rs.getString(1));
+               // RaiseComplaint rac = new RaiseComplaint();
+               // String resId = rc.getDetails(rs.getString(1));
                
                 rc.txtID2.setText(rs.getString(1));
                 rc.txtID1.setText(rs.getString(1));
                 rc.txtID3.setText(rs.getString(1));
-                rc.txtName.setText(rs.getString(2));
+                                rc.txtName.setText(rs.getString(2));
                 rc.txtAge.setText(rs.getString(3));
                switch(rs.getString(4)){
                 case "male" -> rc.genderGroup.setSelected(rc.btnMale.getModel(), true);
@@ -247,11 +596,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 rc.comboCity1.setSelectedIndex(0);
                 switch(rs.getString(7)){
                     case "Huntington Ave" -> rc.comboCommunity1.setSelectedIndex(0);
-                    case "Roxbury" -> rc.comboCommunity1.setSelectedIndex(1);
+                  case "Roxbury" -> rc.comboCommunity1.setSelectedIndex(1);
                     case "South Bay" -> rc.comboCommunity1.setSelectedIndex(2);
                 }
                 rc.txtPhoneNumber.setText(rs.getString(8));
-                rc.txtEmail.setText(rs.getString(9));
+               rc.txtEmail.setText(rs.getString(9));
                 rc.txtPassword.setText(rs.getString(10));
                 rc.txtConfirmPassword.setText(rs.getString(11));
                 
@@ -273,12 +622,91 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
                 }
                 
-                else if(option.equalsIgnoreCase("Enterprise Admin")){
+                else if(option.equalsIgnoreCase("Enterprise Admin") && option1.equalsIgnoreCase("Grievance")){
                 
-                    rs=stm.executeQuery(sql2);
+                    rs=stm.executeQuery(sqlgriv);
+                    if(rs.next())
+                    {
+                EnterpriseJFrame e= new EnterpriseJFrame();
+                        
+                e.txtID7.setText(rs.getString(1));
+                e.txtID3.setText(rs.getString(1));
+                e.txtName1.setText(rs.getString(5));
+                e.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> e.genderGroup.setSelected(e.btnMale1.getModel(), true);
+                case "Female" -> e.genderGroup.setSelected(e.btnFemale1.getModel(), true);
+                case "Other" -> e.genderGroup.setSelected(e.btnOther1.getModel(), true);
+                }
+                e.txtEmail1.setText(rs.getString(8));
+                        
+                        
+                        e.setVisible(true);
+                        e.table_update_griv();
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                
+                else if(option.equalsIgnoreCase("Enterprise Admin") && option1.equalsIgnoreCase("Covid-Help")){
+                
+                    rs=stm.executeQuery(sqlcovid);
                     if(rs.next())
                     {
                         EnterpriseJFrame e= new EnterpriseJFrame();
+                        
+                e.txtID7.setText(rs.getString(1));
+                e.txtID3.setText(rs.getString(1));
+                e.txtName1.setText(rs.getString(5));
+                e.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> e.genderGroup.setSelected(e.btnMale1.getModel(), true);
+                case "Female" -> e.genderGroup.setSelected(e.btnFemale1.getModel(), true);
+                case "Other" -> e.genderGroup.setSelected(e.btnOther1.getModel(), true);
+                }
+                e.txtEmail1.setText(rs.getString(8));
+                
+                        e.setVisible(true);
+                        e.table_update_covidhelp();
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                
+                else if(option.equalsIgnoreCase("Enterprise Admin") && option1.equalsIgnoreCase("Emergency")){
+                
+                    rs=stm.executeQuery(sqlemer);
+                    if(rs.next())
+                    {
+                        EnterpriseJFrame e= new EnterpriseJFrame();
+                        
+                e.txtID7.setText(rs.getString(1));
+                e.txtID3.setText(rs.getString(1));
+                e.txtName1.setText(rs.getString(5));
+                e.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> e.genderGroup.setSelected(e.btnMale1.getModel(), true);
+                case "Female" -> e.genderGroup.setSelected(e.btnFemale1.getModel(), true);
+                case "Other" -> e.genderGroup.setSelected(e.btnOther1.getModel(), true);
+                }
+                e.txtEmail1.setText(rs.getString(8));
+                
+                        e.setVisible(true);
+                        e.table_update_emergency();
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                
+                else if(option.equalsIgnoreCase("Enterprise Admin") && option1.equalsIgnoreCase("Residence")){
+                
+                    rs=stm.executeQuery(sqlres);
+                    if(rs.next())
+                    {
+                EnterpriseJFrame e= new EnterpriseJFrame();
                         
                 e.txtID7.setText(rs.getString(1));
                 e.txtID3.setText(rs.getString(1));
@@ -298,14 +726,12 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
                 }
                 
-                else if(option.equalsIgnoreCase("Manager")){
+                else if(option.equalsIgnoreCase("Manager")&& option1.equalsIgnoreCase("Water Supply Org")){
                 
-                    rs=stm.executeQuery(sql3);
+                    rs=stm.executeQuery(sqlwat);
                     if(rs.next())
                     {
                        ManagerJFrame m=new ManagerJFrame();
-                       
-                       
                 m.txtID8.setText(rs.getString(1));
                 m.txtID3.setText(rs.getString(1));
                 m.txtName1.setText(rs.getString(5));
@@ -317,24 +743,213 @@ public class MainJFrame extends javax.swing.JFrame {
                 }
                
                 m.txtEmail1.setText(rs.getString(8));
-            
-                       
-                       
+
                         m.setVisible(true);
+                        m.table_update_water();
                         dispose();
                         con1.close();
                     
                     }
                 }
                 
-                 else if(option.equalsIgnoreCase("Staff")){
+                 else if(option.equalsIgnoreCase("Manager")&& option1.equalsIgnoreCase("Street Org")){
                 
-                    rs=stm.executeQuery(sql4);
+                    rs=stm.executeQuery(sqlstreet);
                     if(rs.next())
                     {
-                       StaffJFrame s=new StaffJFrame();
-                      
-                s.txtID6.setText(rs.getString(1));
+                       ManagerJFrame m=new ManagerJFrame();
+                m.txtID8.setText(rs.getString(1));
+                m.txtID3.setText(rs.getString(1));
+                m.txtName1.setText(rs.getString(5));
+                m.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> m.genderGroup.setSelected(m.btnMale1.getModel(), true);
+                case "Female" -> m.genderGroup.setSelected(m.btnFemale1.getModel(), true);
+                case "Other" -> m.genderGroup.setSelected(m.btnOther1.getModel(), true);
+                }
+               
+                m.txtEmail1.setText(rs.getString(8));
+                       
+                        m.setVisible(true);
+                        m.table_update_street();
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                 
+                  else if(option.equalsIgnoreCase("Manager")&& option1.equalsIgnoreCase("Police Org")){
+                
+                    rs=stm.executeQuery(sqlpolice);
+                    if(rs.next())
+                    {
+                       ManagerJFrame m=new ManagerJFrame();
+                m.txtID8.setText(rs.getString(1));
+                m.txtID3.setText(rs.getString(1));
+                m.txtName1.setText(rs.getString(5));
+                m.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> m.genderGroup.setSelected(m.btnMale1.getModel(), true);
+                case "Female" -> m.genderGroup.setSelected(m.btnFemale1.getModel(), true);
+                case "Other" -> m.genderGroup.setSelected(m.btnOther1.getModel(), true);
+                }
+               
+                m.txtEmail1.setText(rs.getString(8));
+
+                        m.setVisible(true);
+                        m.table_update_police();
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                  
+                   else if(option.equalsIgnoreCase("Manager")&& option1.equalsIgnoreCase("Hospital Org")){
+                
+                    rs=stm.executeQuery(sqlhospital);
+                    if(rs.next())
+                    {
+                       ManagerJFrame m=new ManagerJFrame();
+                m.txtID8.setText(rs.getString(1));
+                m.txtID3.setText(rs.getString(1));
+                m.txtName1.setText(rs.getString(5));
+                m.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> m.genderGroup.setSelected(m.btnMale1.getModel(), true);
+                case "Female" -> m.genderGroup.setSelected(m.btnFemale1.getModel(), true);
+                case "Other" -> m.genderGroup.setSelected(m.btnOther1.getModel(), true);
+                }
+               
+                m.txtEmail1.setText(rs.getString(8));
+
+                       
+                        m.setVisible(true);
+                        m.table_update_hospital();
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                   
+                    else if(option.equalsIgnoreCase("Manager")&& option1.equalsIgnoreCase("Fire Org")){
+                
+                    rs=stm.executeQuery(sqlfire);
+                    if(rs.next())
+                    {
+                       ManagerJFrame m=new ManagerJFrame();
+                m.txtID8.setText(rs.getString(1));
+                m.txtID3.setText(rs.getString(1));
+                m.txtName1.setText(rs.getString(5));
+                m.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> m.genderGroup.setSelected(m.btnMale1.getModel(), true);
+                case "Female" -> m.genderGroup.setSelected(m.btnFemale1.getModel(), true);
+                case "Other" -> m.genderGroup.setSelected(m.btnOther1.getModel(), true);
+                }
+               
+                m.txtEmail1.setText(rs.getString(8));
+
+                        m.setVisible(true);
+                        m.table_update_fire();
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                    else if(option.equalsIgnoreCase("Manager")&& option1.equalsIgnoreCase("Non gov Org")){
+                
+                    rs=stm.executeQuery(sqlnongov);
+                    if(rs.next())
+                    {
+                       ManagerJFrame m=new ManagerJFrame();
+                m.txtID8.setText(rs.getString(1));
+                m.txtID3.setText(rs.getString(1));
+                m.txtName1.setText(rs.getString(5));
+                m.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> m.genderGroup.setSelected(m.btnMale1.getModel(), true);
+                case "Female" -> m.genderGroup.setSelected(m.btnFemale1.getModel(), true);
+                case "Other" -> m.genderGroup.setSelected(m.btnOther1.getModel(), true);
+                }
+               
+                m.txtEmail1.setText(rs.getString(8));
+
+                        m.setVisible(true);
+                        m.table_update_nongov();
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                    
+                     else if(option.equalsIgnoreCase("Manager")&& option1.equalsIgnoreCase("Gov Org")){
+                
+                    rs=stm.executeQuery(sqlgov);
+                    if(rs.next())
+                    {
+                       ManagerJFrame m=new ManagerJFrame();
+                m.txtID8.setText(rs.getString(1));
+                m.txtID3.setText(rs.getString(1));
+                m.txtName1.setText(rs.getString(5));
+                m.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> m.genderGroup.setSelected(m.btnMale1.getModel(), true);
+                case "Female" -> m.genderGroup.setSelected(m.btnFemale1.getModel(), true);
+                case "Other" -> m.genderGroup.setSelected(m.btnOther1.getModel(), true);
+                }
+               
+                m.txtEmail1.setText(rs.getString(8));
+
+                        m.setVisible(true);
+                        m.table_update_gov();
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                     
+                        else if(option.equalsIgnoreCase("Manager")&& option1.equalsIgnoreCase("Stand Alone")){
+                
+                    rs=stm.executeQuery(sqlstandalone);
+                    if(rs.next())
+                    {
+                       ManagerJFrame m=new ManagerJFrame();
+                m.txtID8.setText(rs.getString(1));
+                m.txtID3.setText(rs.getString(1));
+                m.txtName1.setText(rs.getString(5));
+                m.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> m.genderGroup.setSelected(m.btnMale1.getModel(), true);
+                case "Female" -> m.genderGroup.setSelected(m.btnFemale1.getModel(), true);
+                case "Other" -> m.genderGroup.setSelected(m.btnOther1.getModel(), true);
+                }
+               
+                m.txtEmail1.setText(rs.getString(8));
+
+                        m.setVisible(true);
+                        m.table_update_standalone();
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                
+                
+                
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 else if(option.equalsIgnoreCase("Staff")&& option1.equalsIgnoreCase("Water Supply Org")){
+                
+                    rs=stm.executeQuery(sqlwatwor);
+                    if(rs.next())
+                    {
+                      StaffJFrame s=new StaffJFrame();
+                  s.txtID6.setText(rs.getString(1));
                 s.txtID3.setText(rs.getString(1));
                 s.txtName1.setText(rs.getString(5));
                 s.txtAge1.setText(rs.getString(6));
@@ -345,15 +960,204 @@ public class MainJFrame extends javax.swing.JFrame {
                 }
                
                 s.txtEmail1.setText(rs.getString(8));
-                       
                         s.setVisible(true);
+                        ManagerJFrame m=new ManagerJFrame();
+                        m.table_update_water();
                         dispose();
                         con1.close();
                     
                     }
                 }
                 
-                 else if(option.equalsIgnoreCase("Community Admin")){
+                 else if(option.equalsIgnoreCase("Staff")&& option1.equalsIgnoreCase("Street Org")){
+                
+                    rs=stm.executeQuery(sqlstreetwor);
+                    if(rs.next())
+                    {
+                       StaffJFrame s=new StaffJFrame();
+                       s.txtID6.setText(rs.getString(1));
+                s.txtID3.setText(rs.getString(1));
+                s.txtName1.setText(rs.getString(5));
+                s.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> s.genderGroup.setSelected(s.btnMale1.getModel(), true);
+                case "Female" -> s.genderGroup.setSelected(s.btnFemale1.getModel(), true);
+                case "Other" -> s.genderGroup.setSelected(s.btnOther1.getModel(), true);
+                }
+               
+                s.txtEmail1.setText(rs.getString(8));
+                        s.setVisible(true);
+                        ManagerJFrame m=new ManagerJFrame();
+                        m.table_update_street();
+                        
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                 
+                  else if(option.equalsIgnoreCase("Staff")&& option1.equalsIgnoreCase("Police Org")){
+                
+                    rs=stm.executeQuery(sqlpolicewor);
+                    if(rs.next())
+                    {
+                       StaffJFrame s=new StaffJFrame();
+                       s.txtID6.setText(rs.getString(1));
+                s.txtID3.setText(rs.getString(1));
+                s.txtName1.setText(rs.getString(5));
+                s.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> s.genderGroup.setSelected(s.btnMale1.getModel(), true);
+                case "Female" -> s.genderGroup.setSelected(s.btnFemale1.getModel(), true);
+                case "Other" -> s.genderGroup.setSelected(s.btnOther1.getModel(), true);
+                }
+               
+                s.txtEmail1.setText(rs.getString(8));
+                        s.setVisible(true);
+                        ManagerJFrame m=new ManagerJFrame();
+                        m.table_update_police();
+                        
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                  
+                   else if(option.equalsIgnoreCase("Staff")&& option1.equalsIgnoreCase("Hospital Org")){
+                
+                    rs=stm.executeQuery(sqlhospitalwor);
+                    if(rs.next())
+                    {
+                       StaffJFrame s=new StaffJFrame();
+                       s.txtID6.setText(rs.getString(1));
+                s.txtID3.setText(rs.getString(1));
+                s.txtName1.setText(rs.getString(5));
+                s.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> s.genderGroup.setSelected(s.btnMale1.getModel(), true);
+                case "Female" -> s.genderGroup.setSelected(s.btnFemale1.getModel(), true);
+                case "Other" -> s.genderGroup.setSelected(s.btnOther1.getModel(), true);
+                }
+               
+                s.txtEmail1.setText(rs.getString(8));
+                        s.setVisible(true);
+                        ManagerJFrame m=new ManagerJFrame();
+                        m.table_update_hospital();
+                        
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                   
+                    else if(option.equalsIgnoreCase("Staff")&& option1.equalsIgnoreCase("Fire Org")){
+                
+                    rs=stm.executeQuery(sqlfirewor);
+                    if(rs.next())
+                    {
+                       StaffJFrame s=new StaffJFrame();
+                       s.txtID6.setText(rs.getString(1));
+                s.txtID3.setText(rs.getString(1));
+                s.txtName1.setText(rs.getString(5));
+                s.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> s.genderGroup.setSelected(s.btnMale1.getModel(), true);
+                case "Female" -> s.genderGroup.setSelected(s.btnFemale1.getModel(), true);
+                case "Other" -> s.genderGroup.setSelected(s.btnOther1.getModel(), true);
+                }
+               
+                s.txtEmail1.setText(rs.getString(8));
+                        s.setVisible(true);
+                        ManagerJFrame m=new ManagerJFrame();
+                        m.table_update_fire();
+                        
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                    else if(option.equalsIgnoreCase("Staff")&& option1.equalsIgnoreCase("Non gov Org")){
+                
+                    rs=stm.executeQuery(sqlnongovwor);
+                    if(rs.next())
+                    {
+                       StaffJFrame s=new StaffJFrame();
+                       s.txtID6.setText(rs.getString(1));
+                s.txtID3.setText(rs.getString(1));
+                s.txtName1.setText(rs.getString(5));
+                s.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> s.genderGroup.setSelected(s.btnMale1.getModel(), true);
+                case "Female" -> s.genderGroup.setSelected(s.btnFemale1.getModel(), true);
+                case "Other" -> s.genderGroup.setSelected(s.btnOther1.getModel(), true);
+                }
+               
+                s.txtEmail1.setText(rs.getString(8));
+                        s.setVisible(true);
+                        ManagerJFrame m=new ManagerJFrame();
+                        m.table_update_nongov();
+                        
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                    
+                     else if(option.equalsIgnoreCase("Staff")&& option1.equalsIgnoreCase("Gov Org")){
+                
+                    rs=stm.executeQuery(sqlgovwor);
+                    if(rs.next())
+                    {
+                       StaffJFrame s=new StaffJFrame();
+                       s.txtID6.setText(rs.getString(1));
+                s.txtID3.setText(rs.getString(1));
+                s.txtName1.setText(rs.getString(5));
+                s.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> s.genderGroup.setSelected(s.btnMale1.getModel(), true);
+                case "Female" -> s.genderGroup.setSelected(s.btnFemale1.getModel(), true);
+                case "Other" -> s.genderGroup.setSelected(s.btnOther1.getModel(), true);
+                }
+               
+                s.txtEmail1.setText(rs.getString(8));
+                        s.setVisible(true);
+                        ManagerJFrame m=new ManagerJFrame();
+                        m.table_update_gov();
+                        
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                     
+                        else if(option.equalsIgnoreCase("Staff")&& option1.equalsIgnoreCase("Stand Alone")){
+                
+                    rs=stm.executeQuery(sqlstandalonewor);
+                    if(rs.next())
+                    {
+                       StaffJFrame s=new StaffJFrame();
+                       s.txtID6.setText(rs.getString(1));
+                s.txtID3.setText(rs.getString(1));
+                s.txtName1.setText(rs.getString(5));
+                s.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> s.genderGroup.setSelected(s.btnMale1.getModel(), true);
+                case "Female" -> s.genderGroup.setSelected(s.btnFemale1.getModel(), true);
+                case "Other" -> s.genderGroup.setSelected(s.btnOther1.getModel(), true);
+                }
+               
+                s.txtEmail1.setText(rs.getString(8));
+                        s.setVisible(true);
+                        ManagerJFrame m=new ManagerJFrame();
+                        m.table_update_standalone();
+                        
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                        
+                else if(option.equalsIgnoreCase("Community Admin")){
                 
                     rs=stm.executeQuery(sql5);
                     if(rs.next())
@@ -379,6 +1183,32 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
                 }
                 
+                 else if(option.equalsIgnoreCase("Security Staff")){
+                
+                    rs=stm.executeQuery(sql6);
+                    if(rs.next())
+                    {
+                       SecuritySupportStaffJFrame ss=new SecuritySupportStaffJFrame();
+                      
+                ss.txtID3.setText(rs.getString(1));
+                ss.txtID4.setText(rs.getString(1));
+                ss.txtName1.setText(rs.getString(5));
+                ss.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> ss.genderGroup.setSelected(ss.btnMale1.getModel(), true);
+                case "Female" -> ss.genderGroup.setSelected(ss.btnFemale1.getModel(), true);
+                case "Other" -> ss.genderGroup.setSelected(ss.btnOther1.getModel(), true);
+                }
+                ss.txtEmail1.setText(rs.getString(8));
+                       
+                        ss.setVisible(true);
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }        
+                 
+                
                 
             
              else{
@@ -403,6 +1233,8 @@ public class MainJFrame extends javax.swing.JFrame {
                   Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
               }
        }
+       
+       
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -437,6 +1269,100 @@ public class MainJFrame extends javax.swing.JFrame {
         dispose(); 
  
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void comboRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRoleActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(comboRole.getSelectedItem().equals("System Admin"))
+            {
+               
+               
+                ComboType.disable();
+                
+                
+            }
+             if(comboRole.getSelectedItem().equals("Enterprise Admin"))
+            {
+                ComboType.removeAllItems();
+               
+                ComboType.addItem("Grievance");
+                ComboType.addItem("Emergency");
+                ComboType.addItem("Covid-Help");
+                ComboType.addItem("Residence");
+                //comboEnterprise.setSelectedItem(null);
+                ComboType.enable();
+                
+                
+            }
+              if(comboRole.getSelectedItem().equals("Manager"))
+            {
+                ComboType.removeAllItems();
+               
+                ComboType.addItem("Water Supply Org");
+                ComboType.addItem("Street Org");
+                ComboType.addItem("Police Org");
+                ComboType.addItem("Hospital Org");
+                ComboType.addItem("Fire Org");
+                ComboType.addItem("Non gov Org");
+                ComboType.addItem("Gov Org");
+                ComboType.addItem("Stand Alone");
+                //comboEnterprise.setSelectedItem(null);
+                ComboType.enable();
+                
+                
+            }
+               if(comboRole.getSelectedItem().equals("Staff"))
+            {
+               
+               
+                ComboType.removeAllItems();
+               
+                ComboType.addItem("Water Supply Org");
+                ComboType.addItem("Street Org");
+                ComboType.addItem("Police Org");
+                ComboType.addItem("Hospital Org");
+                ComboType.addItem("Fire Org");
+                ComboType.addItem("Non gov Org");
+                ComboType.addItem("Gov Org");
+                ComboType.addItem("Stand Alone");
+                //comboEnterprise.setSelectedItem(null);
+                ComboType.enable();
+                
+                
+            }
+                if(comboRole.getSelectedItem().equals("Resident"))
+            {
+               
+               
+                ComboType.disable();
+                
+                
+            }
+                if(comboRole.getSelectedItem().equals("Community Admin"))
+            {
+               
+               
+                ComboType.disable();
+                
+                
+            }
+                if(comboRole.getSelectedItem().equals("Security Support Staff"))
+            {
+               
+               
+                ComboType.disable();
+                
+                
+            }
+            
+                
+             
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_comboRoleActionPerformed
 
     
     
@@ -479,16 +1405,17 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboType;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
+    private javax.swing.JComboBox<String> comboRole;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtEmail;
