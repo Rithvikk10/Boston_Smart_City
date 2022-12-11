@@ -689,7 +689,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from employeeregistration");
             
              ResultSet rs= insert.executeQuery();
@@ -755,7 +755,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             
 
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
@@ -971,7 +971,7 @@ DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
          String selection = this.employeeGenderGroup.getSelection().getActionCommand();
               
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("update employeeregistration set role=?,enterprise=?,organization=?,name=?,age=?,gender=?,email=?,password=?,confirmpassword=? where employeeid=?");
             
             insert.setString(1, role);
@@ -1016,7 +1016,7 @@ DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
               if(dialogResult==JOptionPane.YES_OPTION)
               {
                   Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("delete from employeeregistration where employeeid=?");
             
              insert.setInt(1, id);

@@ -236,7 +236,7 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
                     .addComponent(txtID5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnView)
@@ -261,7 +261,7 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
                     .addComponent(comboCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
@@ -497,14 +497,14 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
               String selection = this.genderGroup.getSelection().getActionCommand();
               
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
-            insert=con1.prepareStatement("update employeeregistration set name=?, age=?, gender=?, email=?,where employeeid=?");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("update employeeregistration set name=?, age=?, gender=?, email=? where employeeid=?");
             
-            insert.setString(4, name);
-            insert.setInt(5, age);
-            insert.setString(6, selection);
-            insert.setString(7,email);
-            insert.setInt(11, employeeid);
+            insert.setString(1, name);
+            insert.setInt(2, age);
+            insert.setString(3, selection);
+            insert.setString(4,email);
+            insert.setInt(5, employeeid);
             
             insert.executeUpdate();
             
@@ -559,15 +559,15 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack2;
-    private javax.swing.JRadioButton btnFemale1;
-    private javax.swing.JRadioButton btnMale1;
-    private javax.swing.JRadioButton btnOther1;
+    public javax.swing.JRadioButton btnFemale1;
+    public javax.swing.JRadioButton btnMale1;
+    public javax.swing.JRadioButton btnOther1;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdateMyProfile;
     private javax.swing.JButton btnView;
     private javax.swing.JComboBox<String> comboCommunity;
-    private javax.swing.ButtonGroup genderGroup;
+    public javax.swing.ButtonGroup genderGroup;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -586,12 +586,12 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtAge1;
-    private javax.swing.JTextField txtEmail1;
+    public javax.swing.JTextField txtAge1;
+    public javax.swing.JTextField txtEmail1;
     public javax.swing.JTextField txtID4;
     public javax.swing.JTextField txtID5;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtName1;
+    public javax.swing.JTextField txtName1;
     private javax.swing.JTextField txtResidentID;
     // End of variables declaration//GEN-END:variables
 }

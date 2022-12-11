@@ -144,7 +144,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 630, 126, 50));
 
         jComboBox1.setBackground(new java.awt.Color(255, 204, 204));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "System-Admin", "Enterprise Admin", "Manager", "Staff", "Resident", "Community Admin", "Security Staff", "FeedBack Monitor", " " }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, 124, 31));
 
         jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -179,13 +179,30 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        //        String emailid= txtEmail.getText();
+//        String password=txtPassword.getText();
+//        String option=jComboBox1.getSelectedItem().toString();
+//        
+       String option=jComboBox1.getSelectedItem().toString();
+//        Login lg= new Login();
+//         lg.setEmail(emailid);
+//         lg.setPassword(password);
+//         if(lg.getEmail().equals("")||lg.getPassword().equals("")||option.equals("--Select Role--")){
+//         JOptionPane.showMessageDialog(rootPane, "Some Fields are empty", "Error", 1);
+//         }else{
+//            try{
+//            
+//            }catch(Exception ex){
+//            
+//            }
+//         }
         
-        try{
+       try{
            
             Class.forName("com.mysql.jdbc.Driver");
 
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
 
             
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
@@ -196,11 +213,21 @@ public class MainJFrame extends javax.swing.JFrame {
             Login lg= new Login();
             lg.setEmail(emailid);
             lg.setPassword(password);
+            
             String sql = "select * from personregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' ";
-            rs=stm.executeQuery(sql);
-
-            if(rs.next()){
-
+            String sql1 = "select * from systemadmin where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' ";
+            String sql2="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Enterprise Admin'";
+            String sql3="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Manager'";
+            String sql4="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Worker'";
+            String sql5="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Community Admin'";
+            
+           
+          
+            if(option.equalsIgnoreCase("Resident")){
+                
+               // String s1= rs.getString("option");
+               rs=stm.executeQuery(sql);
+                if(rs.next()){
                 ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
 //                RaiseComplaint rac = new RaiseComplaint();
 //                String resId = rc.getDetails(rs.getString(1));
@@ -208,10 +235,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 rc.txtID2.setText(rs.getString(1));
                 rc.txtID1.setText(rs.getString(1));
                 rc.txtID3.setText(rs.getString(1));
-                
                 rc.txtName.setText(rs.getString(2));
                 rc.txtAge.setText(rs.getString(3));
-                switch(rs.getString(4)){
+               switch(rs.getString(4)){
                 case "male" -> rc.genderGroup.setSelected(rc.btnMale.getModel(), true);
                 case "female" -> rc.genderGroup.setSelected(rc.btnFemale.getModel(), true);
                 case "other" -> rc.genderGroup.setSelected(rc.btnOther.getModel(), true);
@@ -232,14 +258,135 @@ public class MainJFrame extends javax.swing.JFrame {
                 rc.setVisible(true);
                 dispose();
                 con1.close();
-
-            }else{
+                }
+            }
+                else if(option.equalsIgnoreCase("System-Admin")){
+                
+                    rs=stm.executeQuery(sql1);
+                    if(rs.next())
+                    {
+                        SystemAdminJFrame sa= new SystemAdminJFrame();
+                        sa.setVisible(true);
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                
+                else if(option.equalsIgnoreCase("Enterprise Admin")){
+                
+                    rs=stm.executeQuery(sql2);
+                    if(rs.next())
+                    {
+                        EnterpriseJFrame e= new EnterpriseJFrame();
+                        
+                e.txtID7.setText(rs.getString(1));
+                e.txtID3.setText(rs.getString(1));
+                e.txtName1.setText(rs.getString(5));
+                e.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> e.genderGroup.setSelected(e.btnMale1.getModel(), true);
+                case "Female" -> e.genderGroup.setSelected(e.btnFemale1.getModel(), true);
+                case "Other" -> e.genderGroup.setSelected(e.btnOther1.getModel(), true);
+                }
+                e.txtEmail1.setText(rs.getString(8));
+                
+                        e.setVisible(true);
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                
+                else if(option.equalsIgnoreCase("Manager")){
+                
+                    rs=stm.executeQuery(sql3);
+                    if(rs.next())
+                    {
+                       ManagerJFrame m=new ManagerJFrame();
+                       
+                       
+                m.txtID8.setText(rs.getString(1));
+                m.txtID3.setText(rs.getString(1));
+                m.txtName1.setText(rs.getString(5));
+                m.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> m.genderGroup.setSelected(m.btnMale1.getModel(), true);
+                case "Female" -> m.genderGroup.setSelected(m.btnFemale1.getModel(), true);
+                case "Other" -> m.genderGroup.setSelected(m.btnOther1.getModel(), true);
+                }
+               
+                m.txtEmail1.setText(rs.getString(8));
+            
+                       
+                       
+                        m.setVisible(true);
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                
+                 else if(option.equalsIgnoreCase("Staff")){
+                
+                    rs=stm.executeQuery(sql4);
+                    if(rs.next())
+                    {
+                       StaffJFrame s=new StaffJFrame();
+                      
+                s.txtID6.setText(rs.getString(1));
+                s.txtID3.setText(rs.getString(1));
+                s.txtName1.setText(rs.getString(5));
+                s.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> s.genderGroup.setSelected(s.btnMale1.getModel(), true);
+                case "Female" -> s.genderGroup.setSelected(s.btnFemale1.getModel(), true);
+                case "Other" -> s.genderGroup.setSelected(s.btnOther1.getModel(), true);
+                }
+               
+                s.txtEmail1.setText(rs.getString(8));
+                       
+                        s.setVisible(true);
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                
+                 else if(option.equalsIgnoreCase("Community Admin")){
+                
+                    rs=stm.executeQuery(sql5);
+                    if(rs.next())
+                    {
+                       CommunityAdminJFrame cs=new CommunityAdminJFrame();
+                      
+                cs.txtID5.setText(rs.getString(1));
+                cs.txtID4.setText(rs.getString(1));
+                cs.txtName1.setText(rs.getString(5));
+                cs.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> cs.genderGroup.setSelected(cs.btnMale1.getModel(), true);
+                case "Female" -> cs.genderGroup.setSelected(cs.btnFemale1.getModel(), true);
+                case "Other" -> cs.genderGroup.setSelected(cs.btnOther1.getModel(), true);
+                }
+               
+                cs.txtEmail1.setText(rs.getString(8));
+                       
+                        cs.setVisible(true);
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
+                
+                
+            
+             else{
                 JOptionPane.showMessageDialog(this, "username or password is incorrect");
                 txtEmail.setText("");
-                txtPassword.setText("");
+              txtPassword.setText("");
                   con1.close();
-            }
-
+                 }
             
 
        
@@ -255,10 +402,7 @@ public class MainJFrame extends javax.swing.JFrame {
               } catch (SQLException ex) {
                   Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
               }
-}
-    
-    
-    
+       }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
