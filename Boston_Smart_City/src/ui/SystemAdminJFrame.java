@@ -276,17 +276,17 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         tblFireEmployee1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         tblFireEmployee1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Employee ID", "Name", "Role", "Enterprise", "Organisation"
+                "Employee ID", "Name", "Role", "Enterprise", "Organisation", "Age", "Gender", "Email"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -690,7 +690,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             insert=con1.prepareStatement("select * from employeeregistration");
             
              ResultSet rs= insert.executeQuery();
@@ -711,7 +711,10 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                   v2.add(rs.getString("name"));
                    v2.add(rs.getString("role"));
                     v2.add(rs.getString("enterprise"));
-                   v2.add(rs.getString("organization")); 
+                    v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("age"));
+                    v2.add(rs.getString("gender"));
+                    v2.add(rs.getString("email"));
                  
                
                }
@@ -753,7 +756,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             
 
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
@@ -969,7 +972,7 @@ DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
          String selection = this.employeeGenderGroup.getSelection().getActionCommand();
               
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             insert=con1.prepareStatement("update employeeregistration set role=?,enterprise=?,organization=?,name=?,age=?,gender=?,email=?,password=?,confirmpassword=? where employeeid=?");
             
             insert.setString(1, role);
@@ -1014,7 +1017,7 @@ DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
               if(dialogResult==JOptionPane.YES_OPTION)
               {
                   Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             insert=con1.prepareStatement("delete from employeeregistration where employeeid=?");
             
              insert.setInt(1, id);
@@ -1040,7 +1043,52 @@ DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
         DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
          int selectedIndex =  tblFireEmployee1.getSelectedRow();
          
+         
          txtName.setText(Df.getValueAt(selectedIndex,1).toString());
+         
+         switch(Df.getValueAt(selectedIndex, 2).toString()){
+             case "Enterprise Admin" -> comboRole.setSelectedIndex(1);
+             case "Manager" -> comboRole.setSelectedIndex(2);
+             case "Worker" -> comboRole.setSelectedIndex(3);              
+         }
+         
+         switch(Df.getValueAt(selectedIndex, 3).toString()){
+             case "Grievance" -> comboEnterprise.setSelectedIndex(0);
+             case "Emergency" -> comboEnterprise.setSelectedIndex(1);
+             case "Covid-Help" -> comboEnterprise.setSelectedIndex(2);
+             case "Residence" -> comboEnterprise.setSelectedIndex(3);
+         }
+         
+         if(Df.getValueAt(selectedIndex, 4) == null){
+             comboOrganization.setSelectedIndex(-1);
+         }else{
+         switch(Df.getValueAt(selectedIndex, 4).toString()){
+             case "Water Supply Org" -> comboOrganization.setSelectedIndex(0);
+             case "Street Org" -> comboOrganization.setSelectedIndex(1);
+             case "Police Org" -> comboOrganization.setSelectedIndex(2);
+             case "Hospital Org" -> comboOrganization.setSelectedIndex(0);
+             case "Fire Org" -> comboOrganization.setSelectedIndex(1);
+             case "Non Gov Org" -> comboOrganization.setSelectedIndex(0);
+             case "Gov Org" -> comboOrganization.setSelectedIndex(1);
+             case "Stand Alone" -> comboOrganization.setSelectedIndex(0);
+         }
+         }
+         
+
+        
+
+         txtEmployeeAge.setText(Df.getValueAt(selectedIndex, 5).toString());
+         
+         switch(Df.getValueAt(selectedIndex, 6).toString()){
+             case "Male" -> employeeGenderGroup.setSelected(btnMale1.getModel(), true);
+             case "Female" -> employeeGenderGroup.setSelected(btnFemale1.getModel(), true);
+             case "Other" -> employeeGenderGroup.setSelected(btnOther1.getModel(), true);
+         }
+         
+
+         txtEmail.setText(Df.getValueAt(selectedIndex, 7).toString());
+                 
+         
           
     }//GEN-LAST:event_btnViewEmployee1ActionPerformed
 
