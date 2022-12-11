@@ -403,7 +403,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel28" min="-2" pref="180" max="-2" attributes="0"/>
                                       <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                                      <Component id="txtEmployeeAge" min="-2" pref="148" max="-2" attributes="0"/>
+                                      <Component id="txtAge1" min="-2" pref="148" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -419,7 +419,7 @@
                                               <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                                               <Component id="btnOther1" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="txtEmail" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                                          <Component id="txtEmail1" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -469,7 +469,7 @@
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel28" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="txtEmployeeAge" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtAge1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -481,7 +481,7 @@
                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel11" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="txtEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEmail1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                       <Component id="btnUpdateMyProfile" min="-2" pref="51" max="-2" attributes="0"/>
@@ -526,7 +526,7 @@
                 <Property name="text" type="java.lang.String" value="Age :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtEmployeeAge">
+            <Component class="javax.swing.JTextField" name="txtAge1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -541,7 +541,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmployeeAgeActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAge1ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel29">
@@ -595,7 +595,7 @@
                 <Property name="text" type="java.lang.String" value="Email :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtEmail">
+            <Component class="javax.swing.JTextField" name="txtEmail1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -614,6 +614,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Update"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateMyProfileActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>

@@ -4,7 +4,10 @@
  */
 package ui;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +25,9 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
     public CommunityAdminJFrame() {
         initComponents();
     }
-
+    Connection con1;
+    PreparedStatement insert;
+    ResultSet rs;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,13 +62,13 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtName1 = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        txtEmployeeAge = new javax.swing.JTextField();
+        txtAge1 = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         btnMale1 = new javax.swing.JRadioButton();
         btnFemale1 = new javax.swing.JRadioButton();
         btnOther1 = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
+        txtEmail1 = new javax.swing.JTextField();
         btnUpdateMyProfile = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         txtID4 = new javax.swing.JTextField();
@@ -275,12 +280,12 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel28.setText("Age :");
 
-        txtEmployeeAge.setBackground(new java.awt.Color(204, 204, 204));
-        txtEmployeeAge.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        txtEmployeeAge.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        txtEmployeeAge.addActionListener(new java.awt.event.ActionListener() {
+        txtAge1.setBackground(new java.awt.Color(204, 204, 204));
+        txtAge1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtAge1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        txtAge1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmployeeAgeActionPerformed(evt);
+                txtAge1ActionPerformed(evt);
             }
         });
 
@@ -304,9 +309,9 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Email :");
 
-        txtEmail.setBackground(new java.awt.Color(204, 204, 204));
-        txtEmail.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        txtEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        txtEmail1.setBackground(new java.awt.Color(204, 204, 204));
+        txtEmail1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtEmail1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         btnUpdateMyProfile.setText("Update");
         btnUpdateMyProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -347,7 +352,7 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
-                                .addComponent(txtEmployeeAge, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -360,7 +365,7 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
                                         .addComponent(btnFemale1)
                                         .addGap(5, 5, 5)
                                         .addComponent(btnOther1))
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -395,7 +400,7 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmployeeAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -405,7 +410,7 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(78, 78, 78)
                 .addComponent(btnUpdateMyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
@@ -429,9 +434,9 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEmployeeAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmployeeAgeActionPerformed
+    private void txtAge1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAge1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmployeeAgeActionPerformed
+    }//GEN-LAST:event_txtAge1ActionPerformed
 
     private void txtID4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID4ActionPerformed
         // TODO add your handling code here:
@@ -479,7 +484,41 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
 
     private void btnUpdateMyProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateMyProfileActionPerformed
         // TODO add your handling code here:
+        try {
+               
+              int employeeid=Integer.parseInt(txtID4.getText());
+              String name= txtName1.getText();
+              int age=Integer.parseInt(txtAge1.getText());
+              String email=txtEmail1.getText();
+             
+        this.btnMale1.setActionCommand("male");
+        this.btnFemale1.setActionCommand("female");
+        this.btnOther1.setActionCommand("other");
+              String selection = this.genderGroup.getSelection().getActionCommand();
+              
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            insert=con1.prepareStatement("update employeeregistration set name=?, age=?, gender=?, email=?,where employeeid=?");
+            
+            insert.setString(4, name);
+            insert.setInt(5, age);
+            insert.setString(6, selection);
+            insert.setString(7,email);
+            insert.setInt(11, employeeid);
+            
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"My Profile Updated");
+     
+            txtName1.requestFocus();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnUpdateMyProfileActionPerformed
 
     /**
@@ -547,8 +586,8 @@ public class CommunityAdminJFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEmployeeAge;
+    private javax.swing.JTextField txtAge1;
+    private javax.swing.JTextField txtEmail1;
     public javax.swing.JTextField txtID4;
     public javax.swing.JTextField txtID5;
     private javax.swing.JTextField txtName;
