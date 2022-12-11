@@ -5,6 +5,12 @@
 package ui;
 
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 
@@ -18,9 +24,24 @@ import java.sql.DriverManager;
 import java.sql.*;
 import java.util.Vector;
 import java.util.concurrent.Executors;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import model.Resident;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
+import org.netbeans.lib.awtextra.AbsoluteLayout;
 
 /**
  *
@@ -46,257 +67,257 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        genderGroup = new javax.swing.ButtonGroup();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        txtAge = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        btnMale = new javax.swing.JRadioButton();
-        btnFemale = new javax.swing.JRadioButton();
-        btnOther = new javax.swing.JRadioButton();
-        jLabel14 = new javax.swing.JLabel();
-        txtAddress = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        comboCommunity = new javax.swing.JComboBox<>();
-        jLabel16 = new javax.swing.JLabel();
-        comboCity = new javax.swing.JComboBox<>();
-        jLabel17 = new javax.swing.JLabel();
-        txtPhoneNumber = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
-        jLabel10 = new javax.swing.JLabel();
-        txtConfirmPassword = new javax.swing.JPasswordField();
-        btnCreate = new javax.swing.JButton();
-        btnBack1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        genderGroup = new ButtonGroup();
+        jPanel2 = new JPanel();
+        jLabel11 = new JLabel();
+        txtName = new JTextField();
+        jLabel12 = new JLabel();
+        txtAge = new JTextField();
+        jLabel13 = new JLabel();
+        btnMale = new JRadioButton();
+        btnFemale = new JRadioButton();
+        btnOther = new JRadioButton();
+        jLabel14 = new JLabel();
+        txtAddress = new JTextField();
+        jLabel15 = new JLabel();
+        comboCommunity = new JComboBox<>();
+        jLabel16 = new JLabel();
+        comboCity = new JComboBox<>();
+        jLabel17 = new JLabel();
+        txtPhoneNumber = new JTextField();
+        jLabel18 = new JLabel();
+        txtEmail = new JTextField();
+        jLabel9 = new JLabel();
+        txtPassword = new JPasswordField();
+        jLabel10 = new JLabel();
+        txtConfirmPassword = new JPasswordField();
+        btnCreate = new JButton();
+        btnBack1 = new JButton();
+        jLabel1 = new JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new Dimension(1650, 800));
 
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setLayout(new AbsoluteLayout());
 
-        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel11.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel11.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel11.setText("Name :");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 170, 27));
+        jPanel2.add(jLabel11, new AbsoluteConstraints(640, 210, 170, 27));
 
-        txtName.setBackground(new java.awt.Color(204, 204, 204));
-        txtName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        txtName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtName.setBackground(new Color(204, 204, 204));
+        txtName.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtName.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        txtName.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 txtNameActionPerformed(evt);
             }
         });
-        jPanel2.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 210, 180, -1));
+        jPanel2.add(txtName, new AbsoluteConstraints(830, 210, 180, -1));
 
-        jLabel12.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel12.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel12.setText("Age :");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, 170, 27));
+        jPanel2.add(jLabel12, new AbsoluteConstraints(640, 250, 170, 27));
 
-        txtAge.setBackground(new java.awt.Color(204, 204, 204));
-        txtAge.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        txtAge.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        txtAge.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtAge.setBackground(new Color(204, 204, 204));
+        txtAge.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtAge.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        txtAge.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 txtAgeActionPerformed(evt);
             }
         });
-        jPanel2.add(txtAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 250, 180, -1));
+        jPanel2.add(txtAge, new AbsoluteConstraints(830, 250, 180, -1));
 
-        jLabel13.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel13.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel13.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel13.setText("Gender :");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, 170, 27));
+        jPanel2.add(jLabel13, new AbsoluteConstraints(640, 290, 170, 27));
 
         genderGroup.add(btnMale);
-        btnMale.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        btnMale.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
         btnMale.setText("Male");
-        btnMale.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        btnMale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnMale.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        btnMale.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnMaleActionPerformed(evt);
             }
         });
-        jPanel2.add(btnMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 290, -1, -1));
+        jPanel2.add(btnMale, new AbsoluteConstraints(830, 290, -1, -1));
 
         genderGroup.add(btnFemale);
-        btnFemale.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        btnFemale.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
         btnFemale.setText("Female");
-        btnFemale.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(btnFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 290, -1, -1));
+        btnFemale.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        jPanel2.add(btnFemale, new AbsoluteConstraints(900, 290, -1, -1));
 
         genderGroup.add(btnOther);
-        btnOther.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        btnOther.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
         btnOther.setText("Other");
-        btnOther.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(btnOther, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 290, -1, -1));
+        btnOther.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        jPanel2.add(btnOther, new AbsoluteConstraints(990, 290, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel14.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel14.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel14.setText("Address :");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 170, 27));
+        jPanel2.add(jLabel14, new AbsoluteConstraints(640, 330, 170, 27));
 
-        txtAddress.setBackground(new java.awt.Color(204, 204, 204));
-        txtAddress.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        txtAddress.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        txtAddress.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtAddress.setBackground(new Color(204, 204, 204));
+        txtAddress.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtAddress.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        txtAddress.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 txtAddressActionPerformed(evt);
             }
         });
-        jPanel2.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 330, 180, -1));
+        jPanel2.add(txtAddress, new AbsoluteConstraints(830, 330, 180, -1));
 
-        jLabel15.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel15.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel15.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel15.setText("Community :");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 380, 170, 27));
+        jPanel2.add(jLabel15, new AbsoluteConstraints(640, 380, 170, 27));
 
-        comboCommunity.setBackground(new java.awt.Color(204, 204, 204));
-        comboCommunity.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        comboCommunity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        comboCommunity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        comboCommunity.setBackground(new Color(204, 204, 204));
+        comboCommunity.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        comboCommunity.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        comboCommunity.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 comboCommunityActionPerformed(evt);
             }
         });
-        jPanel2.add(comboCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 380, 180, -1));
+        jPanel2.add(comboCommunity, new AbsoluteConstraints(830, 380, 180, -1));
 
-        jLabel16.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel16.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel16.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel16.setText("City :");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 170, 27));
+        jPanel2.add(jLabel16, new AbsoluteConstraints(640, 430, 170, 27));
 
-        comboCity.setBackground(new java.awt.Color(204, 204, 204));
-        comboCity.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        comboCity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        comboCity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        comboCity.setBackground(new Color(204, 204, 204));
+        comboCity.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        comboCity.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        comboCity.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 comboCityActionPerformed(evt);
             }
         });
-        jPanel2.add(comboCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 430, 180, -1));
+        jPanel2.add(comboCity, new AbsoluteConstraints(830, 430, 180, -1));
 
-        jLabel17.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel17.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel17.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel17.setText("Phone Number :");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, 170, 27));
+        jPanel2.add(jLabel17, new AbsoluteConstraints(640, 480, 170, 27));
 
-        txtPhoneNumber.setBackground(new java.awt.Color(204, 204, 204));
-        txtPhoneNumber.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        txtPhoneNumber.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        txtPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtPhoneNumber.setBackground(new Color(204, 204, 204));
+        txtPhoneNumber.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtPhoneNumber.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        txtPhoneNumber.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 txtPhoneNumberActionPerformed(evt);
             }
         });
-        jPanel2.add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 480, 180, -1));
+        jPanel2.add(txtPhoneNumber, new AbsoluteConstraints(830, 480, 180, -1));
 
-        jLabel18.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel18.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel18.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel18.setText("Email :");
-        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 520, 170, 27));
+        jPanel2.add(jLabel18, new AbsoluteConstraints(640, 520, 170, 27));
 
-        txtEmail.setBackground(new java.awt.Color(204, 204, 204));
-        txtEmail.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        txtEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtEmail.setBackground(new Color(204, 204, 204));
+        txtEmail.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtEmail.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        txtEmail.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 txtEmailActionPerformed(evt);
             }
         });
-        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 520, 180, -1));
+        jPanel2.add(txtEmail, new AbsoluteConstraints(830, 520, 180, -1));
 
-        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel9.setText("Password :");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 560, 170, 27));
+        jPanel2.add(jLabel9, new AbsoluteConstraints(640, 560, 170, 27));
 
-        txtPassword.setBackground(new java.awt.Color(204, 204, 204));
-        txtPassword.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        txtPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 560, 180, -1));
+        txtPassword.setBackground(new Color(204, 204, 204));
+        txtPassword.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtPassword.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        jPanel2.add(txtPassword, new AbsoluteConstraints(830, 560, 180, -1));
 
-        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel10.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel10.setText("Confirm Password :");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 600, 170, 27));
+        jPanel2.add(jLabel10, new AbsoluteConstraints(640, 600, 170, 27));
 
-        txtConfirmPassword.setBackground(new java.awt.Color(204, 204, 204));
-        txtConfirmPassword.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        txtConfirmPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(txtConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 600, 180, -1));
+        txtConfirmPassword.setBackground(new Color(204, 204, 204));
+        txtConfirmPassword.setFont(new Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtConfirmPassword.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        jPanel2.add(txtConfirmPassword, new AbsoluteConstraints(830, 600, 180, -1));
 
-        btnCreate.setBackground(new java.awt.Color(102, 102, 102));
-        btnCreate.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        btnCreate.setForeground(new java.awt.Color(255, 255, 255));
+        btnCreate.setBackground(new Color(102, 102, 102));
+        btnCreate.setFont(new Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnCreate.setForeground(new Color(255, 255, 255));
         btnCreate.setText("Create Profile");
-        btnCreate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnCreate.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        btnCreate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnCreateActionPerformed(evt);
             }
         });
-        jPanel2.add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 690, 190, 50));
+        jPanel2.add(btnCreate, new AbsoluteConstraints(760, 690, 190, 50));
 
-        btnBack1.setBackground(new java.awt.Color(102, 102, 102));
-        btnBack1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        btnBack1.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack1.setBackground(new Color(102, 102, 102));
+        btnBack1.setFont(new Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnBack1.setForeground(new Color(255, 255, 255));
         btnBack1.setText("Back");
-        btnBack1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        btnBack1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnBack1.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 3));
+        btnBack1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnBack1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1390, 720, 140, 50));
+        jPanel2.add(btnBack1, new AbsoluteConstraints(1390, 720, 140, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ResidentProfile.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-140, 0, 1790, 800));
+        jLabel1.setIcon(new ImageIcon(getClass().getResource("/ui/ResidentProfile.png"))); // NOI18N
+        jPanel2.add(jLabel1, new AbsoluteConstraints(-140, 0, 1790, 800));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
-        pack();
+        setSize(new Dimension(1250, 600));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+    private void txtNameActionPerformed(ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
 
-    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
+    private void txtAgeActionPerformed(ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAgeActionPerformed
 
-    private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
+    private void txtAddressActionPerformed(ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAddressActionPerformed
 
-    private void comboCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCityActionPerformed
+    private void comboCityActionPerformed(ActionEvent evt) {//GEN-FIRST:event_comboCityActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboCityActionPerformed
 
-    private void txtPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumberActionPerformed
+    private void txtPhoneNumberActionPerformed(ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhoneNumberActionPerformed
 
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+    private void txtEmailActionPerformed(ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+    private void btnCreateActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         String name= txtName.getText();
         int age=Integer.parseInt(txtAge.getText());
         String address=txtAddress.getText();
@@ -317,7 +338,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
             
 
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
@@ -403,7 +424,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCreateActionPerformed
 
-    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+    private void btnBack1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
         // TODO add your handling code here:
         MainJFrame mf = new MainJFrame();
         mf.setVisible(true);
@@ -411,11 +432,11 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBack1ActionPerformed
 
-    private void btnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaleActionPerformed
+    private void btnMaleActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnMaleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMaleActionPerformed
 
-    private void comboCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCommunityActionPerformed
+    private void comboCommunityActionPerformed(ActionEvent evt) {//GEN-FIRST:event_comboCommunityActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboCommunityActionPerformed
        
@@ -426,7 +447,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     try{
        Class.forName("com.mysql.jdbc.Driver");
 
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
 
         con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
 
@@ -458,7 +479,7 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     try{
        Class.forName("com.mysql.jdbc.Driver");
 
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
 
         con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
 
@@ -527,32 +548,32 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack1;
-    private javax.swing.JButton btnCreate;
-    private javax.swing.JRadioButton btnFemale;
-    private javax.swing.JRadioButton btnMale;
-    private javax.swing.JRadioButton btnOther;
-    private javax.swing.JComboBox<String> comboCity;
-    private javax.swing.JComboBox<String> comboCommunity;
-    private javax.swing.ButtonGroup genderGroup;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtAge;
-    private javax.swing.JPasswordField txtConfirmPassword;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtPhoneNumber;
+    private JButton btnBack1;
+    private JButton btnCreate;
+    private JRadioButton btnFemale;
+    private JRadioButton btnMale;
+    private JRadioButton btnOther;
+    private JComboBox<String> comboCity;
+    private JComboBox<String> comboCommunity;
+    private ButtonGroup genderGroup;
+    private JLabel jLabel1;
+    private JLabel jLabel10;
+    private JLabel jLabel11;
+    private JLabel jLabel12;
+    private JLabel jLabel13;
+    private JLabel jLabel14;
+    private JLabel jLabel15;
+    private JLabel jLabel16;
+    private JLabel jLabel17;
+    private JLabel jLabel18;
+    private JLabel jLabel9;
+    private JPanel jPanel2;
+    private JTextField txtAddress;
+    private JTextField txtAge;
+    private JPasswordField txtConfirmPassword;
+    private JTextField txtEmail;
+    private JTextField txtName;
+    private JPasswordField txtPassword;
+    private JTextField txtPhoneNumber;
     // End of variables declaration//GEN-END:variables
 }
