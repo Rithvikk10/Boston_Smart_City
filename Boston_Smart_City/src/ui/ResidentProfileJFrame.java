@@ -308,9 +308,9 @@ public class ResidentProfileJFrame extends javax.swing.JFrame {
         String password=txtPassword.getText();
         String confirmpassword=txtConfirmPassword.getText();
         
-        this.btnMale.setActionCommand("male");
-        this.btnFemale.setActionCommand("female");
-        this.btnOther.setActionCommand("other");
+        this.btnMale.setActionCommand("Male");
+        this.btnFemale.setActionCommand("Female");
+        this.btnOther.setActionCommand("Other");
         
         String selection = this.genderGroup.getSelection().getActionCommand();
 
