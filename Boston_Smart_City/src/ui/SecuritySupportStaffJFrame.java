@@ -510,13 +510,13 @@ public class SecuritySupportStaffJFrame extends javax.swing.JFrame {
               
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
-            insert=con1.prepareStatement("update employeeregistration set name=?, age=?, gender=?, email=?,where employeeid=?");
+            insert=con1.prepareStatement("update employeeregistration set name=?, age=?, gender=?, email=? where employeeid=?");
             
-            insert.setString(4, name);
-            insert.setInt(5, age);
-            insert.setString(6, selection);
-            insert.setString(7,email);
-            insert.setInt(11, employeeid);
+            insert.setString(1, name);
+            insert.setInt(2, age);
+            insert.setString(3, selection);
+            insert.setString(4,email);
+            insert.setInt(5, employeeid);
             
             insert.executeUpdate();
             
@@ -571,12 +571,12 @@ public class SecuritySupportStaffJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack2;
-    private javax.swing.JRadioButton btnFemale1;
-    private javax.swing.JRadioButton btnMale1;
-    private javax.swing.JRadioButton btnOther1;
+    public javax.swing.JRadioButton btnFemale1;
+    public javax.swing.JRadioButton btnMale1;
+    public javax.swing.JRadioButton btnOther1;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdateMyProfile;
-    private javax.swing.ButtonGroup genderGroup;
+    public javax.swing.ButtonGroup genderGroup;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel10;
@@ -597,13 +597,13 @@ public class SecuritySupportStaffJFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField txtAge1;
+    public javax.swing.JTextField txtAge1;
     private javax.swing.JPasswordField txtConfirmNewPassword;
-    private javax.swing.JTextField txtEmail1;
+    public javax.swing.JTextField txtEmail1;
     public javax.swing.JTextField txtID3;
     public javax.swing.JTextField txtID4;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtName1;
+    public javax.swing.JTextField txtName1;
     private javax.swing.JPasswordField txtNewPassword;
     private javax.swing.JTextField txtOldPassword;
     private javax.swing.JTextField txtResidentID;

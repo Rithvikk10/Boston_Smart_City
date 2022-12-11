@@ -4,15 +4,22 @@
  */
 package ui;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+
+import java.sql.Connection;
+
+import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.DriverManager;
+import java.sql.*;
+import java.util.Vector;
 import javax.swing.JOptionPane;
-
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author rithvik
@@ -46,8 +53,6 @@ public class ManagerJFrame extends javax.swing.JFrame {
         btnView = new javax.swing.JButton();
         txtResidentId = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtComplaintId = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -95,13 +100,13 @@ public class ManagerJFrame extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Resident ID", "Name", "Complaint ID", "Complaint Type", "Status", "Complaint", "Comment By Worker"
+                "Resident ID", "Complaint ID", "Complaint Type", "Status", "Complaint", "Comment By Worker"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -118,14 +123,6 @@ public class ManagerJFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Resident ID :");
-
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Name :");
-
-        txtName.setBackground(new java.awt.Color(204, 204, 204));
-        txtName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        txtName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -213,12 +210,10 @@ public class ManagerJFrame extends javax.swing.JFrame {
                         .addGap(150, 150, 150)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtResidentId, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtComplaintId, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,15 +277,11 @@ public class ManagerJFrame extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17)
+                                .addGap(67, 67, 67)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtResidentId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
+                                .addGap(71, 71, 71)
                                 .addComponent(txtComplaintId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -478,6 +469,395 @@ public class ManagerJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtID3ActionPerformed
 
+    
+    public void table_update_water()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Water Supply Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     public void table_update_street()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Street Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     
+     public void table_update_police()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Police Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     public void table_update_hospital()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Hospital Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     public void table_update_fire()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Fire Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     public void table_update_nongov()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Non Gov Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+             
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     public void table_update_gov()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Gov Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     public void table_update_standalone()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Stand Alone'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+    
+    
+    
     private void txtID8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtID8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtID8ActionPerformed
@@ -571,7 +951,6 @@ public class ManagerJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -595,7 +974,6 @@ public class ManagerJFrame extends javax.swing.JFrame {
     public javax.swing.JTextField txtEmail1;
     public javax.swing.JTextField txtID3;
     public javax.swing.JTextField txtID8;
-    private javax.swing.JTextField txtName;
     public javax.swing.JTextField txtName1;
     private javax.swing.JTextField txtResidentId;
     private javax.swing.JTextField txtStatus;

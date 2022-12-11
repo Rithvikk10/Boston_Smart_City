@@ -47,13 +47,11 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnView = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtResidentId = new javax.swing.JTextField();
-        txtName = new javax.swing.JTextField();
         txtComplaintId = new javax.swing.JTextField();
         txtComplaintType = new javax.swing.JTextField();
         txtStatus = new javax.swing.JTextField();
@@ -97,17 +95,17 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Resident ID", "Name", "Complaint ID", "Complaint Type", "Status", "Complaint", "Comment By Worker"
+                "Resident ID", "Complaint ID", "Complaint Type", "Status", "Complaint", "Comment By Worker"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -124,10 +122,6 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
         btnView.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnView.setText("View");
         btnView.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Name :");
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -147,10 +141,6 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
         txtResidentId.setBackground(new java.awt.Color(204, 204, 204));
         txtResidentId.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtResidentId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-
-        txtName.setBackground(new java.awt.Color(204, 204, 204));
-        txtName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        txtName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         txtComplaintId.setBackground(new java.awt.Color(204, 204, 204));
         txtComplaintId.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -238,13 +228,9 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(108, 108, 108)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtComplaintId, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtComplaintId, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60)
@@ -299,17 +285,13 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(txtComplaintId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(71, 71, 71)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(70, 70, 70)
+                            .addComponent(txtComplaintId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -492,6 +474,205 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    
+    
+    public void table_update_griv()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("select * from raisecomplaint where enterprice='Grievance'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+          
+          
+          
+          
+          
+        public void table_update_emergency()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("select * from raisecomplaint where enterprice='emergency'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+        
+        public void table_update_covidhelp()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("select * from raisecomplaint where enterprice='Covid-Help'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+        
+         public void table_update_residence()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("select * from raisecomplaint where enterprice='Residence'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+    
+    
     private void txtAge1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAge1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAge1ActionPerformed
@@ -594,7 +775,6 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -618,7 +798,6 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
     public javax.swing.JTextField txtEmail1;
     public javax.swing.JTextField txtID3;
     public javax.swing.JTextField txtID7;
-    private javax.swing.JTextField txtName;
     public javax.swing.JTextField txtName1;
     private javax.swing.JTextField txtResidentId;
     private javax.swing.JTextField txtStatus;
