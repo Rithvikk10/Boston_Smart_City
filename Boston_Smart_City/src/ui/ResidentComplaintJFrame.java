@@ -122,10 +122,6 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1984, 1100));
-        setPreferredSize(new java.awt.Dimension(1984, 1100));
-        setResizable(false);
-        setSize(new java.awt.Dimension(2000, 1100));
 
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -592,11 +588,10 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
@@ -736,7 +731,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         
             try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             insert=con1.prepareStatement("insert into raisecomplaint(id,enterprice,organization,complaint,timestamp,status,workercomment)values(?,?,?,?,?,?,?)");
 
@@ -784,7 +779,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     try{
        Class.forName("com.mysql.jdbc.Driver");
 
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
 
         con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
 
@@ -816,7 +811,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     try{
        Class.forName("com.mysql.jdbc.Driver");
 
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
 
         con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
 
@@ -916,7 +911,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
              con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
             //ResidentComplaintJFrame rc = new ResidentComplaintJFrame();
             int num = Integer.parseInt(this.txtID2.getText());
@@ -1012,7 +1007,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
               if(dialogResult==JOptionPane.YES_OPTION)
               {
                   Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             insert=con1.prepareStatement("delete from raisecomplaint where complaintid=?");
             
              insert.setInt(1, id);
@@ -1062,7 +1057,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
               String selection = this.genderGroup.getSelection().getActionCommand();
               
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
             insert=con1.prepareStatement("update personregistration set name=?, age=?, gender=?, address=?, city=?, community=?, phonenumber=?, email=?, password=?, confirmpassword=?  where id=?");
             
             insert.setString(1, name);
