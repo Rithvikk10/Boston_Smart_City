@@ -143,7 +143,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 670, 150, 50));
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 670, 150, 50));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -276,17 +276,17 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         tblFireEmployee1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         tblFireEmployee1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Employee ID", "Name", "Role", "Enterprise", "Organisation"
+                "Employee ID", "Name", "Role", "Enterprise", "Organisation", "Age", "Gender", "Email"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -635,7 +635,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         jPanel3.add(btnBack2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 730, 120, 42));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Staff1.png"))); // NOI18N
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1310, 790));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1310, 810));
 
         jTabbedPane1.addTab("Resident", jPanel3);
 
@@ -649,8 +649,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jTabbedPane1))
         );
 
         pack();
@@ -711,7 +710,10 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                   v2.add(rs.getString("name"));
                    v2.add(rs.getString("role"));
                     v2.add(rs.getString("enterprise"));
-                   v2.add(rs.getString("organization")); 
+                    v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("age"));
+                    v2.add(rs.getString("gender"));
+                    v2.add(rs.getString("email"));
                  
                
                }
@@ -1040,7 +1042,52 @@ DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
         DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
          int selectedIndex =  tblFireEmployee1.getSelectedRow();
          
+         
          txtName.setText(Df.getValueAt(selectedIndex,1).toString());
+         
+         switch(Df.getValueAt(selectedIndex, 2).toString()){
+             case "Enterprise Admin" -> comboRole.setSelectedIndex(1);
+             case "Manager" -> comboRole.setSelectedIndex(2);
+             case "Worker" -> comboRole.setSelectedIndex(3);              
+         }
+         
+         switch(Df.getValueAt(selectedIndex, 3).toString()){
+             case "Grievance" -> comboEnterprise.setSelectedIndex(0);
+             case "Emergency" -> comboEnterprise.setSelectedIndex(1);
+             case "Covid-Help" -> comboEnterprise.setSelectedIndex(2);
+             case "Residence" -> comboEnterprise.setSelectedIndex(3);
+         }
+         
+         if(Df.getValueAt(selectedIndex, 4) == null){
+             comboOrganization.setSelectedIndex(-1);
+         }else{
+         switch(Df.getValueAt(selectedIndex, 4).toString()){
+             case "Water Supply Org" -> comboOrganization.setSelectedIndex(0);
+             case "Street Org" -> comboOrganization.setSelectedIndex(1);
+             case "Police Org" -> comboOrganization.setSelectedIndex(2);
+             case "Hospital Org" -> comboOrganization.setSelectedIndex(0);
+             case "Fire Org" -> comboOrganization.setSelectedIndex(1);
+             case "Non Gov Org" -> comboOrganization.setSelectedIndex(0);
+             case "Gov Org" -> comboOrganization.setSelectedIndex(1);
+             case "Stand Alone" -> comboOrganization.setSelectedIndex(0);
+         }
+         }
+         
+
+        
+
+         txtEmployeeAge.setText(Df.getValueAt(selectedIndex, 5).toString());
+         
+         switch(Df.getValueAt(selectedIndex, 6).toString()){
+             case "Male" -> employeeGenderGroup.setSelected(btnMale1.getModel(), true);
+             case "Female" -> employeeGenderGroup.setSelected(btnFemale1.getModel(), true);
+             case "Other" -> employeeGenderGroup.setSelected(btnOther1.getModel(), true);
+         }
+         
+
+         txtEmail.setText(Df.getValueAt(selectedIndex, 7).toString());
+                 
+         
           
     }//GEN-LAST:event_btnViewEmployee1ActionPerformed
 
