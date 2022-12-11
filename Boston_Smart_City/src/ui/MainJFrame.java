@@ -209,6 +209,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
             String emailid= txtEmail.getText();
             String password=txtPassword.getText();
+            
             Statement stm= con1.createStatement();
             Login lg= new Login();
             lg.setEmail(emailid);

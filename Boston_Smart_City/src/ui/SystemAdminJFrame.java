@@ -10,11 +10,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Employee;
 import model.Resident;
@@ -30,7 +35,11 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
      */
     public SystemAdminJFrame() {
         initComponents();
+        updateCombo();
+        updateCityCombo();
         table_update();
+        table_update_resident();
+        table_update_Complaints();
     }
     Connection con1;
     PreparedStatement insert;
@@ -46,6 +55,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         employeeGenderGroup = new javax.swing.ButtonGroup();
+        residentGenderGroup = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
@@ -317,6 +327,11 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         btnSearchEmployee1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnSearchEmployee1.setText("Search");
         btnSearchEmployee1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnSearchEmployee1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchEmployee1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnSearchEmployee1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 170, 120, 40));
 
         btnFire1.setBackground(new java.awt.Color(93, 145, 145));
@@ -379,12 +394,22 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         btnSearchResident.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnSearchResident.setText("Search");
         btnSearchResident.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnSearchResident.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchResidentActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnSearchResident, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 160, 90, -1));
 
         txtSearchResident.setBackground(new java.awt.Color(204, 204, 204));
         txtSearchResident.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtSearchResident.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel3.add(txtSearchResident, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 160, -1, -1));
+        txtSearchResident.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchResidentActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtSearchResident, new org.netbeans.lib.awtextra.AbsoluteConstraints(824, 160, 120, -1));
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -394,6 +419,11 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         txtResidentID.setBackground(new java.awt.Color(204, 204, 204));
         txtResidentID.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtResidentID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        txtResidentID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtResidentIDActionPerformed(evt);
+            }
+        });
         jPanel3.add(txtResidentID, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 110, -1));
 
         jLabel15.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -486,6 +516,11 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         btnDeleteResident.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnDeleteResident.setText("Delete");
         btnDeleteResident.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnDeleteResident.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteResidentActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnDeleteResident, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 290, 140, 50));
 
         jTable2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -508,6 +543,11 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         btnViewComplaint.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnViewComplaint.setText("View");
         btnViewComplaint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnViewComplaint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewComplaintActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnViewComplaint, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 530, 80, -1));
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -548,12 +588,17 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         txtSearchComplaint.setBackground(new java.awt.Color(204, 204, 204));
         txtSearchComplaint.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtSearchComplaint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel3.add(txtSearchComplaint, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 530, -1, -1));
+        jPanel3.add(txtSearchComplaint, new org.netbeans.lib.awtextra.AbsoluteConstraints(834, 530, 120, -1));
 
         btnSearchComplaint.setBackground(new java.awt.Color(91, 140, 140));
         btnSearchComplaint.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnSearchComplaint.setText("Search");
         btnSearchComplaint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnSearchComplaint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchComplaintActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnSearchComplaint, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 530, 90, -1));
 
         jLabel25.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -603,22 +648,35 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         btnUpdateComplaint.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnUpdateComplaint.setText("Update");
         btnUpdateComplaint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnUpdateComplaint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateComplaintActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnUpdateComplaint, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 590, 140, 50));
 
         btnDeleteComplaint.setBackground(new java.awt.Color(91, 140, 140));
         btnDeleteComplaint.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnDeleteComplaint.setText("Delete");
         btnDeleteComplaint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnDeleteComplaint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteComplaintActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnDeleteComplaint, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 660, 140, 50));
 
+        residentGenderGroup.add(btnMale);
         btnMale.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btnMale.setText("Male");
         jPanel3.add(btnMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, -1, -1));
 
+        residentGenderGroup.add(btnFemale);
         btnFemale.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btnFemale.setText("Female");
         jPanel3.add(btnFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, -1, -1));
 
+        residentGenderGroup.add(btnOther);
         btnOther.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btnOther.setText("Other");
         jPanel3.add(btnOther, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 220, -1, -1));
@@ -684,8 +742,73 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBack2ActionPerformed
 
     
-        private void table_update()
-        {
+    private void updateCombo() {
+         
+    String sql="select * from community";
+   
+    try{
+       Class.forName("com.mysql.jdbc.Driver");
+
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+
+        con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+
+        insert=con1.prepareStatement(sql);
+        
+        rs=insert.executeQuery();
+        while(rs.next()){
+        comboCommunity.addItem(rs.getString("communityname"));
+        con1.close();
+        }
+        
+    }catch(Exception e){
+    }finally{
+    if(con1!=null){
+        try {
+            con1.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    }
+    }
+    
+    
+    private void updateCityCombo(){
+         
+    String sql="select * from city";
+   
+    try{
+       Class.forName("com.mysql.jdbc.Driver");
+
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+
+        con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+
+        insert=con1.prepareStatement(sql);
+        
+        rs=insert.executeQuery();
+        while(rs.next()){
+        comboCity.addItem(rs.getString("cityname"));
+
+          con1.close();
+        
+
+        }
+        
+    }catch(Exception e){
+    }finally{
+    if(con1!=null){
+        try {
+            con1.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    }
+    }
+    
+    private void table_update(){
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -720,7 +843,59 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                Df.addRow(v2);
              }
            
-                     
+             con1.close();
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+    }
+        
+        
+        private void table_update_resident()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            insert=con1.prepareStatement("select * from personregistration");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("name"));
+                   v2.add(rs.getString("age"));
+                    v2.add(rs.getString("gender"));
+                    v2.add(rs.getString("address"));
+                    v2.add(rs.getString("community"));
+                    v2.add(rs.getString("city"));
+                    v2.add(rs.getString("phonenumber"));
+                    v2.add(rs.getString("email"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+             con1.close();      
            
         
         } catch (ClassNotFoundException ex) {
@@ -733,6 +908,58 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         
         
         }
+        
+        
+        
+         private void table_update_Complaints()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            insert=con1.prepareStatement("select * from raisecomplaint");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable2.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("complaintid"));
+                  v2.add(rs.getString("organization"));
+                   v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                     v2.add(rs.getString("timestamp"));
+                      v2.add(rs.getString("workercomment"));
+               }
+               Df.addRow(v2);
+             }
+           
+             con1.close();      
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+        
+        
+        
+        
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          String role=(String)comboRole.getSelectedItem();
     
@@ -769,8 +996,6 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
             r.setRole(role);
             r.setEnterprise(enterprise);
             r.setOrganization(organization);
-            
-            
             r.setPassword(password);
             r.setConfirmPassword(confirmpassword);
             
@@ -798,8 +1023,6 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
             insert.setString(6, r.getGender());
 
             insert.setString(7, r.getEmail());
-            
-            
             
             insert.setString(8, r.getPassword());
             
@@ -847,11 +1070,87 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnViewResidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewResidentActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+        int selectedIndex =  jTable1.getSelectedRow();
+                 
+         
+         txtResidentID.setText(Df.getValueAt(selectedIndex,0).toString());
+         txtResidentName.setText(Df.getValueAt(selectedIndex,1).toString());
+         txtResidentAge.setText(Df.getValueAt(selectedIndex,2).toString());
+         
+         switch(Df.getValueAt(selectedIndex, 3).toString()){
+             case "Male" -> residentGenderGroup.setSelected(btnMale.getModel(), true);
+             case "Female" -> residentGenderGroup.setSelected(btnFemale.getModel(), true);
+             case "Other" -> residentGenderGroup.setSelected(btnOther.getModel(), true);
+         }
+         
+         txtResidentAddress.setText(Df.getValueAt(selectedIndex,4).toString());
+         
+         switch(Df.getValueAt(selectedIndex, 5).toString()){
+             case "Huntington Ave" -> comboCommunity.setSelectedIndex(0);
+             case "Roxbury" -> comboCommunity.setSelectedIndex(1);
+             case "South Bay" -> comboCommunity.setSelectedIndex(2);              
+         }
+         
+         comboCity.setSelectedIndex(0);
+         
+         txtResidentPhoneNumber.setText(Df.getValueAt(selectedIndex,7).toString());
+         txtResidentEmail.setText(Df.getValueAt(selectedIndex,8).toString());
+                  
+         
     }//GEN-LAST:event_btnViewResidentActionPerformed
 
     private void btnUpdateResidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateResidentActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+          int selectedIndex = jTable1.getSelectedRow();
+         
+          try { 
+        int id=Integer.parseInt(Df.getValueAt(selectedIndex, 0).toString()); 
+        
+        String resname = txtResidentName.getText();
+        int age = Integer.parseInt(txtResidentAge.getText());
+        
+        this.btnMale.setActionCommand("Male");
+        this.btnFemale.setActionCommand("Female");
+        this.btnOther.setActionCommand("Other");
+         String selection = this.residentGenderGroup.getSelection().getActionCommand();
+                
+         String addrs = txtResidentAddress.getText();
+         String comm = (String)comboCommunity.getSelectedItem();
+         String city = (String)comboCommunity.getSelectedItem();
+         Long phone = Long.parseLong(txtResidentPhoneNumber.getText());
+         String email = txtResidentEmail.getText();       
+         
+              
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            insert=con1.prepareStatement("update personregistration set name=?,age=?,gender=?,address=?,city=?,community=?,phonenumber=?,email=? where id=?");
+            
+            insert.setString(1, resname);
+            insert.setInt(2, age);
+            insert.setString(3, selection);
+            insert.setString(4, addrs);
+            insert.setString(5, city);
+            insert.setString(6, comm);
+            insert.setLong(7, phone);
+            insert.setString(8, email);
+            insert.setInt(9, id);
+            
+             
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"Record Updated");
+             table_update_resident();
+            
+          
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
     }//GEN-LAST:event_btnUpdateResidentActionPerformed
 
     private void comboRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRoleActionPerformed
@@ -947,12 +1246,11 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_comboEnterpriseActionPerformed
 
     private void btnUpdateEmployee1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateEmployee1ActionPerformed
-DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
-         int selectedIndex = tblFireEmployee1.getSelectedRow();
+          DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
+          int selectedIndex = tblFireEmployee1.getSelectedRow();
          
-          try {
-              
-             int id=Integer.parseInt(Df.getValueAt(selectedIndex, 0).toString()); 
+          try {    
+          int id=Integer.parseInt(Df.getValueAt(selectedIndex, 0).toString()); 
         String role=(String)comboRole.getSelectedItem();
     
         String enterprise=(String)comboEnterprise.getSelectedItem();
@@ -983,6 +1281,7 @@ DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
             insert.setString(7, email);
             insert.setString(8, password);
             insert.setString(9, confirmpassword);
+            
             insert.setInt(10, id);
             
              
@@ -1072,10 +1371,7 @@ DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
              case "Stand Alone" -> comboOrganization.setSelectedIndex(0);
          }
          }
-         
-
         
-
          txtEmployeeAge.setText(Df.getValueAt(selectedIndex, 5).toString());
          
          switch(Df.getValueAt(selectedIndex, 6).toString()){
@@ -1084,12 +1380,275 @@ DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
              case "Other" -> employeeGenderGroup.setSelected(btnOther1.getModel(), true);
          }
          
-
          txtEmail.setText(Df.getValueAt(selectedIndex, 7).toString());
                  
          
           
     }//GEN-LAST:event_btnViewEmployee1ActionPerformed
+
+    private void btnSearchEmployee1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchEmployee1ActionPerformed
+            int c;
+        try {
+            int empId = Integer.parseInt(txtSearchEmployee1.getText());
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            insert=con1.prepareStatement("select * from employeeregistration where employeeId = '"+empId+"'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("employeeid"));
+                  v2.add(rs.getString("name"));
+                   v2.add(rs.getString("role"));
+                    v2.add(rs.getString("enterprise"));
+                    v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("age"));
+                    v2.add(rs.getString("gender"));
+                    v2.add(rs.getString("email"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnSearchEmployee1ActionPerformed
+
+    private void txtResidentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResidentIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtResidentIDActionPerformed
+
+    private void btnDeleteResidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteResidentActionPerformed
+          DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+          int selectedIndex = jTable1.getSelectedRow();
+          
+          try {  
+              int id=Integer.parseInt(Df.getValueAt(selectedIndex, 0).toString());
+              
+              int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to delete the record","Warning",JOptionPane.YES_NO_OPTION);
+              if(dialogResult==JOptionPane.YES_OPTION)
+              {
+                  Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            insert=con1.prepareStatement("delete from personregistration where id=?");
+            
+             insert.setInt(1, id);
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"Record Deleted");
+            
+              table_update_resident();
+             
+            
+              }
+          
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btnDeleteResidentActionPerformed
+
+    private void btnSearchResidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchResidentActionPerformed
+        int c;
+        try {
+            int resId = Integer.parseInt(txtSearchResident.getText());
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            insert=con1.prepareStatement("select * from personregistration where Id = '"+resId+"'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("name"));
+                   v2.add(rs.getString("age"));
+                    v2.add(rs.getString("gender"));
+                    v2.add(rs.getString("address"));
+                    v2.add(rs.getString("community"));
+                    v2.add(rs.getString("city"));
+                    v2.add(rs.getString("phonenumber"));
+                    v2.add(rs.getString("email"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSearchResidentActionPerformed
+
+    private void txtSearchResidentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchResidentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchResidentActionPerformed
+
+    private void btnViewComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewComplaintActionPerformed
+        DefaultTableModel Df = (DefaultTableModel) jTable2.getModel();
+        int selectedIndex =  jTable2.getSelectedRow();
+                 
+
+         txtComplaintNumber.setText(Df.getValueAt(selectedIndex,0).toString());
+         txtComplaintType.setText(Df.getValueAt(selectedIndex,1).toString());
+         txtStatus.setText(Df.getValueAt(selectedIndex,2).toString());
+         txtTime.setText(Df.getValueAt(selectedIndex,3).toString());
+         txtComplaint.setText(Df.getValueAt(selectedIndex,4).toString());
+         txtComment.setText(Df.getValueAt(selectedIndex,5).toString());
+         
+         
+    }//GEN-LAST:event_btnViewComplaintActionPerformed
+
+    private void btnUpdateComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateComplaintActionPerformed
+        DefaultTableModel Df = (DefaultTableModel) jTable2.getModel();
+          int selectedIndex = jTable2.getSelectedRow();
+         
+          try { 
+       
+              int cid = Integer.parseInt(Df.getValueAt(selectedIndex, 0).toString()); 
+        
+              String comtype = txtComplaintType.getText();
+              String status = txtStatus.getText();
+              
+              String time = txtTime.getText();
+  
+              String complaint = txtComplaint.getText();
+              String comment = txtComment.getText();
+              
+              
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            insert=con1.prepareStatement("update raisecomplaint set organization=?,status=?,timestamp=?,complaint=?,workercomment=? where cid=?");
+            
+            insert.setString(3, comtype);
+            insert.setString(6, status);
+            insert.setString(5, time);
+            insert.setString(4, complaint);
+            insert.setString(7, comment);
+            insert.setInt(8, cid);
+            
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"Record Updated");
+             table_update_Complaints();
+            
+          
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }//GEN-LAST:event_btnUpdateComplaintActionPerformed
+
+    private void btnDeleteComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteComplaintActionPerformed
+        DefaultTableModel Df = (DefaultTableModel) jTable2.getModel();
+          int selectedIndex = jTable2.getSelectedRow();
+          
+          try {  
+              int id=Integer.parseInt(Df.getValueAt(selectedIndex, 0).toString());
+              
+              int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to delete the record","Warning",JOptionPane.YES_NO_OPTION);
+              if(dialogResult==JOptionPane.YES_OPTION)
+              {
+                  Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            insert=con1.prepareStatement("delete from raisecomplaint where complaintid=?");
+            
+             insert.setInt(1, id);
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"Record Deleted");
+            
+              table_update_Complaints();
+             
+            
+              }
+          
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btnDeleteComplaintActionPerformed
+
+    private void btnSearchComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchComplaintActionPerformed
+       
+        
+        int c;
+        try {
+            int comId = Integer.parseInt(txtSearchComplaint.getText());
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            insert=con1.prepareStatement("select * from raisecomplaint where complaintid = '"+comId+"'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable2.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("complaintid"));
+                  v2.add(rs.getString("organization"));
+                   v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("timestamp"));
+                    v2.add(rs.getString("workercomment")); 
+               }
+               Df.addRow(v2);
+             }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSearchComplaintActionPerformed
 
     
     /**
@@ -1191,6 +1750,7 @@ DefaultTableModel Df = (DefaultTableModel) tblFireEmployee1.getModel();
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.ButtonGroup residentGenderGroup;
     private javax.swing.JTable tblFireEmployee1;
     private javax.swing.JTextArea txtComment;
     private javax.swing.JTextArea txtComplaint;
