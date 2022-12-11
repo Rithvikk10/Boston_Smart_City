@@ -122,6 +122,11 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
         btnView.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnView.setText("View");
         btnView.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -170,6 +175,11 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
         btnCancel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnCancel.setText("Cancel Complaint");
         btnCancel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel7.setText("Comment By Worker :");
@@ -694,9 +704,9 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
               int age=Integer.parseInt(txtAge1.getText());
               String email=txtEmail1.getText();
              
-        this.btnMale1.setActionCommand("male");
-        this.btnFemale1.setActionCommand("female");
-        this.btnOther1.setActionCommand("other");
+        this.btnMale1.setActionCommand("Male");
+        this.btnFemale1.setActionCommand("Female");
+        this.btnOther1.setActionCommand("Other");
               String selection = this.genderGroup.getSelection().getActionCommand();
               
             Class.forName("com.mysql.jdbc.Driver");
@@ -723,6 +733,57 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
             Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnUpdateMyProfileActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+         int selectedIndex =  jTable1.getSelectedRow();
+         
+         
+         txtResidentId.setText(Df.getValueAt(selectedIndex,0).toString());
+         txtComplaintId.setText(Df.getValueAt(selectedIndex,1).toString());
+         txtComplaintType.setText(Df.getValueAt(selectedIndex,2).toString());
+         txtStatus.setText(Df.getValueAt(selectedIndex,3).toString());
+         txtComplaintBox.setText(Df.getValueAt(selectedIndex,4).toString());
+         txtComment.setText(Df.getValueAt(selectedIndex,5).toString());
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+         int selectedIndex = jTable1.getSelectedRow();
+          try {
+              
+              
+              int id=Integer.parseInt(Df.getValueAt(selectedIndex, 1).toString());
+              
+              int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to delete the record","Warning",JOptionPane.YES_NO_OPTION);
+              if(dialogResult==JOptionPane.YES_OPTION)
+              {
+                  Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("delete from raisecomplaint where complaintid=?");
+            
+             insert.setInt(1, id);
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"Record Delete");
+            
+              table_update_griv();
+              table_update_emergency();
+              table_update_covidhelp();
+              table_update_residence();
+            
+              }
+          
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCancelActionPerformed
 
   
     /**

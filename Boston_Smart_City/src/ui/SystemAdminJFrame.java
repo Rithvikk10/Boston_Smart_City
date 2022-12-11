@@ -493,6 +493,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
 
         comboCommunity.setBackground(new java.awt.Color(204, 204, 204));
         comboCommunity.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        comboCommunity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Huntinton Ave", "Roxbury", "South Bay" }));
         comboCommunity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel3.add(comboCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 320, 110, -1));
 
