@@ -59,7 +59,6 @@ public class StaffJFrame extends javax.swing.JFrame {
         txtComment = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
-        btnSubmit = new javax.swing.JButton();
         txtID6 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -190,18 +189,7 @@ public class StaffJFrame extends javax.swing.JFrame {
         btnAdd.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnAdd.setText("Add Comment ");
         btnAdd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 490, 234, 50));
-
-        btnSubmit.setBackground(new java.awt.Color(68, 125, 125));
-        btnSubmit.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        btnSubmit.setText("Submit");
-        btnSubmit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubmitActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 490, 234, 49));
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 450, 234, 50));
 
         txtID6.setBackground(new java.awt.Color(204, 204, 204));
         txtID6.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -384,10 +372,6 @@ public class StaffJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnView1ActionPerformed
 
-    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSubmitActionPerformed
-
     private void txtAge1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAge1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAge1ActionPerformed
@@ -409,9 +393,9 @@ public class StaffJFrame extends javax.swing.JFrame {
               int age=Integer.parseInt(txtAge1.getText());
               String email=txtEmail1.getText();
              
-        this.btnMale1.setActionCommand("male");
-        this.btnFemale1.setActionCommand("female");
-        this.btnOther1.setActionCommand("other");
+        this.btnMale1.setActionCommand("Male");
+        this.btnFemale1.setActionCommand("Female");
+        this.btnOther1.setActionCommand("Other");
               String selection = this.genderGroup.getSelection().getActionCommand();
               
             Class.forName("com.mysql.jdbc.Driver");
@@ -481,7 +465,6 @@ public class StaffJFrame extends javax.swing.JFrame {
     public javax.swing.JRadioButton btnFemale1;
     public javax.swing.JRadioButton btnMale1;
     public javax.swing.JRadioButton btnOther1;
-    private javax.swing.JButton btnSubmit;
     private javax.swing.JButton btnUpdateMyProfile;
     private javax.swing.JButton btnView1;
     public javax.swing.ButtonGroup genderGroup;
