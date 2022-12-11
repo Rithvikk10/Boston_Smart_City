@@ -143,7 +143,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 670, 150, 50));
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 670, 150, 50));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -635,7 +635,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         jPanel3.add(btnBack2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 730, 120, 42));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Staff1.png"))); // NOI18N
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1310, 790));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1310, 810));
 
         jTabbedPane1.addTab("Resident", jPanel3);
 
@@ -649,8 +649,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jTabbedPane1))
         );
 
         pack();
