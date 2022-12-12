@@ -1195,7 +1195,30 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
                 
                 
             }
-            
+            if(comboRole.getSelectedItem().equals("Community Admin"))
+            {
+                comboEnterprise.disable();
+               
+                comboOrganization.disable();
+                
+                
+            }
+            if(comboRole.getSelectedItem().equals("Security Staff"))
+            {
+                comboEnterprise.disable();
+               
+                comboOrganization.disable();
+                
+                
+            }
+            if(comboRole.getSelectedItem().equals("FeedBack Monitor"))
+            {
+                comboEnterprise.disable();
+               
+                comboOrganization.disable();
+                
+                
+            }
                 
              
         }
