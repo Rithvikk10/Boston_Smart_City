@@ -4,15 +4,23 @@
  */
 package ui;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
+
+
 import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+
+import java.sql.Connection;
+
+import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import java.sql.DriverManager;
 
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author rithvik
@@ -42,7 +50,7 @@ public class StaffJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         btnView1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtResidentId = new javax.swing.JTextField();
@@ -92,8 +100,8 @@ public class StaffJFrame extends javax.swing.JFrame {
         });
         jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1113, 609, 140, 50));
 
-        jTable2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -104,7 +112,7 @@ public class StaffJFrame extends javax.swing.JFrame {
                 "Resident ID", "Complaint ID", "Complaint Type", "Status", "Complaint", "Comment By Worker"
             }
         ));
-        jScrollPane4.setViewportView(jTable2);
+        jScrollPane4.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 971, 110));
 
@@ -187,8 +195,13 @@ public class StaffJFrame extends javax.swing.JFrame {
 
         btnAdd.setBackground(new java.awt.Color(68, 125, 125));
         btnAdd.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        btnAdd.setText("Add Comment ");
+        btnAdd.setText("Submit ");
         btnAdd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 450, 234, 50));
 
         txtID6.setBackground(new java.awt.Color(204, 204, 204));
@@ -370,8 +383,407 @@ public class StaffJFrame extends javax.swing.JFrame {
 
     private void btnView1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnView1ActionPerformed
         // TODO add your handling code here:
+         DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+         int selectedIndex =  jTable1.getSelectedRow();
+         
+         
+         txtResidentId.setText(Df.getValueAt(selectedIndex,0).toString());
+          txtComplaintId.setText(Df.getValueAt(selectedIndex,1).toString());
+           txtComplaintType.setText(Df.getValueAt(selectedIndex,2).toString());
+            txtStatus.setText(Df.getValueAt(selectedIndex,3).toString());
+             txtComplaintBox.setText(Df.getValueAt(selectedIndex,4).toString());
+             txtComment.setText(Df.getValueAt(selectedIndex,5).toString());
     }//GEN-LAST:event_btnView1ActionPerformed
 
+    public void table_update_water()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Water Supply Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     public void table_update_street()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Street Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     
+     public void table_update_police()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Police Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     public void table_update_hospital()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Hospital Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     public void table_update_fire()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Fire Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     public void table_update_nongov()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Non Gov Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+             
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     public void table_update_gov()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Gov Org'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+     
+     public void table_update_standalone()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("select * from raisecomplaint where organization='Stand Alone'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("id"));
+                  v2.add(rs.getString("complaintid"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
+        }
+    
+    
+    
+    
     private void txtAge1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAge1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAge1ActionPerformed
@@ -423,6 +835,75 @@ public class StaffJFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnUpdateMyProfileActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+         int selectedIndex = jTable1.getSelectedRow();
+         
+          try {
+              
+              
+              int complaintid=Integer.parseInt(Df.getValueAt(selectedIndex, 1).toString());
+              int residentid=Integer.parseInt(txtResidentId.getText());
+              
+              String complainttype=txtComplaintType.getText();
+              String status=txtStatus.getText();
+              String comment=txtComment.getText();
+              String complaintbox=txtComplaintBox.getText();
+              
+              
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            insert=con1.prepareStatement("update raisecomplaint set id=?,organization=?,complaint=?, status='completed',workercomment=? where complaintid=?");
+            
+            insert.setInt(1, residentid);
+            insert.setString(2, complainttype);
+            insert.setString(3, complaintbox);
+            //insert.setString(4, status);
+            insert.setString(4, comment);
+            insert.setInt(5, complaintid);
+            
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"Record Updated");
+            EnterpriseJFrame e = new EnterpriseJFrame ();
+            e.table_update_griv();
+            e.table_update_covidhelp();
+            e.table_update_emergency();
+            e.table_update_residence();
+            
+            
+             
+             ManagerJFrame m = new ManagerJFrame();
+             m.table_update_water();
+             m.table_update_fire();
+             m.table_update_gov();
+             m.table_update_hospital();
+             m.table_update_nongov();
+             m.table_update_police();
+             m.table_update_standalone();
+             m.table_update_street();
+            
+            StaffJFrame sf= new StaffJFrame();
+            sf.table_update_water();
+            sf.table_update_fire();
+             sf.table_update_gov();
+             sf.table_update_hospital();
+             sf.table_update_nongov();
+             sf.table_update_police();
+             sf.table_update_standalone();
+             sf.table_update_street();
+          
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnterpriseJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(EnterpriseJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -486,7 +967,7 @@ public class StaffJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable1;
     public javax.swing.JTextField txtAge1;
     private javax.swing.JTextArea txtComment;
     private javax.swing.JTextArea txtComplaintBox;

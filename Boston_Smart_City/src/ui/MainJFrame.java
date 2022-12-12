@@ -573,7 +573,7 @@ public class MainJFrame extends javax.swing.JFrame {
             String sql6="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Security Staff'";
            
           
-            if(option.equalsIgnoreCase("Resident")){
+            if(option.equalsIgnoreCase("Resident") && option1.equalsIgnoreCase("-none-")){
                 
                // String s1= rs.getString("option");
                 rs=stm.executeQuery(sql);
@@ -610,7 +610,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 con1.close();
                 }
             }
-                else if(option.equalsIgnoreCase("System-Admin")){
+                else if(option.equalsIgnoreCase("System-Admin") && option1.equalsIgnoreCase("-none-")){
                 
                     rs=stm.executeQuery(sql1);
                     if(rs.next())
@@ -1158,7 +1158,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
                 }
                         
-                else if(option.equalsIgnoreCase("Community Admin")){
+                else if(option.equalsIgnoreCase("Community Admin") && option1.equalsIgnoreCase("-none-")){
                 
                     rs=stm.executeQuery(sql5);
                     if(rs.next())
@@ -1184,7 +1184,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
                 }
                 
-                 else if(option.equalsIgnoreCase("Security Staff")){
+                 else if(option.equalsIgnoreCase("Security Staff") && option1.equalsIgnoreCase("-none-")){
                 
                     rs=stm.executeQuery(sql6);
                     if(rs.next())
@@ -1278,7 +1278,9 @@ public class MainJFrame extends javax.swing.JFrame {
             {
                
                
-                ComboType.disable();
+                ComboType.removeAllItems();
+                ComboType.addItem("-none-");
+                ComboType.enable();
                 
                 
             }
@@ -1335,15 +1337,18 @@ public class MainJFrame extends javax.swing.JFrame {
             {
                
                
-                ComboType.disable();
-                
+                ComboType.removeAllItems();
+                ComboType.addItem("-none-");
+                ComboType.enable();
                 
             }
                 if(comboRole.getSelectedItem().equals("Community Admin"))
             {
                
                
-                ComboType.disable();
+                ComboType.removeAllItems();
+                ComboType.addItem("-none-");
+                ComboType.enable();
                 
                 
             }
@@ -1351,7 +1356,9 @@ public class MainJFrame extends javax.swing.JFrame {
             {
                
                
-                ComboType.disable();
+                ComboType.removeAllItems();
+                ComboType.addItem("-none-");
+                ComboType.enable();
                 
                 
             }

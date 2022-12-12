@@ -170,6 +170,11 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
         btnSend.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnSend.setText("Send To Organization");
         btnSend.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendActionPerformed(evt);
+            }
+        });
 
         btnCancel.setBackground(new java.awt.Color(77, 126, 126));
         btnCancel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -784,6 +789,65 @@ public class EnterpriseJFrame extends javax.swing.JFrame {
             Logger.getLogger(ResidentComplaintJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+         int selectedIndex = jTable1.getSelectedRow();
+         
+          try {
+              
+              
+              int complaintid=Integer.parseInt(Df.getValueAt(selectedIndex, 1).toString());
+              int residentid=Integer.parseInt(txtResidentId.getText());
+              
+              String complainttype=txtComplaintType.getText();
+              String status=txtStatus.getText();
+              String comment=txtComment.getText();
+              String complaintbox=txtComplaintBox.getText();
+              
+              
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("update raisecomplaint set id=?,organization=?,complaint=?, status='pending',workercomment=? where complaintid=?");
+            
+            insert.setInt(1, residentid);
+            insert.setString(2, complainttype);
+            insert.setString(3, complaintbox);
+            //insert.setString(4, status);
+            insert.setString(4, comment);
+            insert.setInt(5, complaintid);
+            
+            insert.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this,"Record Updated");
+             
+             ManagerJFrame m = new ManagerJFrame();
+             m.table_update_water();
+             m.table_update_fire();
+             m.table_update_gov();
+             m.table_update_hospital();
+             m.table_update_nongov();
+             m.table_update_police();
+             m.table_update_standalone();
+             m.table_update_street();
+             
+             
+              table_update_griv();
+              table_update_emergency();
+              table_update_covidhelp();
+              table_update_residence();
+            
+          
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnterpriseJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(EnterpriseJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSendActionPerformed
 
   
     /**
