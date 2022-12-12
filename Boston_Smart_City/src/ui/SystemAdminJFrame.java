@@ -283,7 +283,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         btnOther1.setText("Other");
         jPanel1.add(btnOther1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 270, -1, -1));
 
-        tblFireEmployee1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        tblFireEmployee1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         tblFireEmployee1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -363,7 +363,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
@@ -524,7 +524,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         });
         jPanel3.add(btnDeleteResident, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 290, 140, 50));
 
-        jTable2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jTable2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
