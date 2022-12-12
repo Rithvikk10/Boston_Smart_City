@@ -53,45 +53,49 @@ public class MainJFrame extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         btnRegister = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         comboRole = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         ComboType = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 153, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Email ID :");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 100, 30));
 
         txtEmail.setBackground(new java.awt.Color(255, 204, 204));
         txtEmail.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(0, 153, 255));
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 180, 122, 30));
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 153, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Select Role :");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 120, 30));
 
         txtPassword.setBackground(new java.awt.Color(255, 204, 204));
         txtPassword.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(51, 153, 255));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 122, 30));
 
         btnRegister.setBackground(new java.awt.Color(0, 102, 255));
         btnRegister.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnRegister.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister.setText("Registera");
+        btnRegister.setText("Register");
         btnRegister.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegisterActionPerformed(evt);
             }
         });
+        jPanel1.add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 471, 160, 50));
 
         btnLogin.setBackground(new java.awt.Color(0, 102, 255));
         btnLogin.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -103,34 +107,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-
-        jButton1.setText("Sys Admin");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Ent Admin");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Manager");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText("Staff");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 411, 160, 50));
 
         comboRole.setBackground(new java.awt.Color(255, 204, 204));
         comboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "System-Admin", "Enterprise Admin", "Manager", "Staff", "Resident", "Community Admin", "Security Staff", "FeedBack Monitor", " " }));
@@ -139,96 +116,25 @@ public class MainJFrame extends javax.swing.JFrame {
                 comboRoleActionPerformed(evt);
             }
         });
+        jPanel1.add(comboRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 280, 124, 31));
 
         jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 153, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Password :");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 100, 30));
 
         jLabel12.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 153, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("Select Type :");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, 120, 30));
 
         ComboType.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.add(ComboType, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 330, 124, 31));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(540, 540, 540)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(540, 540, 540)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(570, 570, 570)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(570, 570, 570)
-                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(410, 410, 410)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(1140, 1140, 1140)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(1140, 1140, 1140)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(1140, 1140, 1140)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(520, 520, 520)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(ComboType, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(comboRole, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboRole, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboType, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/MainPicture.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 680));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -571,6 +477,7 @@ public class MainJFrame extends javax.swing.JFrame {
             
             String sql5="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Community Admin'";
             String sql6="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='Security Staff'";
+            String sql7="select * from employeeregistration where email='"+lg.getEmail()+"' and password='"+lg.getPassword()+"' and role='FeedBack Monitor'";
            
           
             if(option.equalsIgnoreCase("Resident") && option1.equalsIgnoreCase("-none-")){
@@ -962,8 +869,9 @@ public class MainJFrame extends javax.swing.JFrame {
                
                 s.txtEmail1.setText(rs.getString(8));
                         s.setVisible(true);
-                        ManagerJFrame m=new ManagerJFrame();
-                        m.table_update_water();
+                        
+                        
+                        s.table_update_water();
                         dispose();
                         con1.close();
                     
@@ -988,9 +896,9 @@ public class MainJFrame extends javax.swing.JFrame {
                
                 s.txtEmail1.setText(rs.getString(8));
                         s.setVisible(true);
-                        ManagerJFrame m=new ManagerJFrame();
-                        m.table_update_street();
                         
+                        
+                        s.table_update_street();
                         dispose();
                         con1.close();
                     
@@ -1015,9 +923,9 @@ public class MainJFrame extends javax.swing.JFrame {
                
                 s.txtEmail1.setText(rs.getString(8));
                         s.setVisible(true);
-                        ManagerJFrame m=new ManagerJFrame();
-                        m.table_update_police();
                         
+                        
+                        s.table_update_police();
                         dispose();
                         con1.close();
                     
@@ -1042,8 +950,8 @@ public class MainJFrame extends javax.swing.JFrame {
                
                 s.txtEmail1.setText(rs.getString(8));
                         s.setVisible(true);
-                        ManagerJFrame m=new ManagerJFrame();
-                        m.table_update_hospital();
+                        
+                        s.table_update_hospital();
                         
                         dispose();
                         con1.close();
@@ -1069,8 +977,8 @@ public class MainJFrame extends javax.swing.JFrame {
                
                 s.txtEmail1.setText(rs.getString(8));
                         s.setVisible(true);
-                        ManagerJFrame m=new ManagerJFrame();
-                        m.table_update_fire();
+                        
+                        s.table_update_fire();
                         
                         dispose();
                         con1.close();
@@ -1095,8 +1003,8 @@ public class MainJFrame extends javax.swing.JFrame {
                
                 s.txtEmail1.setText(rs.getString(8));
                         s.setVisible(true);
-                        ManagerJFrame m=new ManagerJFrame();
-                        m.table_update_nongov();
+                        
+                        s.table_update_nongov();
                         
                         dispose();
                         con1.close();
@@ -1122,8 +1030,8 @@ public class MainJFrame extends javax.swing.JFrame {
                
                 s.txtEmail1.setText(rs.getString(8));
                         s.setVisible(true);
-                        ManagerJFrame m=new ManagerJFrame();
-                        m.table_update_gov();
+                        
+                        s.table_update_gov();
                         
                         dispose();
                         con1.close();
@@ -1149,8 +1057,8 @@ public class MainJFrame extends javax.swing.JFrame {
                
                 s.txtEmail1.setText(rs.getString(8));
                         s.setVisible(true);
-                        ManagerJFrame m=new ManagerJFrame();
-                        m.table_update_standalone();
+                        
+                        s.table_update_standalone();
                         
                         dispose();
                         con1.close();
@@ -1207,7 +1115,32 @@ public class MainJFrame extends javax.swing.JFrame {
                         con1.close();
                     
                     }
-                }        
+                }   
+                 
+                 else if(option.equalsIgnoreCase("FeedBack Monitor") && option1.equalsIgnoreCase("-none-")){
+                
+                    rs=stm.executeQuery(sql7);
+                    if(rs.next())
+                    {
+                       FeedbackMonitorStaffJFrame fm=new FeedbackMonitorStaffJFrame();
+                      
+                fm.txtID3.setText(rs.getString(1));
+                fm.txtID4.setText(rs.getString(1));
+                fm.txtName1.setText(rs.getString(5));
+                fm.txtAge1.setText(rs.getString(6));
+               switch(rs.getString(7)){
+                case "Male" -> fm.genderGroup.setSelected(fm.btnMale1.getModel(), true);
+                case "Female" -> fm.genderGroup.setSelected(fm.btnFemale1.getModel(), true);
+                case "Other" -> fm.genderGroup.setSelected(fm.btnOther1.getModel(), true);
+                }
+                fm.txtEmail1.setText(rs.getString(8));
+                       
+                        fm.setVisible(true);
+                        dispose();
+                        con1.close();
+                    
+                    }
+                }
                  
                 
                 
@@ -1237,39 +1170,6 @@ public class MainJFrame extends javax.swing.JFrame {
        
        
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        SystemAdminJFrame raf = new SystemAdminJFrame();
-        raf.setVisible(true);
-
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-       EnterpriseJFrame rbf = new EnterpriseJFrame();
-        rbf.setVisible(true);
-
-        dispose(); 
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        ManagerJFrame rmf = new ManagerJFrame();
-        rmf.setVisible(true);
-
-        dispose(); 
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-       StaffJFrame rsf = new StaffJFrame();
-        rsf.setVisible(true);
-
-        dispose(); 
- 
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void comboRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRoleActionPerformed
         // TODO add your handling code here:
@@ -1352,7 +1252,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 
                 
             }
-                if(comboRole.getSelectedItem().equals("Security Support Staff"))
+                if(comboRole.getSelectedItem().equals("Security Staff"))
             {
                
                
@@ -1417,13 +1317,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
     private javax.swing.JComboBox<String> comboRole;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtEmail;

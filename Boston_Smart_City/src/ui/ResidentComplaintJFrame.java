@@ -22,6 +22,8 @@ import model.RaiseComplaint;
 import java.time.LocalDateTime;
 import java.util.concurrent.Executors;
 import model.Login;
+import model.Resident;
+import model.ResidentRating;
 
 /**
  *
@@ -55,6 +57,9 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         genderGroup = new javax.swing.ButtonGroup();
+        workerRating = new javax.swing.ButtonGroup();
+        workJobRating = new javax.swing.ButtonGroup();
+        Response = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -92,6 +97,39 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         txtComment = new javax.swing.JTextArea();
         jLabel24 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
+        txtFeedBackID = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        txtResidentID = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        txtComplaintID = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jLabel30 = new javax.swing.JLabel();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jRadioButton8 = new javax.swing.JRadioButton();
+        jRadioButton9 = new javax.swing.JRadioButton();
+        jRadioButton10 = new javax.swing.JRadioButton();
+        jLabel31 = new javax.swing.JLabel();
+        jRadioButton11 = new javax.swing.JRadioButton();
+        jRadioButton12 = new javax.swing.JRadioButton();
+        jRadioButton13 = new javax.swing.JRadioButton();
+        jRadioButton14 = new javax.swing.JRadioButton();
+        jRadioButton15 = new javax.swing.JRadioButton();
+        jLabel32 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
+        txtComplaintID1 = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         txtID3 = new javax.swing.JTextField();
@@ -255,7 +293,6 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         jLabel4.setText("My Complaints :");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 150, 27));
 
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -308,17 +345,17 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Complaint Number :");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 180, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 180, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Complaint Type :");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 430, 180, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 180, -1));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Status :");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 470, 180, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, 180, -1));
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -333,17 +370,17 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
                 txtComplaintNumberActionPerformed(evt);
             }
         });
-        jPanel2.add(txtComplaintNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 130, -1));
+        jPanel2.add(txtComplaintNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, 130, -1));
 
         txtComplaintType.setBackground(new java.awt.Color(204, 204, 204));
         txtComplaintType.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtComplaintType.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(txtComplaintType, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, 130, -1));
+        jPanel2.add(txtComplaintType, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 430, 130, -1));
 
         txtStatus.setBackground(new java.awt.Color(204, 204, 204));
         txtStatus.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtStatus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel2.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 130, -1));
+        jPanel2.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 130, -1));
 
         txtComplaint.setBackground(new java.awt.Color(204, 204, 204));
         txtComplaint.setColumns(10);
@@ -356,7 +393,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel9.setText("Comment By Worker :");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 520, 180, 28));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 490, 180, 28));
 
         txtComment.setBackground(new java.awt.Color(204, 204, 204));
         txtComment.setColumns(10);
@@ -365,23 +402,256 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         txtComment.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jScrollPane4.setViewportView(txtComment);
 
-        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 520, 220, 80));
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 490, 220, 80));
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ResidentProfile.png"))); // NOI18N
         jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(-240, 0, 1710, 810));
 
         jTabbedPane1.addTab("Check Status", jPanel2);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1470, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 810, Short.MAX_VALUE)
-        );
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "FeedBack ID", "Complaint ID", "Status", "Worker Rating", "Work Job Rating", "Response", "Note"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setHeaderValue("FeedBack ID");
+        }
+
+        jPanel4.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 934, 114));
+
+        jButton1.setText("View");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, -1, -1));
+
+        jLabel26.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel26.setText("FeedBack ID :");
+        jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 180, -1));
+
+        txtFeedBackID.setBackground(new java.awt.Color(204, 204, 204));
+        txtFeedBackID.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtFeedBackID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        txtFeedBackID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFeedBackIDActionPerformed(evt);
+            }
+        });
+        jPanel4.add(txtFeedBackID, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, 130, -1));
+
+        jLabel27.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel27.setText("Resident ID :");
+        jPanel4.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 180, -1));
+
+        txtResidentID.setBackground(new java.awt.Color(204, 204, 204));
+        txtResidentID.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtResidentID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel4.add(txtResidentID, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 430, 130, -1));
+
+        jLabel28.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel28.setText("Complaint ID :");
+        jPanel4.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, 180, -1));
+
+        txtComplaintID.setBackground(new java.awt.Color(204, 204, 204));
+        txtComplaintID.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtComplaintID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel4.add(txtComplaintID, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 130, -1));
+
+        jLabel29.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel29.setText("Worker Rating :");
+        jPanel4.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 430, 180, -1));
+
+        workerRating.add(jRadioButton1);
+        jRadioButton1.setText("5/5");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 390, 60, -1));
+
+        workerRating.add(jRadioButton2);
+        jRadioButton2.setText("4/5");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 390, 60, -1));
+
+        workerRating.add(jRadioButton3);
+        jRadioButton3.setText("3/5");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 390, 60, -1));
+
+        workerRating.add(jRadioButton4);
+        jRadioButton4.setText("2/5");
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 390, 60, -1));
+
+        workerRating.add(jRadioButton5);
+        jRadioButton5.setText("1/5");
+        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton5ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 390, 60, -1));
+
+        jLabel30.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel30.setText("Work Job Rating :");
+        jPanel4.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 390, 180, -1));
+
+        workJobRating.add(jRadioButton6);
+        jRadioButton6.setText("5/5");
+        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton6ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 430, 60, -1));
+
+        workJobRating.add(jRadioButton7);
+        jRadioButton7.setText("4/5");
+        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton7ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 430, 60, -1));
+
+        workJobRating.add(jRadioButton8);
+        jRadioButton8.setText("3/5");
+        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton8ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 430, 60, -1));
+
+        workJobRating.add(jRadioButton9);
+        jRadioButton9.setText("2/5");
+        jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton9ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 430, 60, -1));
+
+        workJobRating.add(jRadioButton10);
+        jRadioButton10.setText("1/5");
+        jRadioButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton10ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 430, 60, -1));
+
+        jLabel31.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel31.setText("Response :");
+        jPanel4.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 480, 180, -1));
+
+        Response.add(jRadioButton11);
+        jRadioButton11.setText("5/5");
+        jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton11ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 480, 60, -1));
+
+        Response.add(jRadioButton12);
+        jRadioButton12.setText("4/5");
+        jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton12ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 480, 60, -1));
+
+        Response.add(jRadioButton13);
+        jRadioButton13.setText("3/5");
+        jRadioButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton13ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 480, 60, -1));
+
+        Response.add(jRadioButton14);
+        jRadioButton14.setText("2/5");
+        jRadioButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton14ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 480, 60, -1));
+
+        Response.add(jRadioButton15);
+        jRadioButton15.setText("1/5");
+        jRadioButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton15ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 480, 60, -1));
+
+        jLabel32.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel32.setText("Note :");
+        jPanel4.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 520, 180, 20));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane6.setViewportView(jTextArea1);
+
+        jPanel4.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 540, 273, 90));
+
+        jButton2.setBackground(new java.awt.Color(102, 102, 102));
+        jButton2.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(204, 204, 204));
+        jButton2.setText("Submit");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 680, 239, 70));
+
+        txtComplaintID1.setBackground(new java.awt.Color(204, 204, 204));
+        txtComplaintID1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txtComplaintID1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel4.add(txtComplaintID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 130, -1));
+
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ResidentProfile.png"))); // NOI18N
+        jPanel4.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(-100, 0, 1570, 810));
 
         jTabbedPane1.addTab("FeedBack", jPanel4);
 
@@ -1132,11 +1402,237 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboCommunity1ActionPerformed
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton5ActionPerformed
+
+    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton6ActionPerformed
+
+    private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton7ActionPerformed
+
+    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton8ActionPerformed
+
+    private void jRadioButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton9ActionPerformed
+
+    private void jRadioButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton10ActionPerformed
+
+    private void jRadioButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton11ActionPerformed
+
+    private void jRadioButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton12ActionPerformed
+
+    private void jRadioButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton13ActionPerformed
+
+    private void jRadioButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton14ActionPerformed
+
+    private void jRadioButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton15ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       int feedbackid= Integer.parseInt(txtFeedBackID.getText());
+       int residentid= Integer.parseInt(txtResidentID.getText());
+       int complaintid= Integer.parseInt(txtComplaintID.getText());
+       
+        
+        String status=txtStatus.getText();
+        
+        
+        this.jRadioButton1.setActionCommand("5/5");
+        this.jRadioButton2.setActionCommand("4/5");
+        this.jRadioButton3.setActionCommand("3/5");
+        this.jRadioButton4.setActionCommand("2/5");
+        this.jRadioButton5.setActionCommand("1/5");
+        
+        this.jRadioButton6.setActionCommand("5/5");
+        this.jRadioButton7.setActionCommand("4/5");
+        this.jRadioButton8.setActionCommand("3/5");
+        this.jRadioButton9.setActionCommand("2/5");
+        this.jRadioButton10.setActionCommand("1/5");
+        
+        this.jRadioButton11.setActionCommand("5/5");
+        this.jRadioButton12.setActionCommand("4/5");
+        this.jRadioButton13.setActionCommand("3/5");
+        this.jRadioButton14.setActionCommand("2/5");
+        this.jRadioButton15.setActionCommand("1/5");
+        
+        String textarea= jTextArea1.getText();
+        
+        
+        
+        
+        
+        String selection = this.workerRating.getSelection().getActionCommand();
+        String selection1 = this.workJobRating.getSelection().getActionCommand();
+        String selection2 = this.Response.getSelection().getActionCommand();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            
+
+            con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
+
+            ResidentRating r = new ResidentRating();
+            r.setFeedbackid(feedbackid);
+            r.setResidentid(residentid);
+            r.setComplaintid(complaintid);
+            r.setSelection(selection);
+            r.setSelection1(selection1);
+            r.setSelection2(selection2);
+            r.setStatus(status);
+            r.setTextarea(textarea);
+            
+            insert=con1.prepareStatement("insert into feedback(id,complaintid,status,workrating,workjobrating,response,note)values(?,?,?,?,?,?,?)");
+
+            insert.setInt(1, r.getResidentid());
+            
+            insert.setInt(2, r.getComplaintid());
+            // insert.setString(2, gender);
+//            if(btnMale.isSelected()){
+//                insert.setString(3, btnMale.getText());
+//            }
+//            else if(btnFemale.isSelected()){
+//                insert.setString(3, btnFemale.getText());
+//            }
+//            else{
+//                insert.setString(3, btnOther.getText());
+//            }
+            insert.setString(3, r.getStatus());
+
+            insert.setString(4, r.getSelection());
+
+            insert.setString(5, r.getSelection1());
+            
+            insert.setString(6, r.getSelection2());
+
+            insert.setString(7, r.getTextarea());
+            
+            
+            insert.executeUpdate();
+
+            JOptionPane.showMessageDialog(this,"Thank you for your valuable feedback!!");
+
+            txtResidentID.setText("");
+            txtComplaintID.setText("");
+            genderGroup.clearSelection();
+            jTextArea1.setText("");
+            
+
+              con1.close();
+
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        catch (SQLException ex) {
+            Logger.getLogger(ResidentProfileJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+ 
+              if(con1!=null)
+              try {
+                  con1.close();
+              } catch (SQLException ex) {
+                  Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+              }
+}
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtFeedBackIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFeedBackIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFeedBackIDActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     Connection con1;
     PreparedStatement insert;
     ResultSet rs;
     
-    
+      public void table_update_feedback()
+        {
+        int c;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
+            insert=con1.prepareStatement("select * from raisecomplaint where status='completed'");
+            
+             ResultSet rs= insert.executeQuery();
+             ResultSetMetaData Rss = rs.getMetaData();
+             c = Rss.getColumnCount();
+             
+             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+            
+             Df.setRowCount(0);
+             
+             while(rs.next())
+             {
+               Vector v2 = new Vector();
+               
+               for(int a=1; a<=c; a++)
+               {
+                 v2.add(rs.getString("complaintid"));
+                  v2.add(rs.getString("status"));
+                   v2.add(rs.getString("organization"));
+                    v2.add(rs.getString("status"));
+                    v2.add(rs.getString("complaint"));
+                    v2.add(rs.getString("workercomment"));
+                 
+               
+               }
+               Df.addRow(v2);
+             }
+           
+                     
+           
+        
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        catch (SQLException ex) {
+            Logger.getLogger(SystemAdminJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        }
     
     public String getDetails(String residentId){
       return residentId;
@@ -1181,6 +1677,7 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup Response;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnBack2;
@@ -1196,6 +1693,8 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboEnterprise;
     private javax.swing.JComboBox<String> comboOrganization;
     public javax.swing.ButtonGroup genderGroup;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1214,7 +1713,15 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1225,27 +1732,52 @@ public class ResidentComplaintJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton10;
+    private javax.swing.JRadioButton jRadioButton11;
+    private javax.swing.JRadioButton jRadioButton12;
+    private javax.swing.JRadioButton jRadioButton13;
+    private javax.swing.JRadioButton jRadioButton14;
+    private javax.swing.JRadioButton jRadioButton15;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextArea jTextArea1;
     public javax.swing.JTextField txtAddress;
     public javax.swing.JTextField txtAge;
     private javax.swing.JTextArea txtComment;
     private javax.swing.JTextArea txtComplaint;
     private javax.swing.JTextArea txtComplaintBox;
+    private javax.swing.JTextField txtComplaintID;
+    private javax.swing.JTextField txtComplaintID1;
     private javax.swing.JTextField txtComplaintNumber;
     private javax.swing.JTextField txtComplaintType;
     public javax.swing.JPasswordField txtConfirmPassword;
     public javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtFeedBackID;
     public javax.swing.JTextField txtID1;
     public javax.swing.JTextField txtID2;
     public javax.swing.JTextField txtID3;
     public javax.swing.JTextField txtName;
     public javax.swing.JPasswordField txtPassword;
     public javax.swing.JTextField txtPhoneNumber;
+    private javax.swing.JTextField txtResidentID;
     private javax.swing.JTextField txtStatus;
+    private javax.swing.ButtonGroup workJobRating;
+    private javax.swing.ButtonGroup workerRating;
     // End of variables declaration//GEN-END:variables
 }
