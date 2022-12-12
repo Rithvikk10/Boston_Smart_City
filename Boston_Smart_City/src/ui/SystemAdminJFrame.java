@@ -188,7 +188,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
 
         comboRole.setBackground(new java.awt.Color(204, 204, 204));
         comboRole.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        comboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One", "Enterprise Admin", "Manager", "Worker", " ", " " }));
+        comboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select One", "Enterprise Admin", "Manager", "Worker", "Community Admin", "Security Staff", "FeedBack Monitor", " ", " " }));
         comboRole.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         comboRole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,7 +357,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         jPanel1.add(btnUpdateEmployee1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, 160, 50));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Staff1.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, 30, 1310, 780));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1310, 810));
 
         jTabbedPane1.addTab("Employee", jPanel1);
 
@@ -750,7 +750,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
     try{
        Class.forName("com.mysql.jdbc.Driver");
 
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
 
         con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
 
@@ -782,7 +782,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
     try{
        Class.forName("com.mysql.jdbc.Driver");
 
-        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+        con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
 
         con1.setNetworkTimeout(Executors.newFixedThreadPool(5), 5000);
 
@@ -864,7 +864,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from personregistration");
             
              ResultSet rs= insert.executeQuery();
@@ -917,7 +917,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from raisecomplaint");
             
              ResultSet rs= insert.executeQuery();
@@ -1125,7 +1125,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
          
               
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("update personregistration set name=?,age=?,gender=?,address=?,city=?,community=?,phonenumber=?,email=? where id=?");
             
             insert.setString(1, resname);
@@ -1371,7 +1371,10 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
          switch(Df.getValueAt(selectedIndex, 2).toString()){
              case "Enterprise Admin" -> comboRole.setSelectedIndex(1);
              case "Manager" -> comboRole.setSelectedIndex(2);
-             case "Worker" -> comboRole.setSelectedIndex(3);              
+             case "Worker" -> comboRole.setSelectedIndex(3);  
+             case "Community Admin" -> comboRole.setSelectedIndex(4);              
+             case "Security Staff" -> comboRole.setSelectedIndex(5);              
+             case "FeedBack Monitor" -> comboRole.setSelectedIndex(6);
          }
          
          switch(Df.getValueAt(selectedIndex, 3).toString()){
@@ -1416,7 +1419,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
             int empId = Integer.parseInt(txtSearchEmployee1.getText());
             
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from employeeregistration where employeeId = '"+empId+"'");
             
              ResultSet rs= insert.executeQuery();
@@ -1470,7 +1473,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
               if(dialogResult==JOptionPane.YES_OPTION)
               {
                   Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("delete from personregistration where id=?");
             
              insert.setInt(1, id);
@@ -1498,7 +1501,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
             int resId = Integer.parseInt(txtSearchResident.getText());
             
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from personregistration where Id = '"+resId+"'");
             
              ResultSet rs= insert.executeQuery();
@@ -1574,7 +1577,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
               
               
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("update raisecomplaint set organization=?,status=?,timestamp=?,complaint=?,workercomment=? where cid=?");
             
             insert.setString(3, comtype);
@@ -1610,7 +1613,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
               if(dialogResult==JOptionPane.YES_OPTION)
               {
                   Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("delete from raisecomplaint where complaintid=?");
             
              insert.setInt(1, id);
@@ -1640,7 +1643,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
             int comId = Integer.parseInt(txtSearchComplaint.getText());
             
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","Anwesh@root1");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from raisecomplaint where complaintid = '"+comId+"'");
             
              ResultSet rs= insert.executeQuery();

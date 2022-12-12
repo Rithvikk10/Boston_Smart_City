@@ -69,6 +69,7 @@ public class StaffJFrame extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
         txtID6 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txtName1 = new javax.swing.JTextField();
@@ -83,6 +84,7 @@ public class StaffJFrame extends javax.swing.JFrame {
         btnUpdateMyProfile = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         txtID3 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -219,19 +221,27 @@ public class StaffJFrame extends javax.swing.JFrame {
         jLabel16.setText("Staff ID :");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 20, 110, 30));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Staff1.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 0, 1300, 680));
+
         jTabbedPane1.addTab("Staff", jPanel1);
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Name :");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 143, 180, 27));
 
         txtName1.setBackground(new java.awt.Color(204, 204, 204));
         txtName1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtName1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel2.add(txtName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 142, 148, -1));
 
         jLabel28.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel28.setText("Age :");
+        jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 206, 180, 27));
 
         txtAge1.setBackground(new java.awt.Color(204, 204, 204));
         txtAge1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -241,30 +251,37 @@ public class StaffJFrame extends javax.swing.JFrame {
                 txtAge1ActionPerformed(evt);
             }
         });
+        jPanel2.add(txtAge1, new org.netbeans.lib.awtextra.AbsoluteConstraints(553, 206, 148, -1));
 
         jLabel29.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel29.setText("Gender :");
+        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 281, 180, 27));
 
         genderGroup.add(btnMale1);
         btnMale1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnMale1.setText("Male");
+        jPanel2.add(btnMale1, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 281, -1, -1));
 
         genderGroup.add(btnFemale1);
         btnFemale1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnFemale1.setText("Female");
+        jPanel2.add(btnFemale1, new org.netbeans.lib.awtextra.AbsoluteConstraints(621, 281, -1, -1));
 
         genderGroup.add(btnOther1);
         btnOther1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnOther1.setText("Other");
+        jPanel2.add(btnOther1, new org.netbeans.lib.awtextra.AbsoluteConstraints(711, 281, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Email :");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 354, 180, 27));
 
         txtEmail1.setBackground(new java.awt.Color(204, 204, 204));
         txtEmail1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         txtEmail1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel2.add(txtEmail1, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 354, 148, -1));
 
         btnUpdateMyProfile.setText("Update");
         btnUpdateMyProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -272,10 +289,12 @@ public class StaffJFrame extends javax.swing.JFrame {
                 btnUpdateMyProfileActionPerformed(evt);
             }
         });
+        jPanel2.add(btnUpdateMyProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(541, 461, 115, 51));
 
         jLabel15.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Staff ID :");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 20, 110, 30));
 
         txtID3.setBackground(new java.awt.Color(204, 204, 204));
         txtID3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -285,77 +304,10 @@ public class StaffJFrame extends javax.swing.JFrame {
                 txtID3ActionPerformed(evt);
             }
         });
+        jPanel2.add(txtID3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1149, 24, 100, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(353, 353, 353)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(btnMale1)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(btnFemale1)
-                                        .addGap(5, 5, 5)
-                                        .addComponent(btnOther1))
-                                    .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(541, 541, 541)
-                        .addComponent(btnUpdateMyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(493, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(txtID3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtID3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(88, 88, 88)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAge1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMale1)
-                    .addComponent(btnFemale1)
-                    .addComponent(btnOther1))
-                .addGap(46, 46, 46)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(78, 78, 78)
-                .addComponent(btnUpdateMyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(178, Short.MAX_VALUE))
-        );
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/Staff1.png"))); // NOI18N
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1290, 700));
 
         jTabbedPane1.addTab("Update My Profile", jPanel2);
 
@@ -400,7 +352,7 @@ public class StaffJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from raisecomplaint where organization='Water Supply Org'");
             
              ResultSet rs= insert.executeQuery();
@@ -448,7 +400,7 @@ public class StaffJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from raisecomplaint where organization='Street Org'");
             
              ResultSet rs= insert.executeQuery();
@@ -497,7 +449,7 @@ public class StaffJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from raisecomplaint where organization='Police Org'");
             
              ResultSet rs= insert.executeQuery();
@@ -545,7 +497,7 @@ public class StaffJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from raisecomplaint where organization='Hospital Org'");
             
              ResultSet rs= insert.executeQuery();
@@ -593,7 +545,7 @@ public class StaffJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from raisecomplaint where organization='Fire Org'");
             
              ResultSet rs= insert.executeQuery();
@@ -641,7 +593,7 @@ public class StaffJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from raisecomplaint where organization='Non Gov Org'");
             
              ResultSet rs= insert.executeQuery();
@@ -690,7 +642,7 @@ public class StaffJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from raisecomplaint where organization='Gov Org'");
             
              ResultSet rs= insert.executeQuery();
@@ -738,7 +690,7 @@ public class StaffJFrame extends javax.swing.JFrame {
         int c;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("select * from raisecomplaint where organization='Stand Alone'");
             
              ResultSet rs= insert.executeQuery();
@@ -854,7 +806,7 @@ public class StaffJFrame extends javax.swing.JFrame {
               
               
             Class.forName("com.mysql.jdbc.Driver");
-            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","");
+            con1 = DriverManager.getConnection("jdbc:mysql://localhost/bostonsmartcity","root","root@123");
             insert=con1.prepareStatement("update raisecomplaint set id=?,organization=?,complaint=?, status='completed',workercomment=? where complaintid=?");
             
             insert.setInt(1, residentid);
@@ -953,6 +905,7 @@ public class StaffJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -960,6 +913,7 @@ public class StaffJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
